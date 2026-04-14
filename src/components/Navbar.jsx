@@ -12,7 +12,7 @@ export default function Navbar({ theme, toggleTheme, stats, search, setSearch, a
         <div className="nav-logo">
           <span className="logo-bracket">[</span>
           <span>REPO</span>
-          <span className="logo-accent">CAT</span>
+          <span className="logo-accent">ZILLA</span>
           <span className="logo-bracket">]</span>
         </div>
         <div className="layer-tabs">

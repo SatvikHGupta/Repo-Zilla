@@ -5,7 +5,7 @@ export default function LoadingScreen({ message, percent, stats }) {
         <div className="loading-logo">
           <span className="logo-bracket">[</span>
           <span className="logo-text">REPO</span>
-          <span className="logo-accent">CATALOGUE</span>
+          <span className="logo-accent">ZILLA</span>
           <span className="logo-bracket">]</span>
         </div>
         {stats && (

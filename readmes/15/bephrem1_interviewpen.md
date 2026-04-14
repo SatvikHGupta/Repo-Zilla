@@ -1,2 +1,0 @@
-# interviewpen
-https://interviewpen.com

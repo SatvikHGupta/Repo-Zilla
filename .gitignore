@@ -9,8 +9,18 @@ lerna-debug.log*
 
 node_modules
 dist
+dist/
+.env
 dist-ssr
 *.local
+*.zip
+*.rar
+
+readmes/
+scripts/repos_raw.json
+scripts/repos_scored.json
+scripts/checkpoint.json
+
 
 # Editor directories and files
 .vscode/*

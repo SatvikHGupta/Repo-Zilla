@@ -1,0 +1,325 @@
+# Latchkey
+
+[![npm](https://img.shields.io/npm/v/latchkey?style=flat-square)](https://npmjs.com/package/latchkey)
+[![CI](https://img.shields.io/github/actions/workflow/status/imbue-ai/latchkey/test.yml?style=flat-square)](https://github.com/imbue-ai/latchkey/actions)
+[![license](https://img.shields.io/npm/l/latchkey?style=flat-square)](LICENSE)
+[![downloads](https://img.shields.io/npm/dm/latchkey?style=flat-square)](https://npmjs.com/package/latchkey)
+
+Inject API credentials into local agent requests.
+
+**[Full documentation](https://docs.imbue.com/latchkey)**
+
+## Quick example
+
+```bash
+# User stores the credentials.
+latchkey auth set slack -H "Authorization: Bearer xoxb-your-token"
+
+# Agent makes http calls.
+latchkey curl -X POST 'https://slack.com/api/conversations.create' \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"something-urgent"}'
+```
+
+## Overview
+
+Latchkey is a command-line tool that injects credentials into curl commands.
+
+- `latchkey services list`
+	- List third-party services (Slack, Google Workspace, Linear, GitHub, etc.) that are supported out-of-the-box.
+    - (In simple cases, `latchkey services register` can be used to add basic support for a new service at runtime.)
+- `latchkey curl <arguments>`
+	- Automatically inject credentials into your otherwise standard curl calls to HTTP APIs.
+	- Credentials must already exist (see below).
+- `latchkey auth set <service_name> <curl_arguments>`
+	- Manually store credentials for a service as arbitrary curl arguments.
+- `latchkey auth browser <service_name>`
+	- Open a browser login pop-up window and store the resulting API credentials.
+    - This also allows agents to prompt users for credentials.
+    - Only some services support this option.
+
+Latchkey is primarily designed for AI agents. By invoking
+Latchkey, agents can utilize user-provided credentials or prompt
+the user to authenticate, then continue interacting with HTTP
+APIs using standard curl syntax. No custom integrations or
+embedded credentials are required.
+
+Unlike OAuth-based flows or typical MCP-style integrations,
+Latchkey does not introduce an intermediary between the agent
+and the service. When the `browser` command is used, requests are made
+directly on the user’s behalf, which enables greater flexibility
+at the cost of formal delegation: agents authenticate as the
+user.
+
+If a service you need isn’t supported yet, contributions are welcome!
+See the [development docs](docs/development.md) for details.
+
+## Installation
+
+### Prerequisites
+
+- `curl`, `node` and `npm` need to be present on your system in reasonably recent versions.
+- The `latchkey auth browser` subcommand requires a graphical environment.
+
+### Steps
+
+```bash
+npm install -g latchkey
+
+# Optionally, if you intend to use `latchkey auth browser`:
+latchkey ensure-browser
+```
+
+The `ensure-browser` command discovers and configures a browser
+for Latchkey to use. It searches for Chrome, Chromium, or Edge
+on your system. If none is found, it downloads Chromium via
+Playwright.
+
+## Agent integrations
+
+Warning: giving AI agents access to your API credentials is
+potentially dangerous, especially when using the `auth browser`
+feature. They will be able to perform most of the actions you
+can. Only do this if you're willing to accept the risks.
+
+
+### Using skills.sh
+
+```bash
+npx skills add imbue-ai/latchkey
+```
+
+### From ClawHub
+
+```bash
+npx clawhub install latchkey
+```
+
+### As a Pi package
+
+```bash
+pi install npm:latchkey
+```
+
+### Manually
+
+The exact steps will differ depending on the agent. Taking OpenCode as an example:
+
+```bash
+mkdir -p ~/.opencode/skills/latchkey
+latchkey skill-md > ~/.opencode/skills/latchkey/SKILL.md
+```
+
+### Using the Python `llm` tool
+
+See [integrations/llm-latchkey/README.md](integrations/llm-latchkey/README.md).
+Also check out our [llm-webchat](https://github.com/imbue-ai/llm-webchat) web UI that can be used together with Latchkey!
+
+
+## Demo
+
+![Image](https://github.com/user-attachments/assets/953eae6e-35ab-4d64-91f3-98b6843c502d)
+
+
+## Direct usage
+
+Let's revisit the initial example:
+
+```bash
+latchkey curl -X POST 'https://slack.com/api/conversations.create' \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"something-urgent"}'
+```
+
+Notice that `-H 'Authorization: Bearer ...'` is absent. This is
+because Latchkey injects stored credentials automatically. To
+set up credentials for a service (Slack in this example), run:
+
+```bash
+latchkey auth browser slack
+```
+
+This opens the browser with a login screen. After you log in, Latchkey extracts
+the necessary API credentials from the browser session, closes the browser, and
+stores the credentials so that they can be reused.
+
+Alternatively, you can provide credentials manually:
+
+```bash
+latchkey auth set slack -H "Authorization: Bearer xoxb-your-token"
+```
+
+`latchkey curl` passes your arguments straight through to `curl`
+so you can use the same interface you are used to. The return
+code, stdout and stderr are passed back from curl to the caller
+of `latchkey`.
+
+
+### Self-hosted services
+
+For services that can be self-hosted, like GitLab, first make Latchkey aware of your service instance:
+
+```bash
+latchkey services register my-gitlab-instance --service-family=gitlab --base-api-url="https://gitlab.example.com/api/v4/"
+```
+
+Then continue as usual.
+
+```bash
+latchkey auth set my-gitlab-instance -H "PRIVATE-TOKEN: <token>"
+
+# Agents can then call the API.
+latchkey curl https://gitlab.example.com/api/v4/user
+```
+
+
+### Entirely new services
+
+If you want to use Latchkey with a service that is not in the
+list of supported built-in services, you can still use the
+mechanism described above to register a new service at runtime:
+
+```bash
+latchkey services register mastodon --base-api-url="https://mastodon.social/api/v1/"
+latchkey auth set mastodon -H "Authorization: Bearer <your_access_token>"
+
+# Agents can then call the service:
+latchkey curl https://mastodon.social/api/v1/timelines/public?limit=2
+```
+
+User-registered services only support authentication via static curl arguments provided through `latchkey auth set`.
+
+
+### Indirect credentials
+
+Some services can't express their credentials as static curl
+arguments. For example:
+
+- AWS requires a signature that changes with each request.
+- Telegram expects bot tokens to be directly part of the URL.
+
+In similar cases, when supported, you can use the `latchkey auth set-nocurl` command, e.g.
+like this:
+
+```bash
+latchkey auth set-nocurl aws <access-key-id> <secret-access-key>
+```
+
+Latchkey will then modify subsequent `latchkey curl` requests as
+needed. You can find more information (including the expected
+signature) by calling `latchkey services info <service_name>`.
+
+### Remembering API credentials
+
+Your API credentials and browser state are encrypted and stored
+by default under `~/.latchkey`. They are never transmitted
+anywhere beyond the endpoints specified by the actual curl
+calls.
+
+
+### Inspecting the status of stored credentials
+
+Calling `latchkey services info <service_name>` will show information
+about the service, including the credentials status. The
+credentials status line will show one of:
+
+- `missing`
+- `invalid`
+- `valid`
+- `unknown` (for user-registered services)
+
+### Clearing credentials
+
+Remembered API credentials can expire. The caller of `latchkey
+curl` will typically notice this because the calls will start returning
+HTTP 401 or 403. To verify that, first call `latchkey services info`, e.g.:
+
+```bash
+latchkey services info discord
+```
+
+If the credentials status is `invalid`, it means the Unauthorized/Forbidden
+responses are caused by invalid or expired credentials rather than insufficient
+permissions. In that case, log in again:
+
+```bash
+latchkey auth browser discord
+```
+
+Or alternatively:
+
+```bash
+latchkey auth set discord -H "Authorization: ..."
+```
+
+
+### Clearing credentials and logins
+
+In case you want to remove stored API credentials, use the `auth clear` subcommand.
+
+```bash
+latchkey auth clear discord
+```
+
+To clear all stored data (both the credential store and browser state file), run:
+
+```bash
+latchkey auth clear
+```
+
+
+### Permissions
+
+Optionally, you can specify rules for approving / rejecting
+requests by creating the `permissions.json` file in the Latchkey
+directory (`~/.latchkey/permissions.json`). For example:
+
+```
+{
+  "rules": [
+    {"google-gmail-api": ["google-gmail-read-all"]},
+    {"slack-api": ["slack-read-all"]}
+  ]
+}
+```
+
+This would mean that:
+
+- When accessing the Gmail or the Slack API, only read actions are allowed.
+- No requests are allowed to any other domains.
+
+Ideally make the file read-only: `chmod -w ~/.latchkey/permissions.json`.
+For more details, check out the [Detent docs](https://github.com/imbue-ai/detent).
+
+
+### Other configuration
+
+You can set these environment variables to override certain
+defaults:
+
+- `LATCHKEY_DIRECTORY`: path to the directory where Latchkey stores its data (defaults to `~/.latchkey`)
+- `LATCHKEY_CURL`: path to the curl binary
+- `LATCHKEY_KEYRING_SERVICE_NAME`, `LATCHKEY_KEYRING_ACCOUNT_NAME`: identifiers that are used to store the encryption password in your keyring
+- `LATCHKEY_ENCRYPTION_KEY`: override the encryption key, e.g. when a keyring is not available. Example: `export LATCHKEY_ENCRYPTION_KEY="$(openssl rand -base64 32)"`
+- `LATCHKEY_DISABLE_BROWSER`: when set to a non-empty value, disables the browser login flow; commands that would trigger a browser login (`auth browser`, `auth browser-prepare`) will fail with an error instead
+- `LATCHKEY_DISABLE_COUNTING`: when set to a non-empty value, disables daily usage counting.
+- `LATCHKEY_PERMISSIONS_CONFIG`: override the `permissions.json` location.
+
+
+## Disclaimers
+
+- This is still a work in progress.
+- Latchkey has been created with the help of AI-assisted coding tools with careful human curation.
+- Invoking `latchkey auth browser ...` can sometimes have side effects in the form of
+  new API keys being created in your accounts (through browser automation).
+- Using agents for automated access may be prohibited by some services' ToS.
+- Unless `LATCHKEY_DISABLE_COUNTING` is set, once a day, when invoking `latchkey`, a GET request is sent to [goatcounter.com](https://goatcounter.com). We don't store any sort of private information and don't track anything beyond a simple daily count of active users.
+- We reserve the right to change the license of future releases of Latchkey.
+- Latchkey was not tested on Windows.
+
+## Currently supported services
+
+Latchkey currently offers varying levels of support for the
+following services: AWS, Calendly, Discord, Dropbox, Figma, GitHub, GitLab,
+Gmail, Google Analytics, Google Calendar, Google Docs, Google Drive, Google Sheets,
+Linear, Mailchimp, Notion, Sentry, Slack, Stripe, Telegram, Yelp, Zoom, and more.

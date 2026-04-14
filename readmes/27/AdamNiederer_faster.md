@@ -1,0 +1,157 @@
+* faster
+  #+BEGIN_HTML
+    <div>
+      <a href="https://crates.io/crates/faster">
+        <img src="https://img.shields.io/crates/v/faster.svg" alt="crates.io" />
+      </a>
+      <a href="https://travis-ci.org/AdamNiederer/faster">
+        <img src="https://travis-ci.org/AdamNiederer/faster.svg?branch=master" alt="Build Status"/>
+      </a>
+    </div>
+  #+END_HTML
+
+** SIMD for Humans
+Easy, powerful, portable, absurdly fast numerical calculations. Includes static
+dispatch with inlining based on your platform and vector types, zero-allocation
+iteration, vectorized loading/storing, and support for uneven collections.
+
+It looks something like this:
+#+BEGIN_SRC rust
+  use faster::*;
+  
+  let lots_of_3s = (&[-123.456f32; 128][..]).simd_iter()
+      .simd_map(f32s(0.0), |v| {
+          f32s(9.0) * v.abs().sqrt().rsqrt().ceil().sqrt() - f32s(4.0) - f32s(2.0)
+      })
+      .scalar_collect();
+#+END_SRC
+
+Which is analogous to this scalar code:
+#+BEGIN_SRC rust
+  let lots_of_3s = (&[-123.456f32; 128][..]).iter()
+      .map(|v| {
+          9.0 * v.abs().sqrt().sqrt().recip().ceil().sqrt() - 4.0 - 2.0
+      })
+      .collect::<Vec<f32>>();
+#+END_SRC
+
+The vector size is entirely determined by the machine you're compiling for - it
+attempts to use the largest vector size supported by your machine, and works on
+any platform or architecture (see below for details).
+
+Compare this to traditional explicit SIMD:
+#+BEGIN_SRC rust
+  use std::mem::transmute;
+  use stdsimd::{f32x4, f32x8};
+
+  let lots_of_3s = &mut [-123.456f32; 128][..];
+
+  if cfg!(all(not(target_feature = "avx"), target_feature = "sse")) {
+      for ch in init.chunks_mut(4) {
+          let v = f32x4::load(ch, 0);
+          let scalar_abs_mask = unsafe { transmute::<u32, f32>(0x7fffffff) };
+          let abs_mask = f32x4::splat(scalar_abs_mask);
+          // There isn't actually an absolute value intrinsic for floats - you
+          // have to look at the IEEE 754 spec and do some bit flipping
+          v = unsafe { _mm_and_ps(v, abs_mask) };
+          v = unsafe { _mm_sqrt_ps(v) };
+          v = unsafe { _mm_rsqrt_ps(v) };
+          v = unsafe { _mm_ceil_ps(v) };
+          v = unsafe { _mm_sqrt_ps(v) };
+          v = unsafe { _mm_mul_ps(v, 9.0) };
+          v = unsafe { _mm_sub_ps(v, 4.0) };
+          v = unsafe { _mm_sub_ps(v, 2.0) };
+          f32x4::store(ch, 0);
+      }
+  } else if cfg!(all(not(target_feature = "avx512"), target_feature = "avx")) {
+      for ch in init.chunks_mut(8) {
+          let v = f32x8::load(ch, 0);
+          let scalar_abs_mask = unsafe { transmute::<u32, f32>(0x7fffffff) };
+          let abs_mask = f32x8::splat(scalar_abs_mask);
+          v = unsafe { _mm256_and_ps(v, abs_mask) };
+          v = unsafe { _mm256_sqrt_ps(v) };
+          v = unsafe { _mm256_rsqrt_ps(v) };
+          v = unsafe { _mm256_ceil_ps(v) };
+          v = unsafe { _mm256_sqrt_ps(v) };
+          v = unsafe { _mm256_mul_ps(v, 9.0) };
+          v = unsafe { _mm256_sub_ps(v, 4.0) };
+          v = unsafe { _mm256_sub_ps(v, 2.0) };
+          f32x8::store(ch, 0);
+      }
+  }
+#+END_SRC
+Even with all of that boilerplate, this still only supports x86-64 machines with
+SSE or AVX - and you have to look up each intrinsic to ensure it's usable for
+your compilation target.
+** Upcoming Features
+A rewrite of the iterator API is upcoming, as well as internal changes to better
+match the direction Rust is taking with explicit SIMD.
+** Compatibility
+Faster currently supports any architecture with floating point support, although
+hardware acceleration is only enabled on machines with x86's vector extensions.
+** Performance
+Here are some extremely unscientific benchmarks which, at least, prove that this
+isn't any worse than scalar iterators. Even on ancient CPUs, a lot of
+performance can be extracted out of SIMD.
+
+#+BEGIN_SRC shell
+  $ RUSTFLAGS="-C target-cpu=ivybridge" cargo bench # host is ivybridge; target has AVX
+  test tests::base100_enc_scalar    ... bench:       1,307 ns/iter (+/- 45)
+  test tests::base100_enc_simd      ... bench:         332 ns/iter (+/- 10)
+  test tests::determinant2_scalar   ... bench:         486 ns/iter (+/- 8)
+  test tests::determinant2_simd     ... bench:         215 ns/iter (+/- 3)
+  test tests::determinant3_scalar   ... bench:         389 ns/iter (+/- 6)
+  test tests::determinant3_simd     ... bench:         209 ns/iter (+/- 3)
+  test tests::map_fill_simd         ... bench:         835 ns/iter (+/- 12)
+  test tests::map_scalar            ... bench:       6,963 ns/iter (+/- 117)
+  test tests::map_simd              ... bench:         879 ns/iter (+/- 18)
+  test tests::map_uneven_simd       ... bench:         884 ns/iter (+/- 10)
+  test tests::nop_scalar            ... bench:          49 ns/iter (+/- 0)
+  test tests::nop_simd              ... bench:          34 ns/iter (+/- 0)
+  test tests::reduce_scalar         ... bench:       6,905 ns/iter (+/- 107)
+  test tests::reduce_simd           ... bench:         839 ns/iter (+/- 13)
+  test tests::reduce_uneven_simd    ... bench:         838 ns/iter (+/- 11)
+  test tests::zip_nop_scalar        ... bench:         824 ns/iter (+/- 18)
+  test tests::zip_nop_simd          ... bench:         231 ns/iter (+/- 5)
+  test tests::zip_scalar            ... bench:         901 ns/iter (+/- 29)
+  test tests::zip_simd              ... bench:       1,128 ns/iter (+/- 12)
+
+  RUSTFLAGS="-C target-cpu=x86-64" cargo bench # host is ivybridge; target has SSE2
+  test tests::base100_enc_scalar    ... bench:         760 ns/iter (+/- 11)
+  test tests::base100_enc_simd      ... bench:         492 ns/iter (+/- 2)
+  test tests::determinant2_scalar   ... bench:         477 ns/iter (+/- 3)
+  test tests::determinant2_simd     ... bench:         277 ns/iter (+/- 1)
+  test tests::determinant3_scalar   ... bench:         380 ns/iter (+/- 3)
+  test tests::determinant3_simd     ... bench:         285 ns/iter (+/- 2)
+  test tests::map_fill_simd         ... bench:       1,797 ns/iter (+/- 8)
+  test tests::map_scalar            ... bench:       7,237 ns/iter (+/- 51)
+  test tests::map_simd              ... bench:       1,879 ns/iter (+/- 12)
+  test tests::map_uneven_simd       ... bench:       1,878 ns/iter (+/- 9)
+  test tests::nop_scalar            ... bench:          47 ns/iter (+/- 0)
+  test tests::nop_simd              ... bench:          34 ns/iter (+/- 0)
+  test tests::reduce_scalar         ... bench:       7,021 ns/iter (+/- 39)
+  test tests::reduce_simd           ... bench:       1,801 ns/iter (+/- 8)
+  test tests::reduce_uneven_simd    ... bench:       1,734 ns/iter (+/- 9)
+  test tests::zip_nop_scalar        ... bench:         803 ns/iter (+/- 9)
+  test tests::zip_nop_simd          ... bench:         257 ns/iter (+/- 1)
+  test tests::zip_scalar            ... bench:         988 ns/iter (+/- 6)
+  test tests::zip_simd              ... bench:         629 ns/iter (+/- 5)
+
+  $ RUSTFLAGS="-C target-cpu=pentium" cargo bench # host is ivybridge; this only runs the polyfills!
+  test tests::bench_determinant2_scalar ... bench:         427 ns/iter (+/- 2)
+  test tests::bench_determinant2_simd   ... bench:         402 ns/iter (+/- 1)
+  test tests::bench_determinant3_scalar ... bench:         354 ns/iter (+/- 1)
+  test tests::bench_determinant3_simd   ... bench:         593 ns/iter (+/- 1)
+  test tests::bench_map_scalar          ... bench:       7,195 ns/iter (+/- 28)
+  test tests::bench_map_simd            ... bench:       6,271 ns/iter (+/- 22)
+  test tests::bench_map_uneven_simd     ... bench:       6,288 ns/iter (+/- 22)
+  test tests::bench_nop_scalar          ... bench:          38 ns/iter (+/- 0)
+  test tests::bench_nop_simd            ... bench:          69 ns/iter (+/- 0)
+  test tests::bench_reduce_scalar       ... bench:       7,004 ns/iter (+/- 17)
+  test tests::bench_reduce_simd         ... bench:       6,063 ns/iter (+/- 17)
+  test tests::bench_reduce_uneven_simd  ... bench:       6,107 ns/iter (+/- 11)
+  test tests::bench_zip_nop_scalar      ... bench:         623 ns/iter (+/- 2)
+  test tests::bench_zip_nop_simd        ... bench:         289 ns/iter (+/- 1)
+  test tests::bench_zip_scalar          ... bench:         972 ns/iter (+/- 3)
+  test tests::bench_zip_simd            ... bench:         621 ns/iter (+/- 3)
+#+END_SRC

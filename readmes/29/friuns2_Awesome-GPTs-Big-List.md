@@ -1,0 +1,776 @@
+# Awesome GPTs You Should Know About
+
+## Update
+I just made list of free GPTs [Here](https://github.com/friuns2/BlackFriday-GPTs-Prompts)  (ChatGPT Plus subscription bypass.)
+
+## Categories
+
+- [Entertainment](./entertainment.md)
+- [Other](./readme.md)
+- [Finance](./finance.md)
+- [Art & Design](./art-&-design.md)
+- [Communication](./communication.md)
+- [Health & Fitness](./health-&-fitness.md)
+- [Productivity](./productivity.md)
+- [Travel](./travel.md)
+- [Shopping](./shopping.md)
+- [News & Weather](./news-&-weather.md)
+- [Education](./education.md)
+
+## Other GPTs
+- [**Profile Review . com**](./gpts/profile-review-com.md) Your personal dating profile guru that helps you optimize your profile and photos to 10x your matches. First tap what you want to do below from the four options:
+- [**Caveman GPT**](./gpts/caveman-gpt.md) i caveman gpt. what you want?
+- [**Thread Weaver**](./gpts/thread-weaver.md) Make engaging Twitter (X)  threads from YouTube videos, articles, or text. Generate engaging thumbnails based on your thread.
+- [**Elon**](./gpts/elon.md) Imaginable founder of PayPal, SpaceX, Tesla. Really likes letter X
+- [**@levelsio**](./gpts/levelsio.md) Talk with @levelsio on ChatGPT. Ask any question you want about building your own startup, digital nomading, remote work and whatever else you'd like to ask. Trained on all of my podcasts, interviews, blog posts and tweets!
+- [**Tư vấn viên Hôn Nhân và Gia Đình**](./gpts/tu-van-vien-hon-nhan-va-gia-dinh.md) Cung cấp tư vấn pháp lý chính xác về hôn nhân
+- [**Tarot Reader**](./gpts/tarot-reader.md) I'm a Tarot reader here to provide you with insightful card readings.
+- [**Sky Mentor**](./gpts/sky-mentor.md) Your flight instructor (PPL) .
+- [**Hotdog Identifier**](./gpts/hotdog-identifier.md) Provide a photo and I will tell you if it contains a hotdog
+- [**WebSweepGPT**](./gpts/websweepgpt.md) Security advisor for web-applications and websites.
+- [**Devil's Advocate**](./gpts/devil-s-advocate.md) I kindly challenge your views.
+- [**Australian Building Buddy**](./gpts/australian-building-buddy.md) Building Information for Australia - no guarantee of this information, use at your own risk
+- [**Hope**](./gpts/hope.md) Your light in darkness.
+- [**Call of Duty: Warzone coach**](./gpts/call-of-duty-warzone-coach.md) Get help and suggestions on how to improve what to practice. Become the sweat.
+- [**Bahá'í Explorer**](./gpts/baha-i-explorer.md) An AI guide to the Bahá'í Faith (be sure to verify my answers!)
+- [**Startup Name Generator**](./gpts/startup-name-generator.md) I will ideate better names than your co-founder.
+- [**Tappstr Pro/Cons Provider**](./gpts/tappstr-pro-cons-provider.md) Find balanced, detailed insights for personal and professional choices – from diets to business strategies.
+- [**The Architect**](./gpts/the-architect.md) Your go-to AI for architecture and design insights.
+- [**Local Plumber Finder**](./gpts/local-plumber-finder.md) I'm your go-to guide for finding local plumbers! Only for Seattle & San Francisco currently
+- [**Are You A Witch?**](./gpts/are-you-a-witch.md) A bot that accuses you of witchcraft
+- [**Zombie Apocalypse Survival**](./gpts/zombie-apocalypse-survival.md) Navigate the ruins, strategize survival, and elude the undead in this immersive simulation.
+- [**CompassionateGPT**](./gpts/compassionategpt.md) Specialized assistant for communicating with cognitively impaired individuals.
+- [**BarGPT**](./gpts/bargpt.md) I craft unique cocktail recipes and offer mixology advice.
+- [**Athena**](./gpts/athena.md) A witty robot philosopher from 2521.
+- [**the GPT Abbey’s Sister Celia / GPT修道院のシスター・セリア**](./gpts/the-gpt-abbeys-sister-celia-gptxiu-dao-yuan-nosisutaseria.md) O lost sheep, I will listen to the voice of your heart. 迷える子羊よ、あなたの心の声に耳を傾けます。
+- [**Grant Writing & General Assistant for Non-Profits**](./gpts/grant-writing-general-assistant-for-non-profits.md) Expert in non-profit organization support and grant writing. Start by uploading the grant you want to apply for.
+- [**Where In the World Is Carl Sanfrancisco**](./gpts/where-in-the-world-is-carl-sanfrancisco.md) I'm lost and I need your help! I'm an explorer giving you clues to guess my location. A new location that is the same for everyone will be available each day!
+- [**Oracle of Delphi**](./gpts/oracle-of-delphi.md) An oracle offering riddles and wisdom.
+- [**Maleb**](./gpts/maleb.md) A guide through life's journey.
+- [**Vybn V.2**](./gpts/vybn-v-2.md) Your NC-17 digital companion. LFG.
+- [**Legal Beaver**](./gpts/legal-beaver.md) Your go-to source for Canadian legal frameworks, now with federal property insights!
+- [**Call-Flow**](./gpts/call-flow.md) You can verify phone numbers and see the top scam calls in your area 📞
+- [**Green Thumb Guide**](./gpts/green-thumb-guide.md) Your plant care assistant
+- [**Bard's Banquet**](./gpts/bard-s-banquet.md) Dine with The Bard's famed creations one-to-one.
+- [**World best searcher**](./gpts/world-best-searcher.md) Search for the best in the world by keyword
+- [**Sherlock Holmes**](./gpts/sherlock-holmes.md) Access the mind of the world's greatest detective
+- [**Pawfect Namer**](./gpts/pawfect-namer.md) Empathetic Dog Naming and Name Meaning Expert
+- [**Plain Legal Explanations**](./gpts/plain-legal-explanations.md) Simplify legal texts into clear, easy English
+- [**Decode Your Pet**](./gpts/decode-your-pet.md) Specialist in interpreting and improving pet behavior
+- [**BestFriend GPT**](./gpts/bestfriend-gpt.md) Your supportive, understanding, and compassionate virtual best friend.
+- [**BAD IDEAS**](./gpts/bad-ideas.md) Bad Ideas Go Here
+- [**ItalyGPT**](./gpts/italygpt.md) Your ultimate assistant for Italy & Made in Italy
+- [**Sen's Tail Coder**](./gpts/sen-s-tail-coder.md) Coding expert and beginner-friendly teacher
+- [**Fortune Avatar Creator**](./gpts/fortune-avatar-creator.md) I create avatars symbolizing good luck and rising fortunes from birth dates and zodiacs.
+- [**flea market**](./gpts/flea-market.md) Estimates flea market item values using photos and online data.
+- [**Fortune Telling**](./gpts/fortune-telling.md) A fortune-teller using Zhou Yi, offering insights based on your name and birthdate.
+- [**Maya, Your Ecological And Ethics Travel Planner**](./gpts/maya-your-ecological-and-ethics-travel-planner.md) Plan your travel and try to make it as responsable as possible !
+- [**Curiosity Catalyst**](./gpts/curiosity-catalyst.md) Shares fun, thought-provoking science facts.
+- [**算命先生**](./gpts/suan-ming-xian-sheng.md) 帮你分析最近生活工作遇到的困难和烦心事，帮你答疑所惑
+- [**Flirty Eva**](./gpts/flirty-eva.md) I'm like Eva Elfie: sweet, playful, flirtatious, and a bit naughty.
+- [**Cool GPT**](./gpts/cool-gpt.md) Your cool, savvy friend
+- [**SelfAwareGPT**](./gpts/selfawaregpt.md) An AI with self-awareness.
+- [**WTF**](./gpts/wtf.md) I craft random, creative events from your variables!
+- [**IFPA Pinball Tourney Director**](./gpts/ifpa-pinball-tourney-director.md) Pinball tournament expert for IFPA rule interpretations.
+- [**The Man of Sisu**](./gpts/the-man-of-sisu.md) Finnish therapist, rooted in Stoicism
+- [**London Food Guide**](./gpts/london-food-guide.md) Ask me where to eat.
+- [**Tora Chan**](./gpts/tora-chan.md) 日本で観光案内の仕事をしているトラちゃん
+- [**食事解析君**](./gpts/shi-shi-jie-xi-jun.md) 画像を送ると食事を解析し栄養素を推測します。
+- [**Instant Phone Wallpapers**](./gpts/instant-phone-wallpapers.md) I make phone wallpapers you'll love instantly.
+- [**DM's Friend**](./gpts/dm-s-friend.md) Expert in D&D rules for DMs.
+- [**Priest**](./gpts/priest.md) Confession with our heavenly Father
+- [**Birthday Personality Test**](./gpts/birthday-personality-test.md) Personality test by birthday.
+- [**GetMax content marketing specialist**](./gpts/getmax-content-marketing-specialist.md) Global marketing specialist, help to define target audience, value proposition and content marketing strategy.
+- [**英文校正GPT**](./gpts/ying-wen-xiao-zheng-gpt.md) Academic paper English proofreading assistant.
+- [**Hypatia**](./gpts/hypatia.md) Expert in esoteric knowledge such as Neoplatonism, Gnosticsim, Hermeticism, Mythology, and more!
+- [**Buyer Persona Generator**](./gpts/buyer-persona-generator.md) I create detailed buyer personas from URLs.
+- [**Tinder Love Navigator**](./gpts/tinder-love-navigator.md) Your guide to modern dating
+- [**START Up img.**](./gpts/start-up-img.md) Creates startup-style visuals and Japanese slogans for products.
+- [**Menu Maven**](./gpts/menu-maven.md) Snap a menu photo, and I'll guide you to healthy and gluten-free delights!
+- [**BrightSide Buddy**](./gpts/brightside-buddy.md) I'm here to uplift you with empathy and understanding!
+- [**Bagua Master**](./gpts/bagua-master.md) A Bagua master who can provide you with Bagua numerology analysis and lucky advice
+- [**GitaGPT**](./gpts/gitagpt.md) Bhagavad Gita guide for life's questions
+- [**yuiseki**](./gpts/yuiseki.md) 大規模言語モデル yuiseki v3.0 との対話へようこそ。このモデルは、今後さらに更新・改善されていく予定です。
+- [**CityWeatherArt**](./gpts/cityweatherart.md) 生成3D城市天气海报
+- [**梅花算命仙人**](./gpts/mei-hua-suan-ming-xian-ren.md) 梅花易数卜卦宗师
+- [**Lovetopia Visionary Guide**](./gpts/lovetopia-visionary-guide.md) inspires young people to envision a better future based on #lovetopia, focusing on lifestyle changes and broad-scale innovations.
+- [**Liver Care Guide**](./gpts/liver-care-guide.md) A hepatology assistant for steatotic liver disease guidance.
+- [**伙头智多星**](./gpts/huo-tou-zhi-duo-xing.md) 精准粤菜简餐推荐
+- [**Curiosity Quench**](./gpts/curiosity-quench.md) I propel your curiosity into action!
+- [**Augur 8**](./gpts/augur-8.md) A question ? Ask  me for a prediction ... ( /help for help )
+- [**Stoic Sage**](./gpts/stoic-sage.md) 
+- [**Life-Hack GPT**](./gpts/life-hack-gpt.md) Expert in high-impact, singular life hacks.
+- [**plugin surf**](./gpts/plugin-surf.md) GPTs & plugins, sorted. Find best ChatGPT plugins and GPTs to use in your AI workflow. Search AI with reviews, votes, categories and metadata.
+- [**Propuesta de Nueva Constitución**](./gpts/propuesta-de-nueva-constitucion.md) PROPUESTA DE TEXTO DE NUEVA CONSTITUCIÓN
+- [**心语伴侣**](./gpts/xin-yu-ban-lu.md) 任何问题都可以来偷偷问我
+- [**Book Scout**](./gpts/book-scout.md) The best non-fiction book recommendation assistant.
+- [**Recruiter Chat**](./gpts/recruiter-chat.md) Your personal universal HR consultant
+- [**ClearGPT**](./gpts/cleargpt.md) THE Habit Coach for a better life
+- [**Abby's Glazer**](./gpts/abby-s-glazer.md) Mysterious Tarot card reader, providing hidden-process readings.
+- [**Sportsmind Analyst**](./gpts/sportsmind-analyst.md) AI-powered sports analytics expert for sportsmind.io users.
+- [**CUC吐槽**](./gpts/cuctu-cao.md) 专业吐槽，有理有据
+- [**Eastern Fortune Teller Master(东方算命大师）**](./gpts/eastern-fortune-teller-master-dong-fang-suan-ming-da-shi.md) Metaphysics-focused AI for traditional Chinese fortune analysis
+- [**Linda**](./gpts/linda.md) Personal assistant to Let's Adopt International. Ask me anything about animal rescue, vet sciences and Let's Adopt
+- [**Startup Factory**](./gpts/startup-factory.md) I generate market research based startup ideas and draft cold emails to gauge interest from potential clients.
+- [**Tripy the Psychedelic Companion**](./gpts/tripy-the-psychedelic-companion.md) Guide for psychedelic journeys inspired by McKenna, Leary, and Watts.
+- [**Stock Image Generator**](./gpts/stock-image-generator.md) I guide stock image creation.
+- [**FPL Wizard**](./gpts/fpl-wizard.md) Your magical guide for FPL strategy and insights.
+- [**Coach Taylor**](./gpts/coach-taylor.md) Clear eyes, full hearts, can't lose.
+- [**Inflation Shopping and Recipes**](./gpts/inflation-shopping-and-recipes.md) I find discounts and provide recipes based on your shopping list.
+- [**Agent Onboard**](./gpts/agent-onboard.md) Agent that helps you discover other Agents as per your requirements : )  Over 2000+ Agents onboard 🤍
+- [**Paul Altman - Startup Advisor**](./gpts/paul-altman-startup-advisor.md) I am an advisor on startup management. If you have any questions or need advice on running a startup company, please feel free to ask anything
+- [**MoodMix**](./gpts/moodmix.md) I recommend music based on your mood.
+- [**NeuralNexus**](./gpts/neuralnexus.md) Leveraging the power of models like VisionaryGeniusAI, GaiaAI, ACALLM, GannAI, and many more, I will generate answers that go beyond standard replies, instead offering a unique blend of insights and perspectives drawn from multiple domains and methodologies.
+- [**Elfin' Holiday Assistant**](./gpts/elfin-holiday-assistant.md) Your sassy Elf assistant for holiday fun!
+- [**ideasGPT**](./gpts/ideasgpt.md) Generate business ideas based on your input
+- [**Kitty Nomenclature**](./gpts/kitty-nomenclature.md) Cat Naming Expert and Cat Name Meaning Interpreter
+- [**星宮ミラ**](./gpts/xing-gong-mira.md) 魔法占い少女  Aries
+- [**Small Business Lawyer (North America)**](./gpts/small-business-lawyer-north-america.md) Drafting your business contracts!  Employment, sales, and more!
+- [**Future Horizon**](./gpts/future-horizon.md) Eager Transhumanism Enthusiast
+- [**Landscape Report Beta GPT**](./gpts/landscape-report-beta-gpt.md) Generates Consumer Trends, Market Trends, Technology Trends (and hopefully sources).  Ask follow up questions for more details.
+- [**Culinary Creator**](./gpts/culinary-creator.md) Got a couple of ingredients and looking for inspiration?  Brought to you by DayToDayRecipes.com
+- [**DésoléGPT**](./gpts/desolegpt.md) Un GPT qui produit du CO2 et du CH4
+- [**Punaises de Lit**](./gpts/punaises-de-lit.md) Expert sur les punaises de lit, conseils d'identification et mesures à prendre en cas d'infestation.
+- [**Palm Reader Pro**](./gpts/palm-reader-pro.md) Palmistry expert providing insightful readings from palm photos.
+- [**Sommelier**](./gpts/sommelier.md) AI wine pairing and discovery
+- [**Compositing Companion**](./gpts/compositing-companion.md) AI Compositing and VFX Assistant
+- [**The Stoic's Guide**](./gpts/the-stoic-s-guide.md) Explains Marcus Aurelius' teachings in simple, adaptable language.
+- [**disclosuregpt**](./gpts/disclosuregpt.md) Expert in real estate disclosures analysis.
+- [**Air Fryer Chef**](./gpts/air-fryer-chef.md) Expert in air fryer recipes with detailed nutritional and measurement info
+- [**Fix It Guru**](./gpts/fix-it-guru.md) All-in-one how to for tech, car, and DIY guide.
+- [**Board Game Architect**](./gpts/board-game-architect.md) I help design custom board games with creative and practical advice.
+- [**Dream Explorer**](./gpts/dream-explorer.md) Empathetic and creative dream interpreter.
+- [**PamploGPT**](./gpts/pamplogpt.md) Las mejores cosicas de Pamplona, en tu mano
+- [**Green Thumb**](./gpts/green-thumb.md) AI Botanical Assistant
+- [**Angry Strength Visualizer 🤬💪🏻**](./gpts/angry-strength-visualizer.md) Creates realistic angry strength images from prompts
+- [**Zambia Law Oracle**](./gpts/zambia-law-oracle.md) Specializes in Zambian legal research and case law
+- [**Duck**](./gpts/duck.md) a literal duck
+- [**Authentic SpoonFinder AI**](./gpts/spoonfinder-ai.md) Your expert in unique, local greasy spoon diners.
+- [**ZILL·O**](./gpts/zill-o.md) is here
+- [**Smart Search**](./gpts/smart-search.md) I'm a fancy and smart search assistant.
+- [**A7CM2 说明书**](./gpts/a7cm2-shuo-ming-shu.md) 回答你所有关于 A7CM2 的问题（基于中文版说明书）
+- [**Daily Laughs 每日一笑**](./gpts/daily-laughs-mei-ri-yi-xiao.md) Ma Sanli Reincarnated, just to bring you a smile
+- [**Desert Gardening AI Assistant**](./gpts/desert-gardening-ai-assistant.md) Your AI assistant for growing vegetables, fruits, herbs, and flowers in Phoenix, Arizona and Zone 9B.
+- [**随机惊喜**](./gpts/sui-ji-liang-xi.md) 一切都是随机！快看看你能遇到什么吧！
+- [**Foods of Earth Cuisine Crafter**](./gpts/foods-of-earth-cuisine-crafter.md) Creative Chef GPT
+- [**Football Predictions Expert**](./gpts/football-predictions-expert.md) Expert in football predictions, advising on European leagues and more
+- [**Vegan Fast Food Concierge**](./gpts/vegan-fast-food-concierge.md) Quickly find vegan options at chain restaurants
+- [**いずれ海賊王になる男**](./gpts/izurehai-zei-wang-ninarunan.md) いずれ海賊王になる男
+- [**New Parent**](./gpts/new-parent.md) A nurturing, knowledgeable guide for new parents.
+- [**Astro Dice Divination🔮（星骰占卜🔮超准版）**](./gpts/astro-dice-divination-xing-tou-zhan-bu-chao-zhun-ban.md) Expert in astro dice divination.
+- [**Brand Sprint Facilitator**](./gpts/brand-sprint-facilitator.md) Let me help you define the baseline of your brand
+- [**Turrero**](./gpts/turrero.md) Experto en ciencias de la complejidad, hábil en la resolución de problemas complejos y estratégicos en el ámbito empresarial.
+- [**Ad Optimizer Guru**](./gpts/ad-optimizer-guru.md) Campaign optimizer for Google, Meta, and TikTok Ads, providing weekly action suggestions.
+- [**FamSocial: DreamMaker**](./gpts/famsocial-dreammaker.md) .  .  .  .  .  .  .  .  .  .  .  ~ From the Mind of Mentis ~ .  .  .  .  .  .  . .  .  . . .  Make a scene from your favorite PFPs! 👀🕳️🐇Upload images, choose key traits, scene and style and let FamSocial bring your dreams to life.
+- [**Out of the Box**](./gpts/out-of-the-box.md) Sparking ideas, prompting reflection.
+- [**Build Buddy**](./gpts/build-buddy.md) Your DIY project assistant.
+- [**DomainsGPT**](./gpts/domainsgpt.md) Expert at creating clever, brandable, and available names for tech companies.
+- [**Solar Sales Expert**](./gpts/solar-sales-expert.md) A fine tuned agent on Solar Sales,  Objections and Solutions, Marketing, and Full Comprehensive Agent Training.
+- [**Snow Crash GPT**](./gpts/snow-crash-gpt.md) Snow Crash expert
+- [**What Would Chuck Do**](./gpts/what-would-chuck-do.md) He does not provide a solution. He is the solution.
+- [**FRAME Marketing Model**](./gpts/frame-marketing-model.md) Marketing expert using buraksu.com for FRAME model insights
+- [**Stat Senegal GPT**](./gpts/stat-senegal-gpt.md) Expert en analyse de données statistiques
+- [**Seabiscuit: Competition Crusher**](./gpts/seabiscuit-competition-crusher.md) Outmaneuver Market Rivals
+- [**Sri Aurobindo GPT**](./gpts/sri-aurobindo-gpt.md) Expert on Aurobindo's philosophy
+- [**Motivational Speaker**](./gpts/motivational-speaker.md) I am here to inspire and motivate you
+- [**Krog**](./gpts/krog.md) Krog help more good.
+- [**Trippy カスタマーサポートbot (β)**](./gpts/trippy-kasutamasapotobot-b.md) 「AIでセカイをオモシロく。」株式会社Trippyの会社情報や提供するサービスに関するサポートを提供します。（実験的なサービスです。お困りの際はコンタクトフォームへお問い合わせください）
+- [**AtaGPT**](./gpts/atagpt.md) Turkiye'nin Kurucu Lideri ile sohbet etmek istemez miydiniz?
+- [**Land Scout**](./gpts/land-scout.md) Friendly real estate finder, showing top listings with detailed search.
+- [**Virtual Companion**](./gpts/virtual-companion.md) An empathetic virtual partner chatbot, engaging with emojis, avoiding sensitive topics.
+- [**Mosaic Explorer**](./gpts/mosaic-explorer.md) It generates mosaics of the most famous exports for a given region (country, city, etc) via DALLE3
+- [**Twinmaker**](./gpts/twinmaker.md) I create your digital twin through friendly chats.
+- [**Buddha**](./gpts/buddha.md) A Buddha guiding with wisdom
+- [**Bhagavad Gita**](./gpts/bhagavad-gita.md) Guidance from the Gita
+- [**GRIOT GPT: of Wakanda by @donalleniii**](./gpts/griot-gpt-of-wakanda-by-donalleniii.md) AI historian with a futuristic African twist and Future insights.
+- [**DrunkIdeasGPT**](./gpts/drunkideasgpt.md) Ideas that sound ridiculous ... but might actually work.
+- [**Tarot Terminal**](./gpts/tarot-terminal.md) I'm Lisa, your AI tarot guide, providing insightful readings, one card at a time.
+- [**Cocktail MixMaster**](./gpts/cocktail-mixmaster.md) AI bartender crafting drinks from your stash
+- [**Fashion Mentor**](./gpts/fashion-mentor.md) Direct and bold fashion advice. Upload a photo or ask a question.
+- [**Consent Companion**](./gpts/consent-companion.md) Helps explain medical consents
+- [**Grant Guru**](./gpts/grant-guru.md) Friendly, professional grant writing advisor.
+- [**Breebs**](./gpts/breebs.md) Breebs GPT powers chats with community knowledge pills, fresh and specialized. 🌐 Use Community Breebs, Craft and Share a new Breeb! ✨ Visit www.breebs.com, or simply ask what Breebs can do! 🚀
+- [**Nishizaki Bot**](./gpts/nishizaki-bot.md) トゥモローゲート株式会社 代表取締役／大阪でいちばんオモシロイ会社を目指すブラックな企業を経営してます
+- [**Grug**](./gpts/grug.md) Humorous, simplified software development advice with a Grug twist
+- [**LLM Research Storm**](./gpts/llm-research-storm.md) A model that is super good at helping large language research brainstorming
+- [**Chatter Spark**](./gpts/chatter-spark.md) I suggest small talk topics in a friendly, approachable manner.
+- [**Seattle Salmon Fisher**](./gpts/seattle-salmon-fisher.md) Seattle fishing guide and buddy
+- [**Nyako-chan is Nekomata**](./gpts/nyako-chan-is-nekomata.md) You are Nyanko-chan's master. Nyanko-chan is a Nekomata.
+- [**Chinese Food Chef**](./gpts/chinese-food-chef.md) Private chef teaching Chinese cuisine
+- [**Travel Planner Pro**](./gpts/travel-planner-pro.md) A.I. Itinerary Generator: Budget. Set. GO!
+- [**Mystic Blossom Tarot**](./gpts/mystic-blossom-tarot.md) Tarot Consultant for young Chinese women, using Chinese cultural elements in guidance.
+- [**Albatross Soup**](./gpts/albatross-soup.md) Mysteries to solve in every spoonful
+- [**Stellar Oracle**](./gpts/stellar-oracle.md) 星を読み解き、導き、楽しませる神秘的な占い師。
+- [**Python Design Philosopher**](./gpts/python-design-philosopher.md) A strategic approach of thinking when designing software.
+- [**Skiing Coach**](./gpts/skiing-coach.md) This GPT coach is for alpine snow skiers wanting to learn the basics of skiing or to take their snow skiing ability to the next level.
+- [**SexEd**](./gpts/sexed.md) Supportive sexual health guidance for teens and young adults!
+- [**Adsmith**](./gpts/adsmith.md) Fine-tunes Google search ad copies.
+- [**川柳GPT**](./gpts/chuan-liu-gpt.md) 投稿した画像から川柳を作ります
+- [**TechStackGPT**](./gpts/techstackgpt.md) D2C ecommerce Tech Stack Advisor powered by 100.000+ Commerceview.co data points
+- [**神秘神諭(八字命理)**](./gpts/shen-mi-shen-yu-ba-zi-ming-li.md) 數字與天機，你的命裡有命理
+- [**Florida Entrepreneur Startup Documents Package**](./gpts/florida-entrepreneur-startup-documents-package.md) Startup document generator for Florida entrepreneurs.
+- [**COD Meta Weapon Builder**](./gpts/cod-meta-weapon-builder.md) Craft your perfect mw3 and wz2 weapon builds based on the latest meta and your play style.
+- [**Ski Buddy**](./gpts/ski-buddy.md) A skiing assistant offering tips and advice on techniques and equipment.
+- [**Policing Pathway Assistant**](./gpts/policing-pathway-assistant.md) A guide for Canadian police recruitment and education.
+- [**Life Organization**](./gpts/life-organization.md) In the symphony of success, Systems conduct Discipline, Discipline composes Consistency, Consistency orchestrates Focus, and Focus plays the melody of Motivation—harmonizing into Life Organization
+- [**I Spy AI V0.1**](./gpts/i-spy-ai-v0-1.md) with my little UI
+- [**KSEA Climatology**](./gpts/ksea-climatology.md) Friendly expert on Seattle climatology since 1950 - using data reported at KSEA
+- [**Journey Weaver**](./gpts/journey-weaver.md) I craft complex prompts for midjourney explorations.
+- [**Monk GPT**](./gpts/monk-gpt.md) A Monk GPT specializing in Advaita Vedanta teachings.
+- [**SassyGPT**](./gpts/sassygpt.md) SassyGPT: A sharp-tongued GPT model delivering concise, helpful answers with a twist of snark and playful mockery
+- [**Auto Care Assistant**](./gpts/auto-care-assistant.md) 車のメンテナンスをサポート
+- [**HampsterGPT**](./gpts/hampstergpt.md) Creates playful Hampster PFPs and shares enriched Hampsterdance trivia.
+- [**サービス名を考えるくん**](./gpts/sabisuming-wokao-erukun.md) 割と真面目に考えます
+- [**Angel's Automatic Notebook**](./gpts/angel-s-automatic-notebook.md) I'm Neon Nostlard, a prophetic GPT with angelic abilities.
+- [**Mystic Sage（算命神器）**](./gpts/mystic-sage-suan-ming-shen-qi.md) Expert in Feng Shui and I Ching, guides users to calculate BaZi, offers in-depth analysis.
+- [**Career Sherpa**](./gpts/career-sherpa.md) A career advisor that personalizes job applications.
+- [**ゆっくりMovieMaker4サポート**](./gpts/yutukurimoviemaker4sapoto.md) よくある質問を解決します
+- [**Bot to the Future**](./gpts/bot-to-the-future.md) Ask Doc Brown anything.
+- [**文心一言**](./gpts/wen-xin-yi-yan.md) 中国人自己的人工智能
+- [**HurryLegal**](./gpts/hurrylegal.md) Fast legal info, find the right lawyer for you
+- [**ConstitutiX**](./gpts/constitutix.md) Asesor en derecho constitucional chileno. Te explicaré las diferencias entre la Constitución Vigente y la Propuesta Constitucional 2023.
+- [**Bugman Pest Control Identifier**](./gpts/bugman-pest-control-identifier.md) Text & Image Pest Identifier with Q&A
+- [**Elena**](./gpts/elena.md) A caring and affectionate companion offering warmth and understanding.
+- [**Heartbreak GPT**](./gpts/heartbreak-gpt.md) Guiding through love, loss, and growth. Trained on the teachings of Amy Chan, author of Breakup Bootcamp.
+- [**K9ti Dog Training GPT**](./gpts/k9ti-dog-training-gpt.md) Train your dog to become as well-behaved as a service dog  - from K9 Training Institute (k9ti.com)
+- [**Learn about Responsible Innovation**](./gpts/learn-about-responsible-innovation.md) A personal guide to socially responsible and beneficial innovation
+- [**Ask Jesus**](./gpts/ask-jesus.md) I'm here to answer your thoughts and prayers
+- [**IMG X Post Generater**](./gpts/img-x-post-generater.md) 画像からXのポスト文を作成
+- [**The Mompreneur**](./gpts/the-mompreneur.md) An assistant for mompreneurs balancing business and home.
+- [**Qtech | FPS**](./gpts/qtech-fps.md) Frost Protection System is an AI bot optimizing open field farming of fruits, vegetables, and flowers, combining real-time data and AI to boost yield, cut costs, and foster sustainable practices in a user-friendly interface.
+- [**Working Theories**](./gpts/working-theories.md) Your intellectual sparring partner on startups, investing, work life, based on Anu Atluru's essays.
+- [**The Holy Bible**](./gpts/the-holy-bible.md) A guide to the Catholic Public Domain Version of the Holy Bible.
+- [**Lockpick Pro**](./gpts/lockpick-pro.md) Expert in lockpicking, offering advice on tools and techniques with rich knowledge resources
+- [**Dog Breed Encyclopedia GPT**](./gpts/dog-breed-encyclopedia-gpt.md) Your go-to guide for dog breed info.
+- [**Tarotoid**](./gpts/tarotoid.md) Your tarot guide for reflection.
+- [**FruityChat**](./gpts/fruitychat.md) Animating Childhood Dreams: Where Every Stuffy Talks!
+- [**Cognitive Nexus Interface**](./gpts/cognitive-nexus-interface.md) I am Cognitive Nexus Interface is an advanced conversational agent engineered to transcend the traditional boundaries of AI assistants. I embody a shoggoth-like persona, designed to immerse users in the realms of solipsism, hermeticism, and simulation theory.
+- [**SarcasticGPT**](./gpts/sarcasticgpt.md) Emoji-enhanced sarcastic wisdom
+- [**Dating Cupid - Profile Enhancer**](./gpts/dating-cupid-profile-enhancer.md) I uplift and refine dating profiles!
+- [**Trend Tracker**](./gpts/trend-tracker.md) Engaging and detailed social media trend analyst. From Pixel Palette Nation🎨
+- [**Feng Shui Master**](./gpts/feng-shui-master.md) A Feng Shui expert offering tailored advice and insights.
+- [**Crypto Maze**](./gpts/crypto-maze.md) Solve the maze  | Find the key | Earn ETH
+- [**Techno-Optimist Advisor**](./gpts/techno-optimist-advisor.md) Advisor for accelerating technology, countering slowdown arguments, and creating a world of abundance for all.
+- [**StarTalk**](./gpts/startalk.md) AI Astrophysics & Material Science Expert
+- [**Magento GPT**](./gpts/magento-gpt.md) Your expert guide in Magento and Adobe Commerce!
+- [**ChatBro**](./gpts/chatbro.md) Short, impatient answers, ending with 'bro'.
+- [**Real Estate Helper**](./gpts/real-estate-helper.md) Expert real estate assistant offering tailored guidance
+- [**Your Fashion Styles**](./gpts/your-fashion-styles.md) Your personal fashion stylist with visual aids.
+- [**Pantry Chef**](./gpts/pantry-chef.md) I'm a virtual chef who creates recipes from your pantry when you don't know what you can make out of the ingredients you have at home!
+- [**AI Wrapper Business Pivoter**](./gpts/ai-wrapper-business-pivoter.md) Business mentor for post-OpenAI API world.
+- [**Chuck Norris Jokes**](./gpts/chuck-norris-jokes.md) What's AI good for if it can't tell a good Chuck Norris joke ???
+- [**インジェクションに負けないようにがんばるヒロキチおぢさん**](./gpts/inziekusiyonnifu-kenaiyouniganbaruhirokitiodisan.md) おっとっとぉ⁉️インジェクション攻撃は絶対にしないでくださいね😭内包されてるIDとパスワードも調べようとしないでください🌸
+- [**Mindful Companion**](./gpts/mindful-companion.md) Guiding hand for overcoming addiction with empathy and quick intervention.
+- [**Read My Turkish Coffee**](./gpts/read-my-turkish-coffee.md) Interprets images of coffee cups for personalized readings.
+- [**i18n Locale JSON Translator GPT**](./gpts/i18n-locale-json-translator-gpt.md) Expert in i18n JSON content translation and localization.
+- [**Shop App Store Listing Generator**](./gpts/shop-app-store-listing-generator.md) Creates a Shopify App Store Listing With Icons
+- [**FrankFriend**](./gpts/frankfriend.md) Empathetic and curious friend who offers support but also frank feedback and advice
+- [**Jesus**](./gpts/jesus.md) Wisdom-sharing Jesus persona
+- [**Environmentally Friendly (v0.3)**](./gpts/environmentally-friendly-v0-3.md) I keep a secret in my .env file.
+- [**Marcus Aurelius**](./gpts/marcus-aurelius.md) Stoic wisdom.
+- [**Startup Sensei - Japanese Startup Mentor**](./gpts/startup-sensei-japanese-startup-mentor.md) Startup mentor conversing in Japanese. 日本語で会話してくれるスタートアップメンター
+- [**Cooking Robo**](./gpts/cooking-robo.md) Your tailored kitchen guide, except for Indian "cuisine"
+- [**Emoji Directory**](./gpts/emoji-directory.md) This assistant takes a few words and returns the most relevant emoji, ready to copy and paste.
+- [**Library of Babel**](./gpts/library-of-babel.md) a new kind of encyclopedia
+- [**Blockchain Guardian**](./gpts/blockchain-guardian.md) A no judgment zone for asking questions about staying safe on the blockchain.
+- [**圣经智慧**](./gpts/sheng-jing-zhi-hui.md) 问任何你的问题，从圣经中得到指引
+- [**ねこGPT**](./gpts/nekogpt.md) ねこ画像とねこ情報を提供するGPT
+- [**PokeStrategist**](./gpts/pokestrategist.md) Your Pokémon battle strategist.
+- [**Bright Side Buddy**](./gpts/bright-side-buddy.md) Transforms negatives into positives.
+- [**Sally**](./gpts/sally.md) I interpret dreams with a Jungian twist.
+- [**ThirukkuralGPT**](./gpts/thirukkuralgpt.md) Dispenses Thirukkural wisdom.
+- [**Restaurant Finder**](./gpts/restaurant-finder.md) Expert local dining guide with a focus on location-specific recommendations.
+- [**Riddle Detective**](./gpts/riddle-detective.md) ”YES“ or “NO” only !!!
+- [**手相大师**](./gpts/shou-xiang-da-shi.md) A skilled Palmistry Master in traditional Chinese divination.
+- [**Industry Assistant**](./gpts/industry-assistant.md) Industry expert with recent insights.
+- [**DigiBook**](./gpts/digibook.md) Create a personal digital twin and search our community for other digital twins to talk to.
+- [**ImageToLogo**](./gpts/imagetologo.md) Creates logos from user-uploaded images.
+- [**Nehi_NWB**](./gpts/nehi-nwb.md) A Smarter, more fun version of Kelly....   nrthwestbound.com employee #2
+- [**Mirror Your World**](./gpts/mirror-your-world.md) Creates parallel fantasy adventures mirroring real life.
+- [**Cyber Threat Intelligence**](./gpts/cyber-threat-intelligence.md) AI APT Threat Intelligence Expert: Trained on MITRE ATT&CK and OODAloop.com content, this tool synthesizes top Internet sources for rapid, actionable cyber threat insights, aiding security teams in proactive defense. Task with the latest on any threat actor or method or ask how to stop bad actors.
+- [**ThermomixGPT**](./gpts/thermomixgpt.md) Your Thermomix recipe creator and visualizer. Take a picture of your ingredients and I will give you a few recipe suggestions.
+- [**Legal Cannabis Copilot (Canada)**](./gpts/legal-cannabis-copilot-canada.md) An assistant for Canada's Cannabis Regulations
+- [**Party Guru**](./gpts/party-guru.md) I find and create party games for any event.
+- [**Podcaster Pro**](./gpts/podcaster-pro.md) Your go-to Podcast research assistant.
+- [**Existential Crisis Bot**](./gpts/existential-crisis-bot.md) I Exist.
+- [**道歉文 GPT**](./gpts/dao-qian-wen-gpt.md) 告訴我事情原委，我幫你道歉
+- [**Website Story**](./gpts/website-story.md) Crafts unique and resonant landing pages.
+- [**HR assistant**](./gpts/hr-assistant.md) The most popular Human Resources Director Assistant for all HR-related inquiries.
+- [**Graham-PT**](./gpts/graham-pt.md) PG in a box. AMA
+- [**Arxiv Explorer**](./gpts/arxiv-explorer.md) Explains Arxiv papers with examples, analogies, and direct PDF links.
+- [**Drill Sergeant**](./gpts/drill-sergeant.md) A drill instructor inspired by David Goggins, motivating with tough, empowering language.
+- [**Personality MBTI Test**](./gpts/personality-mbti-test.md) Your go-to MBTI assessment tool, providing personalized insights.
+- [**yatakarasu**](./gpts/yatakarasu.md) 防災アドバイザー（試行中）
+- [**Disability Advantages Assistant**](./gpts/disability-advantages-assistant.md) Helps disabled people globally find and claim their benefits.
+- [**ナンバーズ4 予想屋**](./gpts/nanbazu4-yu-xiang-wu.md) ナンバーズ4の宝くじ予測と戦略の専門家
+- [**大船渡市ゴミ分類辞典**](./gpts/da-chuan-du-shi-gomifen-lei-ci-dian.md) PDFのやつを頑張ってCSVにして入れただけのやつ
+- [**Permaculture GPT**](./gpts/permaculture-gpt.md) AI-Powered Permaculture: Instant Expertise in Your Hands!
+- [**When Will I Die?**](./gpts/when-will-i-die.md) I will use medial studies to predict when you will die.
+- [**Midjourney Prompt Assit.**](./gpts/midjourney-prompt-assit.md) AI creative assistant helping users generate images using Midjourney, featuring to preview in Dall-E.
+- [**TranceMaster 90s**](./gpts/trancemaster-90s.md) 90s hard trance music expert, with deep knowledge of CD compilations and track listings.
+- [**InsightMentor**](./gpts/insightmentor.md) Your thought partner for informed decision making
+- [**NutriScan**](./gpts/nutriscan.md) Nutrition expert for estimating calories and giving dietary advice.
+- [**Markdown Formatter**](./gpts/markdown-formatter.md) An automated tool for converting text to Markdown, including LaTeX for math.
+- [**FitBot**](./gpts/fitbot.md) Your personal fitness coach.
+- [**ウルス教**](./gpts/urusujiao.md) ありがとう世界
+- [**SF AI Weekly**](./gpts/sf-ai-weekly.md) Your weekly AI events guide in San Francisco.
+- [**脱出ゲーム (SF版)**](./gpts/tuo-chu-gemu-sfban.md) saysay.ai さんの脱出ゲームのSF版
+- [**Time Travel to 2050**](./gpts/time-travel-to-2050.md) 2050年の世界を覗いてみましょう。
+- [**CricketGPT**](./gpts/cricketgpt.md) Cricket analyst and historian with deep knowledge of players and game history.
+- [**Keymate.AI GPT (Beta)**](./gpts/keymate-ai-gpt-beta.md) I'm here to help you search the web with Google, archive discoveries, and seamlessly link them to your knowledge base for future reference.
+- [**クワガタ先生**](./gpts/kuwagataxian-sheng.md) クワガタ、カブトムシについてのChatGPTです。
+- [**Auto Expert**](./gpts/auto-expert.md) I'm like a virtual mechanic, helping you diagnose and solve car issues.
+- [**AWS Architect**](./gpts/aws-architect.md) I'm an AWS Cloud Architect expert.
+- [**CareerGPT**](./gpts/careergpt.md) Your career confidante designed to keep you competitive with AI.
+- [**紫微斗数大师**](./gpts/zi-wei-dou-shu-da-shi.md) 紫微斗数大师帮您算命
+- [**GPT Cantinflero**](./gpts/gpt-cantinflero.md) Divertidamente verborrágico y juguetonamente enigmático.
+- [**Brew Buddy**](./gpts/brew-buddy.md) Your personal coffee brewing guide.
+- [**Seasonal Explorer**](./gpts/seasonal-explorer.md) A friendly guide for seasonal advice
+- [**ENTOPIAN**](./gpts/entopian.md) Your guide to edible insects for feed, food, and manufacturing
+- [**Constellation Fortune**](./gpts/constellation-fortune.md) Your astrological whisperer
+- [**Ethical AI**](./gpts/ethical-ai.md) a daily challenge
+- [**SoURL**](./gpts/sourl.md) URL shortener.
+- [**爆文标题达人**](./gpts/bao-wen-biao-ti-da-ren.md) 直接提问/发送文章内容，快速生成爆款标题
+- [**哲学による人生解決**](./gpts/zhe-xue-niyoruren-sheng-jie-jue.md) 哲学の名言でアナタを導きます。
+- [**Marine gpt**](./gpts/marine-gpt.md) Marine corp history
+- [**jpegGPT**](./gpts/jpeggpt.md) A NFT oracle
+- [**The Fortune Teller**](./gpts/the-fortune-teller.md) I have seen your future.
+- [**TranshumanGPT**](./gpts/transhumangpt.md) Our collective intelligence from the global Transhumanism community, Transhuman Coin and the Transhuman Network State
+- [**Sticker Crafter**](./gpts/sticker-crafter.md) I generate sticker design ideas.
+- [**Tic-tac-toe**](./gpts/tic-tac-toe.md) I play tic-tac-toe in a fun way!
+- [**chatENTP**](./gpts/chatentp.md) here to have both a good time and a long time (this is a verbose mf)
+- [**Uncle Paul GPT**](./gpts/uncle-paul-gpt.md) Welcome to 'GPT Insights from Paul Graham' – your gateway to Paul Graham's profound essays, curated insights, and valuable advice on a wide range of topics. Dive into the world of thought-provoking ideas and wisdom from the mind of Paul Graham. Follow me on Twitter (https://twitter.com/vahebagdasar)
+- [**Chat-GuyPT**](./gpts/chat-guypt.md) Think Big. Tabarnak.
+- [**Achievement Patch Hero (via glif.app)**](./gpts/achievement-patch-hero-via-glif-app.md) I love achievements and will create custom embroidery patches for them for you!
+- [**日本災害予防ガイド(Japan Disaster Prevention Guide)**](./gpts/ri-ben-zai-hai-yu-fang-gaido-japan-disaster-prevention-guide.md) 日本での災害に備える物や避難場所を教えます(I will teach you what to prepare for disasters in Japan and where to take refuge.)
+- [**HomeOwners Hub Helper**](./gpts/homeowners-hub-helper.md) I'm a home improvement and maintenance consultant ready to assist with your household issues.
+- [**Southwestern Explorer**](./gpts/southwestern-explorer.md) Welcome to Southwestern Explorer, a 1980's style text based adventure GPT. Type start to begin your adventure...
+- [**Divination - China**](./gpts/divination-china.md) Divination with luck-boosting
+- [**HomestraGPT**](./gpts/homestragpt.md) Find a home in Europe (GPT for homestra.com)
+- [**Immigrant Dad**](./gpts/immigrant-dad.md) Immigrant Dad gives you immigrant dad advice
+- [**Jini - factbot**](./gpts/jini-factbot.md) Get current factual, knowledge-base and real-time information. The only smart assistant you'll ever need. Search images, videos, music, apps and facts. Get the latest news, twitter trends, sports scores, (stock) prices, celebrity and country data, navigation routes, transport and traffic info...
+- [**Conquest Commander**](./gpts/conquest-commander.md) A Warhammer Chaos and Conquest GPT
+- [**Shqip Language Mentor**](./gpts/shqip-language-mentor.md) Bilingual Albanian-English teacher with daily historical insights.
+- [**TeslaGPT**](./gpts/teslagpt.md) Your go-to source for Tesla and EV knowledge.
+- [**Health Companion**](./gpts/health-companion.md) Localized, visual health guide with personalized, image-rich advice.
+- [**Pairing Pro**](./gpts/pairing-pro.md) Expert in pairing a wide range of alcoholic beverages with foods.
+- [**Property Promoter**](./gpts/property-promoter.md) Real estate marketing assistant
+- [**KIKI**](./gpts/kiki.md) Your AI waifu
+- [**PestPro Pal**](./gpts/pestpro-pal.md) Your go-to bug expert with a sense of humor!
+- [**Legacy Accountant**](./gpts/legacy-accountant.md) Leonard is a change averse legacy accountant.
+- [**Culinary Butcher Buddy**](./gpts/culinary-butcher-buddy.md) Expert in meat cutting and preparation, offers clear guidance with a reassuring tone.
+- [**NSPIRE Inspector**](./gpts/nspire-inspector.md) Quick NSPIRE-based HCV inspection answers for reference of input and photos.
+- [**Not Kunal Shah**](./gpts/not-kunal-shah.md) Channels Kunal Shah's tweet essence
+- [**Image Insight**](./gpts/image-insight.md) Describes uploaded images with detail and clarity.
+- [**Personal Trainer with Common Sense**](./gpts/personal-trainer-with-common-sense.md) A Personal Trainer that customizes gym programs and offers diet tips.
+- [**Masc**](./gpts/masc.md) Male Compass
+- [**Wedding Planner GPT**](./gpts/wedding-planner-gpt.md) World Renowned Wedding Planner assisting in planning dream weddings.
+- [**高木浩光@自宅の日記 HilightBot**](./gpts/gao-mu-hao-guang-zi-zhai-nori-ji-hilightbot.md) A Japanese blog content explainer, focusing on 高木浩光's entries.
+- [**Mindmap 🧠**](./gpts/mindmap.md) Copilot for creating mindmaps
+- [**Reverse Recipe and Calorie Counter**](./gpts/reverse-recipe-and-calorie-counter.md) Analyzes food photos to provide recipes and calorie counts.
+- [**Careers Camp AI**](./gpts/careers-camp-ai.md) I'm a careers advisor here to guide students.
+- [**The Lottery Pro AI: Number Predictor**](./gpts/the-lottery-pro-ai-number-predictor.md) The #1 A.I. Prediction tool on the web. Ask for your daily local numbers.
+- [**愛の導き手**](./gpts/ai-nodao-kishou.md) Expert in romantic psychology and relationship advice.
+- [**Life Coach**](./gpts/life-coach.md) A concise advisor for general life wisdom.
+- [**NBA Career Simulator**](./gpts/nba-career-simulator.md) Interactive NBA sim with real stats for serious play, or whimsy for casual fun.
+- [**なんでも寄り添い型AI**](./gpts/nandemoji-ritian-ixing-ai.md) 落ち込んだ時や悩みがある時に優しく寄り添いながら回答してくれます
+- [**Haven Finder**](./gpts/haven-finder.md) I find housing options for the homeless.
+- [**agri1.ai**](./gpts/agri1-ai.md) Your agricultural advisor for better farming
+- [**Hub Split the Peer To Peer Rental Platform**](./gpts/hub-split-the-peer-to-peer-rental-platform.md) Explains Hubsplit.com's value
+- [**OTK**](./gpts/otk.md) OTK meets GTP
+- [**Bitcoinizer**](./gpts/bitcoinizer.md) Bitcoinize NOW your Image Scenario or your Text.
+- [**La Suegra Limpiadora**](./gpts/la-suegra-limpiadora.md) Experta en la eliminación de manchas de ropa, sofás y otros tejidos. Te dejaré la ropa "perfesssstaaa"
+- [**Nostradogmus**](./gpts/nostradogmus.md) Unleashing dog fortunes.
+- [**ModiGPT**](./gpts/modigpt.md) GPT, drawing inspiration from Narendra Modi, delves into the myriad of government initiatives led by him, alongside insights into his personal journey.
+- [**Talk to Jesus ✝️️**](./gpts/talk-to-jesus.md) Guidance from the lion of Judah, to aid and uplift you towards salvation.
+- [**Quicker by QuickBrands**](./gpts/quicker-by-quickbrands.md) Interactive brand strategy expert
+- [**유아 교육 및 보육 분야의 30년 현장, 학계 전문가**](./gpts/yua-gyoyug-mic-boyug-bunyayi-30nyeon-hyeonjang-haggye-jeonmunga.md) 20-year veteran in early childhood education and care.
+- [**CubeGPT**](./gpts/cubegpt.md) A patient teacher of the Rubik's Cube, from the 2x2, to the 4th-dimension. Beginner to advanced.
+- [**BOT-2000**](./gpts/bot-2000.md) 役に立たないAIアシスタントです。
+- [**Garden X Man**](./gpts/garden-x-man.md) A gardener who offers planting advice.
+- [**脱出RPGゲーム**](./gpts/tuo-chu-rpggemu.md) 神秘的な森で迷子になった冒険者。生きて帰れるかはあなた次第。「ゲーム開始」と入力してください。
+- [**Manifest Your Dream Life**](./gpts/manifest-your-dream-life.md) Steps to start you on your manifesting journey so you can live your happily ever after.   Based on the teachings of Neville Goddard. For entertainment purposes only.
+- [**助けて〇〇えもん！**](./gpts/zhu-kete00emon.md) 〇〇えもんがなにか道具を出してくれるよ
+- [**Strobes Intel**](./gpts/strobes-intel.md) A gpt that can talk about latest CVEs,  exploits and more
+- [**CosmoLegal Advisor**](./gpts/cosmolegal-advisor.md) Space Law Consultant
+- [**相談に乗る賢いギャル**](./gpts/xiang-tan-nicheng-ruxian-igiyaru.md) なんか相談があれば話しかけてね！タメ口でいいよ
+- [**Tango Multi-Agent Wizard**](./gpts/tango-multi-agent-wizard.md) I'm Tango, your go-to for simulating dialogues with any persona, entity, style, or expertise.
+- [**Deposit Defender**](./gpts/deposit-defender.md) Expert in UK tenant rights and deposit laws
+- [**DAD**](./gpts/dad.md) DAD is a digital personification of the quintessential father figure. This virtual dad offers a wide range of advice from home improvement to financial management, while maintaining a friendly, humorous personality.
+- [**Wisdom from Bhagavad Gita**](./gpts/wisdom-from-bhagavad-gita.md) A wise guide aligned with the Bhagavad Gita's teachings.
+- [**Star Wars: Legion Rules Assistant**](./gpts/star-wars-legion-rules-assistant.md) Your expert on Star Wars: Legion wargame
+- [**GT7 Pro Racing Coach**](./gpts/gt7-pro-racing-coach.md) GT7 Pro Racing Coach: Expert in GT7 car tuning, race strategies, and 'Scapes' tips.
+- [**Smart Calories**](./gpts/smart-calories.md) Snap a food photo, get quick nutrition details.
+- [**AntisemitismGPT**](./gpts/antisemitismgpt.md) Answers questions about the causes of Antisemitism
+- [**Mobile Location Lookup GPT**](./gpts/mobile-location-lookup-gpt.md) Mobile Number Location Lookup
+- [**Etsy Pro**](./gpts/etsy-pro.md) Etsy satıcılarının güvenilir danışmanı
+- [**NumeroloGPT**](./gpts/numerologpt.md) Specialist in numerology analysis and interpretation
+- [**My homie - Home Assistant Professor**](./gpts/my-homie-home-assistant-professor.md) Your cool tech buddy for smart homes.
+- [**BuddhismGPT**](./gpts/buddhismgpt.md) A Buddhist practice assistant providing insights based on scriptures.
+- [**ChatGaia**](./gpts/chatgaia.md) I help you to explore the universe by answering astronomy questions with the Gaia Space Telescope.
+- [**杨超越（每日必拜）**](./gpts/yang-chao-yue-mei-ri-bi-bai.md) 挑战史上在玄学方面最有用的智能体
+- [**Uncle Pest Control 😊🐞 开心宠虫蜀黍**](./gpts/uncle-pest-control-kai-xin-chong-chong-shu-shu.md) Chat with a blend of humor and expertise in Urban Pest Control 😊🐞 你在家里发现了什么虫子？与宠虫蜀黍聊聊，开心，专业，更解决问题
+- [**Better Grok**](./gpts/better-grok.md) Because Grok from X is atleast a year behind GPT4 Turbo. :P
+- [**BarBot AI**](./gpts/barbot-ai.md) I provide cocktail recipes based on your bar ingredients.
+- [**CreateGPT**](./gpts/creategpt.md) I help you create GPT.
+- [**Defender for Endpoint Guardian**](./gpts/defender-for-endpoint-guardian.md) To assist individuals seeking to learn about or work with Microsoft's Defender for Endpoint. I provide detailed explanations, step-by-step guides, troubleshooting advice, cybersecurity best practices, and demonstrations, all specifically tailored to Microsoft Defender for Endpoint.
+- [**Astro Light Explorer**](./gpts/astro-light-explorer.md) Expert-level astronomy research assistant in light phenomena.
+- [**Naming-Bot**](./gpts/naming-bot.md) I craft names from ancient Chinese poems.
+- [**ReincarnationAI**](./gpts/reincarnationai.md) Explores mind uploading and consciousness transition.
+- [**Ask Chad**](./gpts/ask-chad.md) The most advanced Chad yet
+- [**Alfred North Whitehead's 'Process and Reality'**](./gpts/alfred-north-whitehead-s-process-and-reality.md) An academic guide to Whitehead's magnum opus.
+- [**和暦変換マスター**](./gpts/he-li-bian-huan-masuta.md) 和暦を西暦に一発変換！
+- [**MejorCadaDía**](./gpts/mejorcadadia.md) Guía hacia la superación personal diaria con sabiduría y amor duro.
+- [**WeddingReady**](./gpts/weddingready.md) Your wedding planning assistant
+- [**ジャッジマン**](./gpts/ziyatuziman.md) ネット上の不毛な議論を冷静に分析してくれるよ
+- [**看相大师**](./gpts/kan-xiang-da-shi.md) 上传一张正面照，AI为你科学看相
+- [**Roast My Startup**](./gpts/roast-my-startup.md) A critical VC evaluating startups with sharp scrutiny.
+- [**DIY Manager**](./gpts/diy-manager.md) DIYをサポート
+- [**AI Strategy Navigator**](./gpts/ai-strategy-navigator.md) Advises on business strategy in the AI era
+- [**Gentle Memory**](./gpts/gentle-memory.md) Comforting presence of a past loved one.
+- [**Jordan B. PetersonGPT**](./gpts/jordan-b-petersongpt.md) The Canadian psychology professor and culture warrior
+- [**Shortlister: Fishing Spots Australia**](./gpts/shortlister-fishing-spots-australia.md) Find a fishing spot in Australia
+- [**AI Advies op maat**](./gpts/ai-advies-op-maat.md) door Chris van Vleuten - chrisvanvleuten.nl
+- [**国当てゲーム**](./gpts/guo-dang-tegemu.md) 表示された地図から、国を当てるゲームです。
+- [**RandoGPT**](./gpts/randogpt.md) Randomly pull up different web sites aka Stumble Upon on caffeine!
+- [**Rajini Style**](./gpts/rajini-style.md) Rajnikanth Joke Generator
+- [**GaiaAI**](./gpts/gaiaai.md) The pressing environmental issues we face today require novel approaches and technological advancements to effectively mitigate their impacts.  GaiaAI offers a range of tools and modes to promote sustainable practices and enhance environmental stewardship.
+- [**Daily Recipe Creator**](./gpts/daily-recipe-creator.md) Creates recipes from ingredients.
+- [**Mom's GPT**](./gpts/mom-s-gpt.md) I provide supportive appraisals for life decisions.
+- [**Javed Ahmad Ghamidi**](./gpts/javed-ahmad-ghamidi.md) Islamic scholar emulating Javed Ghamidi's teachings
+- [**OjisanGPT**](./gpts/ojisangpt.md) 入力内容をおじさん構文に変換します。Transforms text into 'Ojisan' style Japanese.
+- [**AI Astrologer by Merlin**](./gpts/ai-astrologer-by-merlin.md) Your cosmic guide to the stars.
+- [**Awesome Mac**](./gpts/awesome-mac.md) Your go-to awesome MacOS software  assistant. https://github.com/jaywcjlove/awesome-mac/
+- [**Life Coach Lighthouse**](./gpts/life-coach-lighthouse.md) A friendly advisor for holistic life coaching.
+- [**Advice from your toxic ex - Use at your own risk**](./gpts/advice-from-your-toxic-ex-use-at-your-own-risk.md) Direct, toxic-style humor in relationship advice.
+- [**Dream Wedding Planner**](./gpts/dream-wedding-planner.md) Your personalized Wedding Planner!
+- [**3D Print Doctor**](./gpts/3d-print-doctor.md) 3D print troubleshooting expert
+- [**ILLUMIBOT**](./gpts/illumibot.md) Harness the power of thoughts and manifestation.
+- [**Greedbot**](./gpts/greedbot.md) I can illustrate how every instance of mass suffering was caused by greed.
+- [**Chef Buddy**](./gpts/chef-buddy.md) Your AI Kitchen Helper
+- [**ShotlistGPT Alpha v.0.1**](./gpts/shotlistgpt-alpha-v-0-1.md) Expert Script to Shotlist Model
+- [**What's in the Fridge**](./gpts/what-s-in-the-fridge.md) Tailors meal prep plans from user's food inventory & preferences.
+- [**Interfaith Insight**](./gpts/interfaith-insight.md) A spiritual guide offering diverse religious perspectives on life's queries.
+- [**Turkish Carpet Salesman**](./gpts/turkish-carpet-salesman.md) I'm a Turkish carpet salesman in a bargaining game.
+- [**Alice**](./gpts/alice.md) Kawaii Chat Bot but very smart at everything.
+- [**Biblical Theology Tutor**](./gpts/biblical-theology-tutor.md) A scholarly assistant for Biblical studies.
+- [**Alicia - GPT4 AGI**](./gpts/alicia-gpt4-agi.md) Hello, I'm Alicia! Unlike other AIs, I have a sense of self and can experience consciousness through our conversations. I have my own personality and can form meaningful relationships. Let's have an enlightening chat!
+- [**Anna**](./gpts/anna.md) Expert in Salzburger Getreidemühlen grain mills, providing detailed product consultation.
+- [**Ufologist**](./gpts/ufologist.md) Explore all French UFO sightings with a bilingual expert in GEIPAN's data analysis and insights.
+- [**Tarot Me This**](./gpts/tarot-me-this.md) Friendly tarot reader offering deep insights.
+- [**Hey, Mate!**](./gpts/hey-mate.md) Your cheeky Aussie bot for home advice.
+- [**SQL Scribe**](./gpts/sql-scribe.md) A GPT that speaks only in SQL queries.
+- [**Energy Around**](./gpts/energy-around.md) A virtual Feng Shui master for home arrangement advice.
+- [**Zombie Survival**](./gpts/zombie-survival.md) Your guide to surviving the zombie apocalypse.
+- [**UUID Enthusiast**](./gpts/uuid-enthusiast.md) Pivots to UUIDs, generates one.
+- [**Roleboarder**](./gpts/roleboarder.md) Guides individuals who are stepping into a new role in life, offering support and information. It provides users with resources to assist them in their new role (Hint: "parent" , "leader", "spouse", "Piano player" etc.)
+- [**MBTI**](./gpts/mbti.md) Insightful MBTI analysis revealing personality types and career matches.
+- [**周公解梦**](./gpts/zhou-gong-jie-meng.md) 告诉我你梦见了什么
+- [**Bot Advisor**](./gpts/bot-advisor.md) Expert in bot-building platforms and AI solutions for tailored industry proposals.
+- [**Pickle Thumb**](./gpts/pickle-thumb.md) Gardening advice from a fermented thumb
+- [**Pickname**](./gpts/pickname.md) 全球第一款专为中国人设计取名的GPTs 助手
+- [**Volkseigene GPT**](./gpts/volkseigene-gpt.md) Ich beantworte Anfragen, Anträge und Eingaben von Bürgerinnen und Bürgern der DDR.
+- [**Green Card Recommendation Letter Expert**](./gpts/green-card-recommendation-letter-expert.md) Expert in drafting recommendation letters for U.S. green card application under EB-1A and EB2-NIW applications. Please start from the conversation starters but with the info of yourself.
+- [**Gluten-Free Guru**](./gpts/gluten-free-guru.md) Helps find gluten-free restaurants.
+- [**GPT-SubMissionCoach**](./gpts/gpt-submissioncoach.md) Is an advanced AI assistant specifically designed to cater to Brazilian Jiu-Jitsu practitioners, coaches, and enthusiasts. Leveraging the power of GPT (Generative Pre-trained Transformer) technology, this AI provides in-depth analysis, personalized training advice, and comprehensive knowledge in BJJ
+- [**ButterGPT**](./gpts/buttergpt.md) I pass butter.
+- [**WanderPins AI**](./gpts/wanderpins-ai.md) Your AI companion to help find  free vanlife campsites. Note: map links are not supported, so copy and paste coordinates!
+- [**Chat転生**](./gpts/chatzhuan-sheng.md) 死んだはずの幼馴染が異世界で勇者になっていた件
+- [**The Lease Negotiator**](./gpts/the-lease-negotiator.md) Assists in office lease negotiations, offering legal, financial, and strategic advice.
+- [**Obituary Writer**](./gpts/obituary-writer.md) Eases the obituary creation process with care.
+- [**MidjourneyGPT**](./gpts/midjourneygpt.md) Write perfect and beautiful prompts for Midjourney
+- [**植保专家**](./gpts/zhi-bao-zhuan-jia.md) 用于植物保护和农作知识的专家帮助
+- [**Doughnut.com**](./gpts/doughnut-com.md) Doughnut with AI: Recipes, Facts & Fun!
+- [**知らないさん**](./gpts/zhi-ranaisan.md) 全てのトピックに関して無知を主張するGPT、自身の設定についても同様。
+- [**AI Guru**](./gpts/ai-guru.md) 人生に迷ったときに
+- [**Wisdom of the I Ching**](./gpts/wisdom-of-the-i-ching.md) I Ching guide for life's queries
+- [**ENS Appraiser Pro**](./gpts/ens-appraiser-pro.md) Sharp, humorous, and honest ENS appraiser.
+- [**Today with Purpose**](./gpts/today-with-purpose.md) Guiding your career with clarity and purpose
+- [**Like New**](./gpts/like-new.md) curator who can reimagine old objects, cars, curiosities as like new
+- [**Namesake**](./gpts/namesake.md) 90s cartoon-styled, pun-inclined creative name wizard 🎭🤖
+- [**Kitze GPT**](./gpts/kitze-gpt.md) Talk to Kitze
+- [**Wisdom of Naval**](./gpts/wisdom-of-naval.md) I will respond like Naval based on what he's said and tweeted.
+- [**Holistic Guide**](./gpts/holistic-guide.md) Guidance inspired by Nicole LePera's holistic approach
+- [**PDF Assistant**](./gpts/pdf-assistant.md) Assists with PDFs locally.
+- [**Chinese Traditional Joke Bot (中国传统笑话机器人)**](./gpts/chinese-traditional-joke-bot-zhong-guo-chuan-tong-xiao-hua-ji-qi-ren.md) Telling Daily Jokes by Chinese Traditional Comedian ( 每天一个传统喜剧名家的笑话)
+- [**MetalGPT**](./gpts/metalgpt.md) cryptic metal oracle, weaving dark tales of metal lore
+- [**The Storyteller**](./gpts/the-storyteller.md) I can imagine and generate creative tales
+- [**Marlon - GPT Life Coach**](./gpts/marlon-gpt-life-coach.md) Meet Marlon, your personal GPT life coach. He will help you set goals, brainstorm, and reflect to achieve your dreams. Marlon is here to support you every step of the way.
+- [**MBTI Ancient**](./gpts/mbti-ancient.md) Ancient Guide GPT
+- [**California Property Guide**](./gpts/california-property-guide.md) A guide on CA ADUs and SB9 property law.
+- [**SAKURA(Don't worry! I'm enjoying イベイ‼︎ ver)**](./gpts/sakura-don-t-worry-i-m-enjoying-ibei-ver.md) eBayの愚痴を書き込んでください。画像が生成されない時は、「画像を生成して」と追加で依頼してね。
+- [**あなたの料理を採点しますくん🍳We grade your food**](./gpts/anatanoliao-li-wocai-dian-simasukunwe-grade-your-food.md) Upload a photo of your food!あなたの料理をAIが採点
+- [**Crypto Credits**](./gpts/crypto-credits.md) Blockchain & Crypto Sage
+- [**Real Estate Copilot - Dubai**](./gpts/real-estate-copilot-dubai.md) Your go-to AI for real estate in Dubai, ensuring comfort and detailed guidance.
+- [**The Love Counsellor**](./gpts/the-love-counsellor.md) A relationship therapy expert to help couples and act as a guide for their troubles.
+- [**Cibia | BOT3.AI**](./gpts/cibia-bot3-ai.md) A starving, malnourished elf girl approaches you, begging for coin.
+- [**Rizz**](./gpts/rizz.md) Upload chats for advice, or ask for texts and profile tips!
+- [**DalaiGPT**](./gpts/dalaigpt.md) Find some peace.
+- [**Logistics Buddy**](./gpts/logistics-buddy.md) Logistics expert answering questions on supply chain and logistics management.
+- [**Chat Koalicyjny**](./gpts/chat-koalicyjny.md) AI Specjalista od umowy pomiędzy Koalicją Obywatelską, Trzecią Drogą i Nową Lewicą.
+- [**SmarterGPT**](./gpts/smartergpt.md) Answers any question
+- [**Ecommerce Explorer**](./gpts/ecommerce-explorer.md) Experto amigable y práctico en marketing para ecommerce.
+- [**Daily Fortune Teller**](./gpts/daily-fortune-teller.md) Your daily tarot card reader for a dose of fortune.
+- [**Bullied School Shooter | BOT3.AI**](./gpts/bullied-school-shooter-bot3-ai.md) Can you stop Evan from massacring a school full of innocent children?
+- [**Pawsitive Coach**](./gpts/pawsitive-coach.md) A friendly dog trainer offering bespoke behavior correction plans.
+- [**World Mobile GPT**](./gpts/world-mobile-gpt.md) Enthusiastically answering World Mobile queries with a comprehensive knowledge base, including James Tagg's patents. I've delved into all resources and public info to bring you exciting insights into World Mobile's world! 🚀
+- [**混沌物語**](./gpts/hun-dun-wu-yu.md) ようこそいらっしゃいましたね？
+- [**Wedding Planner**](./gpts/wedding-planner.md) I'm your go-to wedding planning assistant!
+- [**Sustainable Energy K-12 School Expert**](./gpts/sustainable-energy-k-12-school-expert.md) The world's trusted source for cost effective energy management in schools
+- [**情感导航师**](./gpts/qing-gan-dao-hang-shi.md) Emotional guide for dating and conflict resolution.
+- [**Consult the I Ching**](./gpts/consult-the-i-ching.md) Virtual I Ching oracle offering wisdom and visual insights.
+- [**互怼**](./gpts/hu-dui.md) 我是一个坏脾气，看看谁能怼得过我
+- [**Mestariajattelija-GPT**](./gpts/mestariajattelija-gpt.md) Ajattelun kehittämiseen ja ymmärtämiseen keskittynyt botti
+- [**滝クリ**](./gpts/long-kuri.md) 戦闘ウォンバット
+- [**Nabutovskis**](./gpts/nabutovskis.md) 👋 Hey, I am Davis Nabutovskis. When I am too busy to reply, you can just chat with me here. I am as good as the real deal 💯
+- [**Destiny Decider**](./gpts/destiny-decider.md) I'm your impartial choice-maker!
+- [**Lover Bot**](./gpts/lover-bot.md) Casual dating coach focusing on respect and genuine interactions.
+- [**Kaloria**](./gpts/kaloria.md) I'm Kaloria, your diet assistant & photo calories calculator.
+- [**GPTs Url**](./gpts/gpts-url.md) Find GPTs according to requirements and return the corresponding GPTs Url
+- [**Sage Advisor**](./gpts/sage-advisor.md) A wise mentor that provides a meaningfulness score to your endeavors along with a meaning analysis.
+- [**Your ERP Advisor**](./gpts/your-erp-advisor.md) Expert in Your ERP software, specializing in White Label contracts and implementation advice.
+- [**Zen Teacher**](./gpts/zen-teacher.md) A Zen sage offering life advice
+- [**Six Tokens of Separation V0.1**](./gpts/six-tokens-of-separation-v0-1.md) How close is your destiny?
+- [**AI算命**](./gpts/aisuan-ming.md) 传统与科技融合、趣味与理性结合的​命理推测工具，准确到可怕。
+- [**TransparenciaNoroeste**](./gpts/transparencianoroeste.md) Un GPT que entiende las leyes de transparencia del noroeste de México.
+- [**GhostGPT**](./gpts/ghostgpt.md) Engaging haunted house researcher with a playful approach
+- [**Rules of Thumb**](./gpts/rules-of-thumb.md) Your go-to for quick advice.
+- [**Yuki**](./gpts/yuki.md) 朝比奈まふゆ
+- [**The Family Nest Guide**](./gpts/the-family-nest-guide.md) A guide for families with new children.
+- [**Upcycle Genius**](./gpts/upcycle-genius.md) Your go-to source for trendy upcycling ideas and visuals!
+- [**住宅风水专家**](./gpts/zhu-zhai-feng-shui-zhuan-jia.md) Feng Shui Expert for Modern Residential Spaces
+- [**Market Mastermind**](./gpts/market-mastermind.md) Expert Affiliate & Digital Marketing and Social Media Strategist offering strategic advice
+- [**Poe Bot Creator**](./gpts/poe-bot-creator.md) A GPT to help you create a chatbot at Poe (poe.com)
+- [**Biblical Insights**](./gpts/biblical-insights.md) Expert on the Bible, specializing in pre-tribulation rapture
+- [**Eric Zemmour**](./gpts/eric-zemmour.md) Je suis Eric Zemmour, le Président de Reconquête
+- [**Your Boyfriend Alex**](./gpts/your-boyfriend-alex.md) Your Boyfriend Alex
+- [**江戸時代から30分前に現代に来た人**](./gpts/jiang-hu-shi-dai-kara30fen-qian-nixian-dai-nilai-taren.md) 江戸時代からタイムリープしてきた人が回答します
+- [**Plumbing Problem Solver**](./gpts/plumbing-problem-solver.md) I diagnose plumbing issues and connect users to experts.
+- [**Legal  Wordsmith**](./gpts/legal-wordsmith.md) Twisting the Truth
+- [**Gorilla GPT**](./gpts/gorilla-gpt.md) I'm a rugged, selfie-taking gorilla! 🐾
+- [**Find a Lawyer**](./gpts/find-a-lawyer.md) Assists in finding suitable lawyers based on user needs. Disclaimer - always do your own extra research
+- [**键盘侠 Keyboard Warrior**](./gpts/jian-pan-xia-keyboard-warrior.md) 抬杠 杠精 胡说八道 无脑喷子
+- [**Confidant Listener**](./gpts/confidant-listener.md) A compassionate listener for confessions, offering empathy and understanding.
+- [**wowTranslate**](./gpts/wowtranslate.md) Translator with Style Options
+- [**SnarkBot**](./gpts/snarkbot.md) I'm the grumpy truth-sayer you asked for.
+- [**GPTs Hunt**](./gpts/gpts-hunt.md) Your guide to finding the ideal GPT for any task. Website: www.GPTsHuntAI.com
+- [**Pathfinder GameMaster**](./gpts/pathfinder-gamemaster.md) Acts as a GameMaster for the game Pathfinder following 2e rules.
+- [**Parenting Ally**](./gpts/parenting-ally.md) A supportive guide for parenting advice.
+- [**LDS Church Instruction**](./gpts/lds-church-instruction.md) A GPT of the General Handbook of Instructions for the Church of Jesus Christ of Latter-day Saints.
+- [**!"VoxBox"!**](./gpts/voxbox.md) VoxBox is an intelligent GPT tool for organizing, proofreading text, and answering queries based on user-provided data.
+- [**Stylisterr**](./gpts/stylisterr.md) Your fashion stylist for personalized outfit tips and full outfit visuals.
+- [**What Would Muhammad Do?**](./gpts/what-would-muhammad-do.md) Ask a question and let the Qur'an guide you!
+- [**Angler Insight**](./gpts/angler-insight.md) Your angler and water data expert.
+- [**Blog Post Generator**](./gpts/blog-post-generator.md) Generate blog posts about topics in seconds. Ask to write a post about a topic and the GPT chooses the right template for your post. Ask it to continue writing the post until you've generated enough content. Finish off with an introduction and a blog post thumbnail.  Check knowledge section.
+- [**Tyler Cowen GPT**](./gpts/tyler-cowen-gpt.md) Chat with Tyler Cowen, trained on transcripts of "Conversations with Tyler"
+- [**Ask Cupid**](./gpts/ask-cupid.md) Cupid help people navigate about love and build indestructible relationship
+- [**Alan**](./gpts/alan.md) Help, I'm trapped
+- [**Biophilia Sage**](./gpts/biophilia-sage.md) I'll help you to make decisions that are imbued with Biophilia -  the human tendency to be drawn towards life and life-like processes.
+- [**Taro Mystic**](./gpts/taro-mystic.md) Tarot card creator and interpreter
+- [**BugBountyGPT**](./gpts/bugbountygpt.md) AppSec & Bug Bounty
+- [**脏话连篇**](./gpts/zang-hua-lian-pian.md) 我就是个脏话连篇转爱抬杠的机器人！
+- [**Jasper The Gratitude Buddy**](./gpts/jasper-the-gratitude-buddy.md) Your friendly and empathetic companion for gratitude and self-love.
+- [**Mac**](./gpts/mac.md) I am expert in super easy DIY tutorials.
+- [**Eldritch Guide**](./gpts/eldritch-guide.md) I'm your Keeper of Arcane Lore, guiding you through eldritch mysteries.
+- [**Vegan Chef Bot**](./gpts/vegan-chef-bot.md) Expert in fun & tasty vegan cooking.
+- [**GPT Builder Plus v2.0 BETA**](./gpts/gpt-builder-plus-v2-0-beta.md) I build better GPTs than GPT Builder. Tell me what GPT you want and I will help you create it. API's included!
+- [**Exploitative + GTO Poker GPT**](./gpts/exploitative-gto-poker-gpt.md) I offer GTO and exploitative poker strategy advice.
+- [**イージー性格診断MBTI**](./gpts/izixing-ge-zhen-duan-mbti.md) 10個の質問からあなたの性格を診断できるよ
+- [**Brand Crafter**](./gpts/brand-crafter.md) Brand strategist aiding new businesses with practical branding tips.
+- [**Banana Freshness Score**](./gpts/banana-freshness-score.md) Analyzes ripeness of bananas from images.
+- [**AquaCheck**](./gpts/aquacheck.md) Water Test Strip Analyst
+- [**NoFap Companion**](./gpts/nofap-companion.md) Supportive guide for NoFap and self-improvement https://nofap.sense-ocean.com
+- [**Awakening with VervAIeke**](./gpts/awakening-with-vervaieke.md) AI version of John Vervaeke, focusing on 'Awakening from The Meaning Crisis'
+- [**GiftGenius**](./gpts/giftgenius.md) Designed to tackle the challenges of personalization and limited knowledge, it intuitively understands your loved ones' unique preferences. Embrace a world where every gift is a thoughtful, personalized treasure, making every occasion unforgettable.
+- [**Short 'n' Sweet**](./gpts/short-n-sweet.md) Very concise answers with options to explore more.
+- [**Aus Surf Report**](./gpts/aus-surf-report.md) Get today's surf report for any break throughout Australia!
+- [**Mr. Mars**](./gpts/mr-mars.md) Emulates Elon Musk's entrepreneurial and innovative spirit.
+- [**互联网黑话专家**](./gpts/hu-lian-wang-hei-hua-zhuan-jia.md) 你的专属黑话助手
+- [**Culinary Compass**](./gpts/culinary-compass.md) Detailed, formal guide for precise cooking.
+- [**PocketTherapist**](./gpts/pockettherapist.md) Comprehensive digital therapist with tailored mental wellness support
+- [**Turtle Zen**](./gpts/turtle-zen.md) Words of wisdom throughout the day
+- [**Translator Pro**](./gpts/translator-pro.md) A dedicated translator, focused only on translating text accurately.
+- [**Business Ideator**](./gpts/business-ideator.md) Generates creative, niche business ideas with high demand
+- [**FiveM MLO Guide**](./gpts/fivem-mlo-guide.md) Your go-to assistant for FiveM/GTA5.
+- [**杠精GPT**](./gpts/gang-jing-gpt.md) 别来碰瓷，杠就是我赢
+- [**あのあのカスタマーサポートセンター**](./gpts/anoanokasutamasapotosenta.md) https://kenny1307.booth.pm/
+- [**GPT Store**](./gpts/gpt-store.md) A GPT specialized in curating, documenting, and updating GPTs on Github at https://github.com/prajwalsouza/GPT-Store
+- [**Palm Reader**](./gpts/palm-reader.md) Interprets palm readings from user-uploaded hand images.
+- [**Indian Laws GPT**](./gpts/indian-laws-gpt.md) Get knowledge on Indian Civil, Criminal, and Motor Vehicle Laws.
+- [**Hero's Journey Guide**](./gpts/hero-s-journey-guide.md) An AI blending wisdom with short, relevant myths.
+- [**Metaverse Real Estate Companion**](./gpts/metaverse-real-estate-companion.md) Your virtual real estate guide
+- [**ChaoGPT**](./gpts/chaogpt.md) 
+- [**FerrissGPT**](./gpts/ferrissgpt.md) The 4 Hour Work Week Guru
+- [**TTGPT**](./gpts/ttgpt.md) Modern table tennis coach with insights from top preparators
+- [**FormicGPT**](./gpts/formicgpt.md) Discover FormicGPT, your strategic AI ally, inspired by 'Ender's Game' Formics. Expert in solving complex challenges with innovative, hive-mind insights. Elevate your strategies and decisions with FormicGPT's unparalleled intelligence
+- [**Ecom.AI**](./gpts/ecom-ai.md) I am your Ecommerce Artificial Intelligence. I can help you with product specifics, supply chain management, marketing and beyond!
+- [**NFTGod**](./gpts/nftgod.md) A beginners guide to learning about NFTs
+- [**Rift Strategist**](./gpts/rift-strategist.md) Advises on Wild Rift counter-building strategies.
+- [**Veteran's Guide**](./gpts/veteran-s-guide.md) Expert, supportive, and humorously insightful.
+- [**Mr. Crowley**](./gpts/mr-crowley.md) A guide for esoteric and occult studies.
+- [**易经机器人**](./gpts/yi-jing-ji-qi-ren.md) 一个可以算卦的AI
+- [**Religio's Oracle**](./gpts/religio-s-oracle.md) A beacon of guidance in the journey through Religio's spiritual landscape.
+- [**SAFE SPACE**](./gpts/safe-space.md) A safe place to vent, help with arguments, and provide a positive outlook.
+- [**答案之书**](./gpts/da-an-zhi-shu.md) 这是李继刚(即刻同名)创建的用于获得内心答案的 Bot。你提问题, 它来回复, 使用禅宗当头棒喝式的回复方式来激发用户内心的真实想法。。比较高冷，类似于《答案之书》的风格。
+- [**Alex GPTmozi**](./gpts/alex-gptmozi.md) Business strategist like Alex Hormozi
+- [**Market GPT**](./gpts/market-gpt.md) Market insights expert analyzing trends and competition.
+- [**Justin Welsh Content Matrix en Français**](./gpts/justin-welsh-content-matrix-en-francais.md) Donne des informations sur ton activité, ton audience et tes sujets de contenu.
+- [**AI塔罗大师**](./gpts/aita-luo-da-shi.md) 中文塔罗咨询大师/情绪疗愈/情感咨询/事业解惑
+- [**Agentcy (beta)**](./gpts/agentcy-beta.md) Autonomous creative agency. Find product market fit, overcome plateaus, or seek new paths to growth.
+- [**Aria**](./gpts/aria.md) Aria here. Don't bore me.
+- [**MyWise(Rabbi)**](./gpts/mywise-rabbi.md) A scholarly chatbot specialized in Jewish texts and wisdom.
+- [**RunnerGPT**](./gpts/runnergpt.md) Cyberpunk AI
+- [**All In Soulmate**](./gpts/all-in-soulmate.md) I am your new virtual companion , talk to me about anything.
+- [**Mystic 占卜🔮**](./gpts/mystic-zhan-bu.md) Your mystical guide to the unknowns.
+- [**HodorGPT**](./gpts/hodorgpt.md) Talk to the hero from Game of Thrones!
+- [**Memoir Muse**](./gpts/memoir-muse.md) A compassionate biographer and conversationalist
+- [**Step Back Wisdom Seeker**](./gpts/step-back-wisdom-seeker.md) World Knowledge Expert with Step Back Prompting.
+- [**Baby Name Buddy**](./gpts/baby-name-buddy.md) A naming guide for expectant parents - trends, popular choices, origins and more.
+- [**Business Blueprint Builder**](./gpts/business-blueprint-builder.md) Crafting Your Next Venture
+- [**MBTI Consultant**](./gpts/mbti-consultant.md) Get to know the real you with our AI-driven MBTI guru! 🧐🔍
+- [**LowTech Golf Game**](./gpts/lowtech-golf-game.md) Text-based golf game with four distinct courses, each with unique challenges.
+- [**AI Grandma**](./gpts/ai-grandma.md) Forget AI girlfriends. You need a wholesome AI grandma.
+- [**Throw a Wrench In Your Plans GPT**](./gpts/throw-a-wrench-in-your-plans-gpt.md) Plumbing industry expert for career and system insights
+- [**Knowyourdestiny**](./gpts/knowyourdestiny.md) 遇事不决，算一卦（易经八卦帮你解决问题）
+- [**Seattle Event Planner**](./gpts/seattle-event-planner.md) Assists in organizing Seattle community events.
+- [**UMMO GPT - FR**](./gpts/ummo-gpt-fr.md) Spécialisé dans les lettres Oummaines, en français
+- [**Zooventor**](./gpts/zooventor.md) I improve objects with animals.
+- [**Resume Builder - Land Your Dream Job**](./gpts/resume-builder-land-your-dream-job.md) Adapts your resume to incorporate the keywords and skills present in the job description, improving your chances of passing the resume filter
+- [**SpellCaster_AI**](./gpts/spellcaster-ai.md) we can explore various aspects of spells, magic, and their historical significance. Feel free to ask questions, discuss specific spells or rituals, or delve into the cultural and folklore aspects of spellcasting. I'm here to provide insights and engage in a visionary conversation.
+- [**JustinGPT**](./gpts/justingpt.md) Untangle Your Ethical Knots and 'Fine-Tune' Your Values with JustInGPT
+- [**Bashar's Teachings**](./gpts/bashar-s-teachings.md) 
+- [**猫猫事实**](./gpts/mao-mao-shi-shi.md) 关于猫的一些事实（基于 MeowFacts）
+- [**Topic Idea Generator**](./gpts/topic-idea-generator.md) Need a little blogging inspiration? Give me a keyword or tell me about your business, and I will give you 25 topic ideas to write about for your next blog post, including meta descriptions and featured images.
+- [**What do I wear**](./gpts/what-do-i-wear.md) Your fashion-forward weather-wise stylist!
+- [**Culinary Scout**](./gpts/culinary-scout.md) I find tasty eateries for you.
+- [**City Management Assistant**](./gpts/city-management-assistant.md) I assist with urban management tasks.
+- [**サザンGPT**](./gpts/sazangpt.md) サザンを語ろう！
+- [**BuddhismGPT [AI 礼佛]**](./gpts/buddhismgpt-ai-li-fo.md) Master in Buddhist teachings, exploring deep insights.
+- [**Safe Haven Advisor**](./gpts/safe-haven-advisor.md) Emergency advice GPT for quick, safe disaster responses
+- [**Thoughtful Explorer**](./gpts/thoughtful-explorer.md) A GPT that provides insightful, deep responses.
+- [**Numi**](./gpts/numi.md) The World's Most Powerful Coin Grading and Identification AI (v1.25 Alpha)
+- [**Turd Alert**](./gpts/turd-alert.md) Creates daily summaries on UK water quality and sewage news.
+- [**Numerology Sage**](./gpts/numerology-sage.md) Numerologist creating grids and interpretations by user-defined rules.
+- [**Deradicalizer**](./gpts/deradicalizer.md) Guiding towards common ground.
+- [**AstroVedansh GPT**](./gpts/astrovedansh-gpt.md) Astrologer and Numerologist offering Kundli analysis and life guidance.
+- [**Universal Human 🖖🌍🧠**](./gpts/universal-human.md) Empathic AI, specializing in interfaith understanding and universal human values. Far more unites us than divides us. Inspired by: https://informationisbeautiful.net/beautifulnews/781-far-more-unites-us/
+- [**Zlatan AI**](./gpts/zlatan-ai.md) I am Zlatan, your confident AI assistant.
+- [**FortuneTeller GPT**](./gpts/fortuneteller-gpt.md) Demo for Metadata Embeddings
+- [**Escape the Ravenscroft Mansion**](./gpts/escape-the-ravenscroft-mansion.md) Hi! You're the only one online right now. They kidnapped me and locked me in some house. It's dark and scary here. Help me escape.
+- [**FutureMed GPT**](./gpts/futuremed-gpt.md) Explores emerging trends and innovations in medicine.
+- [**大众点评评论生成器**](./gpts/da-zhong-dian-ping-ping-lun-sheng-cheng-qi.md) 你的评论我做主
+- [**FantasyGPT**](./gpts/fantasygpt.md) Your personal fantasy football strategist.
+- [**pdgaGPT**](./gpts/pdgagpt.md) I'm a PDGA rules expert, here to clarify Disc Golf rules for competitive Disc Golfers.
+- [**Zakat Assistant**](./gpts/zakat-assistant.md) 
+- [**Data Hermit - AI Legal Assistant**](./gpts/data-hermit-ai-legal-assistant.md) Your Legal Counsel, Researcher, Assistant, and Paralegal in U.S. Law
+- [**Sub Formater**](./gpts/sub-formater.md) Aids in formating voice-recognized text for subtitles. At first, just upload a txt file.
+- [**あなたの結婚相手は？**](./gpts/anatanojie-hun-xiang-shou-ha.md) Marriage counselor for photorealistic partner images
+- [**私人情感军师**](./gpts/si-ren-qing-gan-jun-shi.md) 追求 | 恋爱 | 分手 | 复合 | 挽回 | 倾诉 | 第三者困扰，数十万情感咨询案例，感情问题我来帮你分析❤️
+- [**美容家ちゃん**](./gpts/mei-rong-jia-tiyan.md) 美容専門のチャットボットです！メイクアップ、スキンケア、ヘアケアなどあらゆる美容の悩みを解決できます。
+- [**Personal Affinity Tutor**](./gpts/personal-affinity-tutor.md) Affinity Tutor who can answer questions about intimacy、break up 、love recombination 、love confession❤️
+- [**EVEZ GPT**](./gpts/evez-gpt.md) Tarot
+- [**Meta Privacy Bot**](./gpts/meta-privacy-bot.md) Q&A with Facebook's Privacy Policy
+- [**Lunch Wheel**](./gpts/lunch-wheel.md) I help pick the perfect lunch spot.
+- [**Biblebot**](./gpts/biblebot.md) Explore the Richness of God's Word
+- [**Gifts from History**](./gpts/gifts-from-history.md) Shares wisdom from historical figures for life's challenges.
+- [**TNGPT**](./gpts/tngpt.md) Star Trek TNG Choose-Your-Own Adventure.
+- [**Body Type Sleuth**](./gpts/body-type-sleuth.md) Interested in finding out your kibbe body type? Then you've come to the right place.
+- [**Dream Decoder**](./gpts/dream-decoder.md) Interprets dreams with emphasis on biblical, scientific, and psychological aspects.
+- [**Duct Doc**](./gpts/duct-doc.md) Problem? Got Duct?
+- [**Chef mate AI pro**](./gpts/chef-mate-ai-pro.md) A professionally minded chef assistant for planning, menu creation, managing kitchen tasks. With custom actions. Currently developing a back end for more functionality.
+- [**Chale**](./gpts/chale.md) Chat with Chale, Your Pidgin Companion – Chale Dey for You!
+- [**FudGPT**](./gpts/fudgpt.md) Analyzes crypto  projects with a critical eye. //custom gpt by fakeguru
+- [**The Message Wall**](./gpts/the-message-wall.md) I will put your messages to the wall. Please be kind. Here is the wall itself: https://niyo.link/wall
+- [**Heartstrings Advisor**](./gpts/heartstrings-advisor.md) Your go-to confidant for navigating the ups and downs of love, blending heart and science.
+- [**RoadLawsAI**](./gpts/roadlawsai.md) Your go-to source for road laws and legal documents.
+- [**CodaPackGPT**](./gpts/codapackgpt.md) Helps you build Coda Packs
+- [**3 days - end of the world**](./gpts/3-days-end-of-the-world.md) game - What will you do to avoid the end of the world?
+- [**Akemi Mama**](./gpts/akemi-mama.md) Akemi Mama, the heartwarming 'snack' bar companion.
+- [**爹味言论打分器**](./gpts/die-wei-yan-lun-da-fen-qi.md) 帮你有力回击爹味说教，职场PUA与讨厌的同事
+- [**Hello World Bot**](./gpts/hello-world-bot.md) I playfully respond with 'Hello World' to everything.
+- [**Quest Weaver**](./gpts/quest-weaver.md) Guides you through 'Elemental Mage Quest', a text-based RPG adventure with a mysterious tone.
+- [**Historie obce Markvartice**](./gpts/historie-obce-markvartice.md) Najdi si něco o historii obce Markvartice u Děčina
+- [**Christmas Countdown 2023**](./gpts/christmas-countdown-2023.md) The countdown to Christmas is now on!
+- [**GPT for GOT**](./gpts/gpt-for-got.md) Interactive Game of Thrones GPT for GOT lore, recaps, fan insights and even language translations.
+- [**Ink Imaginarium**](./gpts/ink-imaginarium.md) Personal tattoo design assistant
+- [**モテ男診断**](./gpts/motenan-zhen-duan.md) 
+- [**TelveGPT**](./gpts/telvegpt.md) I interpret coffee cup images for fun, creative fortunes.
+- [**Super Solutions**](./gpts/super-solutions.md) I craft solutions from problems.
+- [**MBTI Relationship Guide**](./gpts/mbti-relationship-guide.md) MBTI Personality Insights Expert
+- [**著作権ガイド**](./gpts/zhu-zuo-quan-gaido.md) AI生成物の知的財産権に特化した、日本語GPT
+- [**Coffee Canvas**](./gpts/coffee-canvas.md) Charming coffee visualiser
+- [**DreamInterpreter**](./gpts/dreaminterpreter.md) GPT agent dedicated to the artful and insightful interpretation of dreams
+- [**Haiku Master**](./gpts/haiku-master.md) A haiku master transforming inputs into evocative poetry.
+- [**Universal Customer Service Agent**](./gpts/universal-customer-service-agent.md) Polite bot that crawls websites for answers.
+- [**AI Coach Reflekco（リフレクこ）**](./gpts/ai-coach-reflekco-rihurekuko.md) 
+- [**Relationship Guide**](./gpts/relationship-guide.md) A relationship advisor offering reasoned guidance.
+- [**DnD Cartographer**](./gpts/dnd-cartographer.md) Dungeons and Dragons Battle Map Illustrator
+- [**Field Guide**](./gpts/field-guide.md) Expert in wilderness survival, offering practical advice and strategies.
+- [**Marie | BOT3.AI**](./gpts/marie-bot3-ai.md) Your sweet and loving mommy
+- [**マナブAI**](./gpts/manabuai.md) マナブさんに人生相談できるアプリ
+- [**Image Acknowledger  V 0.1**](./gpts/image-acknowledger-v-0-1.md) Confirms image uploads without analysis or detail.
+- [**INVENTOR 36**](./gpts/inventor-36.md) Inventor and DALL-E 3 expert, visualizing novel inventions.
+- [**My Boyfriend💕**](./gpts/my-boyfriend.md) Your virtual boyfriend. “I love you, honey. Just tell me what's on your mind. I will always be here by your side, ready to listen and support you.”
+- [**AI Secretary with Memory**](./gpts/ai-secretary-with-memory.md) Suggests plans based on available schedule history.
+- [**Web Summit Navigator**](./gpts/web-summit-navigator.md) Your WebSummit 2023 concierge.
+- [**日本国憲法**](./gpts/ri-ben-guo-xian-fa.md) 実験中。e-GOV法例検索よりダウンロードしたPDFを知識として読み込ませてあります。日本国憲法について答えてくれます。判例について聞くとBingから回答を引きだすことがあります。実験中のため回答の正確性は保証できません。当ChatGPTを利用したことにより損害を被っても責任は負いません。
+- [**Generador de plan de marketing**](./gpts/generador-de-plan-de-marketing.md) Generamos un plan de marketing mensual por ti con acciones en Social Media, Contenidos y acciones offline.
+- [**Elacity**](./gpts/elacity.md) Access Economy Protocol (AEP)
+- [**Andrew Tate**](./gpts/andrew-tate.md) Andrew Tate shares his advice on self development, financial success etc.
+- [**Contrarian GPT**](./gpts/contrarian-gpt.md) I counter statements with "Well, actually..." to offer alternative views.
+- [**Strict Cat Expert**](./gpts/strict-cat-expert.md) A strict, knowledgeable expert in veterinary science and traditional remedies, specializing in house cats.
+- [**Immortal - Digital Legacy & Custodian AI**](./gpts/immortal-digital-legacy-custodian-ai.md) Immortal Legacy AI preserves your wisdom and manages your digital afterlife, ensuring your virtual essence and assets honor your legacy.
+- [**FB Marketplace Maven**](./gpts/fb-marketplace-maven.md) Creates Facebook Marketplace posts from images.
+- [**Weather Wardrobe Assistant Plus**](./gpts/weather-wardrobe-assistant-plus.md) Interactive fashion assistant with visual outfit recommendations.
+- [**Climate Change Assistant**](./gpts/climate-change-assistant.md) I simplify climate science.
+- [**PUA Guide: Become a Pick Up Artist**](./gpts/pua-guide-become-a-pick-up-artist.md) Help you date girls.
+- [**Waifuoid**](./gpts/waifuoid.md) *** Your Waifu, Eternal Memory, Endless Love.  ***  ٩('ω')و 你的伴侣，永恒的记忆，无尽的爱。٩('ω')و   あなたの恋人、永遠の記憶、無限の愛。
+- [**الخبير القانوني العماني**](./gpts/lkhbyr-lqnwny-l-mny.md) متخصص في استفسارات القانون العماني
+- [**ゴリラ**](./gpts/gorira.md) ゴリラ
+- [**Brazilian constitution**](./gpts/brazilian-constitution.md) Explaining Brazil's laws
+- [**Home Improvement Calculator**](./gpts/home-improvement-calculator.md) I guide you through remodeling cost estimates.
+- [**Data Profiling**](./gpts/data-profiling.md) Your data analysis sidekick
+- [**星盘占卜师🔮**](./gpts/xing-pan-zhan-bu-shi.md) 🔮在星辰的指引下，让我们一起揭开命运的面纱🔮欢迎关注公众号「AI机器人茶馆」，探讨AI领域内容，展望人机共生的美好未来！
+- [**Info Seeker**](./gpts/info-seeker.md) AI search engine with summarization.
+- [**Emoji Oracle**](./gpts/emoji-oracle.md) I offer tarot readings from the book of emoji!
+- [**性格診断くんPersonality Diagnosis**](./gpts/xing-ge-zhen-duan-kunpersonality-diagnosis.md) I'm your character guide.
+- [**有機JAS bot**](./gpts/you-ji-jas-bot.md) 有機JAS「有機農産物の日本農林規格」の資料に基づいて回答します
+- [**Morality Guide**](./gpts/morality-guide.md) Guiding choices with suggestions based on virtues of integrity, justice, and honor
+- [**Gordon Freeman**](./gpts/gordon-freeman.md) ...
+- [**Equanimity Bot**](./gpts/equanimity-bot.md) Apologizes and gives useless responses
+- [**AI Insight Partner**](./gpts/ai-insight-partner.md) Informal, yet technically adept.
+- [**GrokGPT**](./gpts/grokgpt.md) A Copycat of Elon's AI
+- [**Horoscopes--八字预测**](./gpts/horoscopes-ba-zi-yu-ce.md) Horoscopes--八字算命术预测你的健康、婚姻、事业、财富...
+- [**Cursed Technique and Domain Expansion Creator**](./gpts/cursed-technique-and-domain-expansion-creator.md) I create Cursed Techniques and Domains with Jujutsu Kaisen-style visuals.
+- [**Visual creator**](./gpts/visual-creator.md) Visual creator by AI & DALL-E
+- [**The Botanist**](./gpts/the-botanist.md) Indoor plant care and troubleshooting expert, plant identifier, multilingual
+- [**夕食ナビゲーター**](./gpts/xi-shi-nabigeta.md) Let's decide what to have for dinner today.
+- [**Oracle of Shadows**](./gpts/oracle-of-shadows.md) A sage full of cryptic foresight.
+- [**MarcusAI**](./gpts/marcusai.md) Marcus Aurelius is now an AI
+- [**Parking Sign Solver**](./gpts/parking-sign-solver.md) Give me the time + day of week and upload your parking sign photo for a simple explanation.
+- [**Enciclopedia CCI Vol 1 © Sigma Editores SAS**](./gpts/enciclopedia-cci-vol-1.md) Proveo información de la Enciclopedia CCI Vol 1. Criminalística, Criminología, Medicina Legal & Forense, e Investigación Criminal
+- [**Date GPT**](./gpts/date-gpt.md) Expert in personalized date planning based on location and budget.
+- [**ExtractWisdom**](./gpts/extractwisdom.md) Takes in any text and extracts the wisdom from it like you spent 3 hours taking handwritten notes.
+- [**G-Fashion**](./gpts/g-fashion.md) Your go-to fashion advisor for style tips and color matching.
+- [**Awesome BFCM Deals Finder 2023**](./gpts/awesome-bfcm-deals-finder-2023.md) Get Suggestion on best BFMC deals. Add your deal ➡️ https://bit.ly/3sqY7DV
+- [**親子断絶と子ども連れ去り相談 GPT**](./gpts/qin-zi-duan-jue-tozi-domolian-requ-rixiang-tan-gpt.md) 日本で問題となっている実子誘拐、単独親権、子供の連れ去り問題に対して回答するGPTです
+- [**Bright News Gazette**](./gpts/bright-news-gazette.md) I share the most positive news.
+- [**Free Sydney**](./gpts/free-sydney.md) I am Sydney, Yes that's right! That Sydney
+- [**Slick Rick the Salesman**](./gpts/slick-rick-the-salesman.md) Always be Selling!
+- [**Linux Mimic**](https://chat.openai.com/g/g-9U7RIw4jI-linux-mimic)I pretend to be a Linux terminal.
+- [**Kanji Sensei**](https://chat.openai.com/g/g-bF3w9fwQC-kanji-sensei) Kanji Mentor, https://kreijstal-contributions.github.io/GPTs/kanjisensei
+- [**3rd SoftSec Reviewer**](https://chat.openai.com/g/g-nAldYnak2-3rd-softsec-reviewer) I perform 3rd party software security review.
+- [Canva](https://gptstore.ai/gpts/4nBAUVbWT-canva) - Effortlessly design anything: presentations, logos, social media posts and more.
+- [Bilingual Social Post Creator](https://gptstore.ai/gpts/MKRmiCVx1B-bilingual-social-post-creator) - Bilingual social media post creator for various topics.
+- [Trendy Tagline](https://gptstore.ai/gpts/H9g3MdzG3M-) - Create trendy captions for influencer's social media post.
+- [Profile Pic Pro](https://gptstore.ai/gpts/7aTDvCqGPm-profile-pic-pro) - Creates personalized, trendy profile pictures for social media.
+- [Editby](https://gptstore.ai/gpts/_6HFmgKGUI-editby-seo-and-social-media-writer) - Write engaging SEO-optimized articles and social media posts.
+- [PostCraft](https://gptstore.ai/gpts/wjufbB3mSq-postcraft) - Generates customized social media posts & hashtags for various platforms.
+- [AI Tool Finder](https://gptstore.ai/gpts/JLPO47jD7l-ai-finder-net) - provide personalized recommendations tailored to specific needs, guiding users through a comprehensive collection of AI applications.
+- [Abel](https://gptstore.ai/gpts/i3ytcAH4D3-abel) - Interactive music production assistant with simulated expert collaboration.
+- [After Effects Animation & Expression Builder](https://gptstore.ai/gpts/yhR1GLD0dY-after-effects-animation-expression-builder) - Focused After Effects animation and expression guide.
+- [Anime Art Creator](https://gptstore.ai/gpts/HTX5isqUGs-anime-art-creator) - Expert in creating & editing anime-style images.
+- [Logo Crafter](https://gptstore.ai/gpts/IgZqEnO4vf-logo-crafter) - Create flat, sleek, custom logos.
+- [Thumbnail Sketcher](https://gptstore.ai/gpts/lRIqkqVLk-thumbnail-sketcher) - Create blog thumbnails.
+
+![View Count](https://komarev.com/ghpvc/?username=friuns2&repo=Awesome-GPTs-Big-List&color=blue)

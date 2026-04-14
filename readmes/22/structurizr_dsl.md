@@ -1,0 +1,1 @@
+The code in this repo has been moved to https://github.com/structurizr/java/tree/master/structurizr-dsl

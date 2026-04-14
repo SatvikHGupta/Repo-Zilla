@@ -1,0 +1,671 @@
+# <img src='.github/xremap.png' style='height: 32px; margin-top: 8px; margin-bottom: -4px;' alt='Xremap'> :keyboard:
+
+![crates.io](https://img.shields.io/crates/v/xremap) [![GitHub Actions](https://github.com/k0kubun/xremap/actions/workflows/build.yml/badge.svg)](https://github.com/k0kubun/xremap/actions/workflows/build.yml)
+
+`xremap` is a key remapper for Linux. Unlike `xmodmap`, it supports app-specific remapping and Wayland.
+
+## Table of contents
+
+- [Concept](#Concept)
+- [Features](#Features)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Configuration](#Configuration)
+- [Commandline arguments](#Commandline-arguments)
+- [Documentation](doc/README.md)
+- [Troubleshooting](doc/troubleshooting.md)
+- [Maintainers](#Maintainers)
+- [License](#License)
+
+## Concept
+
+- **Fast** - Xremap is written in Rust, which is faster than JIT-less interpreters like Python.
+
+- **Cross-platform** - Xremap uses `evdev` and `uinput`, which works whether you use X11 or Wayland.
+
+- **Language-agnostic** - The config is JSON-compatible. Generate it from any language,
+  e.g. [Ruby](https://github.com/xremap/xremap-ruby), [Python](https://github.com/xremap/xremap-python).
+
+## Features
+
+- Remap any keys, e.g. Ctrl or CapsLock.
+- Remap any key combination to another, even to a key sequence.
+- Remap a key sequence as well. You could do something like Emacs's `C-x C-c`.
+- Remap a key to two different keys depending on whether it's pressed alone or held.
+- Application-specific remapping. Even if it's not supported by your application, xremap can.
+- Device-specific remapping.
+- Automatically remap newly connected devices by starting xremap with `--watch`.
+- Support [Emacs-like key remapping](example/emacs.yml), including the mark mode.
+- Trigger commands on key press/release events.
+- Use a non-modifier key as a virtual modifier key.
+
+## Installation
+
+Download a binary from [Releases](https://github.com/k0kubun/xremap/releases).
+
+If it doesn't work, please [install Rust](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+and run one of the following commands:
+
+```bash
+cargo install xremap --features x11     # X11
+cargo install xremap --features gnome   # GNOME Wayland
+cargo install xremap --features kde     # KDE-Plasma Wayland
+cargo install xremap --features wlroots # Sway, Wayfire, etc.
+cargo install xremap --features hypr    # Hyprland
+cargo install xremap --features niri    # Niri
+cargo install xremap --features cosmic  # COSMIC Wayland
+cargo install xremap --features socket  # Variant for system service
+cargo install xremap                    # Others
+```
+
+You may also need to install `libx11-dev` to run `xremap` for X11.
+
+You may find a list of supported compositors for wlroots [here](https://wayland.app/protocols/wlr-foreign-toplevel-management-unstable-v1#compositor-support).
+
+### Arch Linux
+
+If you are on Arch Linux and X11, you can install [xremap-x11-bin](https://aur.archlinux.org/packages/xremap-x11-bin/) from AUR.
+
+### NixOS
+
+If you are using NixOS, xremap can be installed and configured through a [flake](https://github.com/xremap/nix-flake/).
+
+### Fedora Linux
+
+If you are using Fedora, xremap can be installed via this [Fedora Copr](https://copr.fedorainfracloud.org/coprs/blakegardner/xremap/) repository.
+
+## Usage
+
+Write [a config file](#Configuration) directly, or generate it with
+[xremap-ruby](https://github.com/xremap/xremap-ruby) or [xremap-python](https://github.com/xremap/xremap-python).
+
+If something isn't working take a look at the [troubleshooting section](doc/troubleshooting.md)
+
+### Run with sudo
+
+First perform these installation instructions: [Running xremap with sudo](doc/running_with_sudo.md)
+
+```
+sudo xremap config.yml
+```
+
+### Run without sudo
+
+First perform these installation instructions: [Running xremap without sudo](doc/running_without_sudo.md)
+
+```
+xremap config.yml
+```
+
+## Configuration
+
+Your `config.yml` should look like this:
+
+```yml
+modmap:
+  - name: Except Chrome
+    application:
+      not: Google-chrome
+    remap:
+      CapsLock: Esc
+keymap:
+  - name: Emacs binding
+    application:
+      only: Slack
+    remap:
+      C-b: left
+      C-f: right
+      C-p: up
+      C-n: down
+```
+
+See also: [example/config.yml](example/config.yml) and [example/emacs.yml](example/emacs.yml)
+
+The configuration file has 3 parts. `modmap`, `keymap` and [Configuration options](doc/reference_config_options.md). `modmap` and `keymap` are described below.
+
+### modmap
+
+`modmap` is for key-to-key remapping like xmodmap.
+Note that remapping a key to a modifier key, e.g. CapsLock to Control_L,
+is supported only in `modmap` since `keymap` handles modifier keys differently.
+
+```yml
+modmap:
+  - name: Name # Optional
+    remap: # Required
+      # Replace a key with another
+      KEY_XXX1: KEY_YYY # Required
+      # Replace a key with multiple keys (pressed and released simultaneously)
+      KEY_XXX2: [KEY_YYY, KEY_ZZZ]
+      # Dispatch different keys depending on whether you hold it or press it alone
+      # Disable a key
+      KEY_XXX3: []
+      KEY_XXX4:
+        held: KEY_YYY # Required, also accepts arrays
+        alone: KEY_ZZZ # Required, also accepts arrays
+        hold_threshold_millis: 100 # Optional, defaults to 0
+        alone_timeout_millis: 1000 # Optional, defaults to 1000
+      # Hook `keymap` action on key press/release events.
+      KEY_XXX5:
+        skip_key_event: true # Optional, skip original key event, defaults to false
+        press: [{ press: KEY_YYY }, { launch: ["xdotool", "mousemove", "0", "7200"] }] # Optional, default to no action
+        repeat: { repeat: KEY_YYY } # Optional, default to no action
+        release: [{ release: KEY_YYY }, { set_mode: my_mode }] # Optional, default to no action
+    application: # Optional
+      not: [Application, ...]
+      # or
+      only: [Application, ...]
+    window: # Optional
+      not: [/regex of window title/, ...]
+      # or
+      only: [/regex of window title/, ...]
+    device: # Optional
+      not: [Device, ...]
+      # or
+      only: [Device, ...]
+    mode: default # Optional
+    # or
+    mode: [ default, my_mode ]
+default_mode: default # Optional
+```
+
+For `KEY_XXX` and `KEY_YYY`, use [these names](https://github.com/emberian/evdev/blob/1d020f11b283b0648427a2844b6b980f1a268221/src/scancodes.rs#L26-L572).
+You can skip `KEY_` and the name is case-insensitive. So `KEY_CAPSLOCK`, `CAPSLOCK`, and `CapsLock` are the same thing.
+Some [custom aliases](src/config/key.rs) like `SHIFT_R`, `CONTROL_L`, etc. are provided.
+
+In case you don't know the name of a key, you can find out by enabling the xremap debug output:
+
+```bash
+RUST_LOG=debug xremap config.yml
+# or
+sudo RUST_LOG=debug xremap config.yml
+```
+
+Then press the key you want to know the name of.
+
+#### Multi-purpose key with alone_timeout_millis
+
+To make `capslock` also work as `esc`, if it's pressed and released within a timeout:
+
+```yml
+modmap:
+  - remap:
+      Capslock:
+        held: Capslock
+        alone: esc
+        alone_timeout_millis: 200 # Optional, defaults to 1000
+```
+
+It works like this:
+
+- If the key is pressed and released within `alone_timeout_millis` without other keys being pressed, it's considered `alone`.
+- If another key is pressed before timeout, it's considered `held`.
+- If the timeout is reached without other things happening, it's considered `held`.
+
+The alone-action is emitted as press and release right away. The held-action will emit press when it's triggered and
+wait to release until the trigger key is released.
+
+#### Multi-purpose key with free hold
+
+To use `space` as `shift` when it's held down, but remain `space` if it's not interrupted by another key:
+
+```yml
+modmap:
+  - remap:
+      Space:
+        held: Shift_L
+        alone: Space
+        free_hold: true # Optional, defaults to false.
+```
+
+There's no timeout in this case (i.e. `alone_timeout_millis` is ignored).
+
+- The `held` action is triggered when another key is pressed while the multi-purpose key is being held down.
+- If the key is released without others key being pressed, it triggers the `alone` action.
+
+This allows a key to be held indefinitely without triggering its `held` state, which is ideal for keys that also serve as modifiers. In this case, you make the `Space` key act as `Shift` when held and another key is pressed, but still type a regular `Space` when tapped.
+
+A drawback of this configuration is, that `space` can't be used for repeating spaces when held down, because that now has new meaning.
+
+Another drawback is that fast writing (e.g. `a`, `space`, `l`) can emit `aL`. One has to release `space` before typing `l` to get `a l`. This can be fixed with `hold_threshold_millis`.
+
+`free_hold` is logically the same as having an infinite `alone_timeout_millis`.
+
+#### Multi-purpose key with hold_threshold_millis
+
+```yml
+modmap:
+  - remap:
+      Space:
+        held: Shift_L
+        alone: Space
+        hold_threshold_millis: 200
+        free_hold: true
+```
+
+This will emit the alone-action, `space`, when it's interrupted by another key before
+timeout of `hold_threshold_millis`. This allows `space` to function normally when typing fast. And only after
+the timeout will it work as `shift`.
+
+#### Multi-purpose key with `interruptable`
+
+You may not want tapping a multi-purpose key to always be interrupted by all types of input events.
+You may also have problems tapping multi-purpose keys if you're pressing a lot of keys at once.
+
+You can control which keys can interrupt the `alone` press of a multi-purpose key using the
+`interruptable` field:
+
+```yml
+modmap:
+  - remap:
+      Ctrl_L:
+        held: Ctrl_L
+        alone: Backspace
+        interruptable:
+          # Ignore mouse movement when using --mouse
+          # This is the default
+          not: [XRIGHTCURSOR, XLEFTCURSOR, XDOWNCURSOR, XUPCURSOR]
+      Alt_L:
+        held: Alt_L
+        alone: Space
+        alone_timeout_millis: 200
+        interruptable:
+          # Only allow alt+tab to interrupt tapping alt
+          only: Tab
+```
+
+Input events that would interrupt the `alone` press of these multi-purpose keys will be handled as
+normal but without interrupting the key press.
+
+You can set `interruptable: false` to completely disable interruption. Or let all keys interrupt
+by setting `interruptable: true`, which also lets mouse wheel and mouse movement interrupt.
+
+### keymap
+
+`keymap` is for remapping a sequence of key combinations to another sequence of key combinations or other actions.
+Key actions in `keymap` will generally press and release keys right away
+when the last key in the trigger combination is pressed.
+
+```yml
+keymap:
+  - name: Name # Optional
+    exact_match: false # Optional, defaults to false
+    remap: # Required
+      # Key press -> Key press
+      MOD1-KEY_XXX1: MOD2-KEY_YYY
+      # Sequence (MOD1-KEY_XXX2, MOD2-KEY_YYY) -> Key press (MOD3-KEY_ZZZ)
+      MOD1-KEY_XXX2:
+        remap:
+          MOD2-KEY_YYY: MOD3-KEY_ZZZ
+        timeout_millis: 200 # Optional. No timeout by default.
+        timeout_key: KEY_A # Optional. Defaults to nothing. Can also be an array.
+      # Key press (MOD1-KEY_XXX3) -> Sequence (MOD2-KEY_YYY, MOD3-KEY_ZZZ)
+      MOD1-KEY_XXX3: [MOD2-KEY_YYY, MOD3-KEY_ZZZ]
+      # Execute a command
+      MOD1-KEY_XXX4:
+        launch: ["bash", "-c", "echo hello > /tmp/test"]
+      # Let `with_mark` also press a Shift key (useful for Emacs emulation)
+      MOD1-KEY_XXX5: { set_mark: true } # use { set_mark: false } to disable it
+      # Also press Shift only when { set_mark: true } is used before
+      MOD1-KEY_XXX6: { with_mark: MOD2-KEY_YYY }
+      # After pressing MOD1-KEY_XXX7, the next key press will ignore keymap
+      MOD1-KEY_XXX7: { escape_next_key: true }
+      # Set mode to configure Vim-like modal remapping
+      MOD1-KEY_XXX8: { set_mode: default }
+      # Illustrate a nested mapping that times out;
+      # also useful for timing out double-key sequences if the second key is never pressed.
+      space:  # Use timeout to fix a bouncy spacebar
+        remap:
+          space: null          # make space output nothing; null is equivalent to []
+          timeout_key: space   # output space after timeout or a non-mapped key (only space is mapped above)
+          timeout_millis: 150  # timeout duration in ms
+    application: # Optional
+      not: [Application, ...]
+      # or
+      only: [Application, ...]
+    window: # Optional
+      not: [/regex of window title/, ...]
+      # or
+      only: [/regex of window title/, ...]
+    device: # Optional
+      not: [Device, ...]
+      # or
+      only: [Device, ...]
+    mode: default # Optional
+    # or
+    mode: [ default, my_mode ]
+default_mode: default # Optional
+```
+
+For `KEY_XXX`, use [these names](https://github.com/emberian/evdev/blob/1d020f11b283b0648427a2844b6b980f1a268221/src/scancodes.rs#L26-L572).
+You can skip `KEY_` and the name is case-insensitive. So `KEY_CAPSLOCK`, `CAPSLOCK`, and `CapsLock` are the same thing.
+
+For the `MOD1-` part, the following prefixes can be used (also case-insensitive):
+
+- Shift: `SHIFT-`
+- Control: `C-`, `CTRL-`, `CONTROL-`
+- Alt: `M-`, `ALT-`
+- Windows: `SUPER-`, `WIN-`, `WINDOWS-`
+
+You can use multiple prefixes like `C-M-Shift-a`.
+You may also suffix them with `_L` or `_R` (case-insensitive) so that
+remapping is triggered only on a left or right modifier, e.g. `Ctrl_L-a`.
+
+If you use `virtual_modifiers` explained below, you can use it in the `MOD1-` part too.
+
+`exact_match` defines whether to use exact match when matching key presses. For
+example, given a mapping of `C-n: down` and `exact_match: false` (default), and
+you pressed <kbd>C-Shift-n</kbd>, it will automatically be remapped to
+<kbd>Shift-down</kbd>, without you having to define a mapping for
+<kbd>C-Shift-n</kbd>, which you would have to do if you use `exact_match: true`.
+
+### application
+
+`application` can be used for both `modmap` and `keymap`, which allows you to specify application-specific remapping.
+
+```yml
+keymap:
+  - application:
+      not: firefox
+      #not: [firefox, ...]
+      #only: firefox
+      #only: [firefox, ...]
+    remap:
+      capslock: KEY_A
+```
+
+The application name can be specified as a normal string to exactly match the name,
+or a regex surrounded by `/`s like `/application/`.
+
+To check the application names, you can use the following commands:
+
+#### X11
+
+```
+$ wmctrl -x -l
+0x02800003  0 slack.Slack           ubuntu-jammy Slack | general | ruby-jp
+0x05400003  0 code.Code             ubuntu-jammy application.rs - xremap - Visual Studio Code
+```
+
+You may use the entire string of the third column (`slack.Slack`, `code.Code`),
+or just the last segment after `.` (`Slack`, `Code`).
+
+#### GNOME Wayland
+
+Use the following command or check windows' WMClass by pressing Alt+F2 and running `lg` command in [LookingGlass](https://wiki.gnome.org/Projects/GnomeShell/LookingGlass):
+
+```
+busctl --user call org.gnome.Shell /com/k0kubun/Xremap com.k0kubun.Xremap WMClasses
+```
+
+#### KDE-Plasma Wayland
+
+Xremap prints the active window to the console.
+However, it will only start printing, once a mapping has been triggered that uses an application filter.
+So you have to create a mapping with a filter using a dummy application name and trigger it.
+Then each time you switch to a new window xremap will print its caption, class, and name in the following style:
+`active window: caption: '<caption>', class: '<class>', name: '<name>'`
+The `class` property should be used for application matching, while the `caption` property should be used for window matching.
+
+If you use a systemd-daemon to manage xremap, the prints will be visible in the system-logs (Can be opened with `journalctl -f`)
+
+#### Sway
+
+```
+swaymsg -t get_tree
+```
+
+Locate `app_id` in the output.
+
+#### Niri
+
+```
+niri msg windows
+```
+
+Locate `App ID` in the output.
+
+#### COSMIC Wayland
+
+```
+xremap --list-windows
+```
+
+This only works on COSMIC
+
+#### All desktops
+
+If none of the above methods work, you can make a config file with:
+
+```yml
+keymap:
+  - window:
+      not: []
+    application:
+      not: []
+    remap:
+      capslock: []
+```
+
+When you press capslock xremap looks up the information and prints it to the console.
+
+#### application-specific key overrides
+
+Sometimes you want to define a generic key map that is available in all applications, but give specific keys in that map their own definition in specific applications. You can do this by putting the generic map at the bottom of the config, after any specific overrides, as follows.
+
+```yml
+# Emacs-style word-forward and word-back
+keymap:
+  - name: override to make libreoffice-writer go to end of word but before final space like emacs
+    application:
+      only: libreoffice-writter
+    remap:
+      Alt-f: [right, C-right, left]
+  - name: generic for all apps
+    remap:
+      Alt-f: C-right
+      Alt-b: C-left
+```
+
+Note how Alt-f and Alt-b work in all apps, but the definition of Alt-f is slightly different in LibreOffice Writer. When that app is active, the first definition overrides the second definition; but for any other app, only the second definition is found. This is because xremap uses the first matching definition that it finds.
+
+### device
+
+Much like [`application`](#application), you may specify `{keymap,modmap}.device.{not,only}` in your configuration for device-specific remapping. Consistent with the global `--device` flag, device-matching strings may be any of:
+
+- The full path of the device (e.g. /dev/input/event0)
+- The filename of the device (e.g. event0)
+- The device name
+- A substring of the device name
+- The vendor and/or product id (e.g. ids:0x3f0:0x24)
+
+To determine the names and paths of your devices, examine `xremap`'s log output at startup. To get
+further info run: `xremap --list-devices` or even `xremap --device-details`.
+
+```yml
+keymap:
+  - device:
+      not: "/dev/input/event0"
+      # not: "/dev/input/by-id/Cool_Device" # Symlink to device. Since v0.14.8
+      # not: [event0, event1]
+      # only: 'Some Cool Device Name'
+      # only: ['Cool Device', 'Another Device']
+      # only: [ids:0x3f0:0x24]
+    remap:
+      W: UP
+```
+
+Unlike for `application`, regexs are not supported for `device`.
+
+If both `not` and `only` is specified, then `only` is used for matching, and `not` has no effect.
+
+Vendor and product ids must be given in hexadecimal, with or without '0x' prefix. It's possible to only
+match on vendor id with: `ids:0x3f0:0`, and only on product id with `ids:0:0x24`.
+
+### mode
+
+You can assign mode(s) to keymap and/or remap which effectively turns them on or off
+when you set the mode.
+
+```yml
+modmap:
+  - name: Up
+    remap:
+      W: UP
+    mode: [Up, Up_And_Down] # Mode is optional
+
+  - name: Down
+    remap:
+      S: DOWN
+    mode: [Down, Up_And_Down]
+
+  - name: Right_And_Left
+    remap:
+      D: RIGHT
+      A: LEFT
+    mode: Right_And_Left # Mode can be a string or vector of strings
+
+  - name: Turn Off
+    remap:
+      L:
+        press: { set_mode: Off } # Modmap can set mode via press and release
+        release:
+    # If mode is absent the keymap or modmap is always on
+
+keymap:
+  - name: SetMode
+    remap:
+      CTRL-U: { set_mode: Up }
+      CTRL-I: { set_mode: Down }
+      CTRL-O: { set_mode: Up_And_Down }
+      CTRL-P: { set_mode: Right_And_Left }
+    mode: [Up, Down, Right_And_Left, Up_And_Down, Off] # You can assign modes to keymap too!
+
+default_mode: Up_And_Down # Optional, if absent default mode is "default"
+```
+
+## Commandline arguments
+
+Usage for xremap is shown by running the following command:
+
+```
+xremap --help
+```
+
+The result is shown here:
+
+```
+Usage: xremap [OPTIONS] [CONFIGS]...
+
+Arguments:
+  [CONFIGS]...
+          Config file(s)
+
+          When more than one file is given, then will modmap, keymap and virtual_modifiers from the subsequent files be merged into the first configuration file.
+
+Options:
+      --device <DEVICE>
+          Limit input devices to the given names or paths. Default is all keyboards
+
+      --ignore <IGNORE>
+          Ignore input devices with the given names or paths
+
+      --mouse
+          Listen to mouse devices. Default is false
+
+      --watch[=<WATCH>...]
+          Watch for new devices or changing configuration files.
+          Default is not watching for either.
+          Examples
+          - xremap --watch config.yml               # watch devices
+          - xremap --watch=config config.yml        # watch configuration files
+          - xremap --watch=config,device config.yml # watch both
+
+          Possible values:
+          - device: add new devices automatically
+          - config: reload the config automatically
+
+      --output-device-name <OUTPUT_DEVICE_NAME>
+          Choose the name of the created output device. Default is 'xremap' or 'xremap pid=xx'
+
+      --vendor <VENDOR>
+          Choose the vendor value of the created output device. Must be given in hexadecimal with or without a prefix '0x'. Default is: 0x1234
+
+      --product <PRODUCT>
+          Choose the product value of the created output device. Must be given in hexadecimal with or without a prefix '0x'. Default is: 0x5678
+
+      --list-devices
+          List info about devices
+
+      --device-details
+          Show device details
+
+      --list-windows
+          List open windows. Use this to get app_class and title. It only works for COSMIC. Since v0.14.10
+
+      --no-window-logging
+          Suppress logging of window title and application changes. Default is false. Since v0.14.10
+
+      --allow-launch <ALLOW_LAUNCH>
+          Allow remappings to execute programs. Default is ambiguous. Since v0.15.1
+
+          [possible values: true, false]
+
+      --bridge
+          Open a bridge from the desktop environment to the xremap system service. Since v0.15.1
+
+      --completions <SHELL>
+          Generate shell completions
+
+          You can use them by storing in your shells completion file or by running
+          - in bash: eval "$(xremap --completions bash)"
+          - in fish: xremap --completions fish | source
+
+          [possible values: bash, elvish, fish, powershell, zsh]
+
+  -h, --help
+          Print help (see a summary with '-h')
+
+  -V, --version
+          Print version
+```
+
+### Device/ignore
+
+The arguments to `--device` and `--ignore` are described [here](#device). When using
+`--device`, only the devices you specify will be used. To select more than one device separate them
+by `,` or use `--device` for each:
+
+```sh
+xremap --device "first device,second device" config.yml
+```
+
+or:
+
+```sh
+xremap --device "first device" --device "second device" config.yml
+```
+
+## Maintainers
+
+- @k0kubun
+- @N4tus (KDE client)
+- @jixiuf (wlroots client)
+- @saurabhsharan (Niri client)
+- @hpccc53 (Cosmic client)
+
+## Releasing
+
+First, bump the xremap version at Cargo.toml and Cargo.lock, and Update CHANGELOG.md. Then:
+
+```
+git add .
+git commit -m "Version 0.X.Y"
+git push origin master
+git tag v0.X.Y
+git push origin --tags
+```
+
+## License
+
+`xremap` is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

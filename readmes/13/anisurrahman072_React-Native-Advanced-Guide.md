@@ -1,0 +1,148 @@
+# React Native Advanced Guide Book
+
+![Alt text](<images/Screenshot 2024-01-01 at 1.32.08 AM.png>)
+
+- This **Guide Book** was written by [**Anis**](https://github.com/anisurrahman072) ([🩵 **CONNECT me in X**](https://twitter.com/anis_RNCore))
+- It consists of **12 chapters** & **70+ Topics** that were written with deep R&D and took me **5 months** to complete.
+- The guide was first published as 12 articles on ([**Medium**](https://medium.com/@anisurrahmanbup)).
+- All the Articles were originally based on **RN v0.71**.
+
+### 🩵 If you find this BOOK helpful, please give a STAR 🩵
+
+# 📨 SUBSCRIBE to our newsletter - [React20Bulletin](https://anisrncore.substack.com/) 👇
+[<img width="1439" height="680" alt="Substack Main Banner" src="https://github.com/user-attachments/assets/d36f1011-99dc-4655-8b0a-b59e01a6b348" />](https://anisrncore.substack.com/)
+
+
+# Table of Contents (70+ TOPICS)
+
+### [✅ 001 - Ultimate Guide on New Architecture in depth](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/New-Architecture/New-Architecture-in-depth.md)
+
+        - Codegen (Native Code Generator)
+        - JSI (JavaScript Interface)
+        - Hermes Engine (New JS compiler)
+        - Turbo Modules (New Native Modules)
+        - Fabric (New Rendering Engine)
+        - Yoga (Cross platform layout engine)
+
+### [✅ 002 - Ultimate Guide on Debugging, Profiling & Advanced Optimization](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/Debugging-Profiling/Debugging-and-Profiling-ultimate-guide.md)
+
+        - iOS & Android Dev Menu
+        - Chrome Dev Tools
+        - Performance Monitor
+        - FPS (Frame Per Second)
+        - React Native four Threads
+        - Flipper for JS Context tracking
+        - Profiling iOS by Xcode Instruments
+        - Android Profiler in Android Studio
+
+### [✅ 003 - Ultimate Guide on Component (JS) Testing by RNTL with Jest setup](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/Testing/RNTL-Component-Testing-ultimate-guide.md)
+
+        - Brief intro with all types of RN testing
+        - React Native Testing Library (RNTL) details
+        - JEST setup & all it's config
+        - API => Render(): “queries”, “update", “debug"
+        - API => UserEvent()
+        - API => FireEvent()
+        - API => WaitFor()
+        - API => Mocking(): "jest.fn()" & "jest.mock()"
+        - Host & Composite components in RN
+
+### [✅ 004 - Ultimate Guide on Hermes & Static Hermes](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/New-Architecture/Hermes-and-Static-Hermes-in-depth.md)
+
+        - Bundle Release
+        - Relation between Bundle & Hermes
+        - Hermes Bytecode (.hbc)
+        - How to enable Hermes ?
+        - Oversure is Hermes working or not ?
+        - Enabling Hermes in Old RN Versions
+        - Static Hermes
+
+### [✅ 005 - Ultimate Guide on How to Enable New Architecture](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/New-Architecture/How-to-Enable-New-Architecture.md)
+
+        - Development ENV to Enable New Architecture
+        - Enable Hermes Instruction
+        - Npx Commands for Android
+        - Npx Commands for iOS
+        - Confirm New Architecture in action
+
+### [✅ 006 - Ultimate Guide on Performance Optimization](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/Performance-Optimization/Performance-Optimization-coding-guide.md)
+
+        - Use New Architecture
+        - FlatList/ SectionList for List Performance
+        - Unnecessary Console
+        - Cache mechanism
+        - Image resize, Cache Image & Fast loading Image
+        - Schedule Animation & Native driver
+        - Coding standard
+        - Hermes Engine
+        - Reselect with Redux
+        - Monitor Memory usage
+        - Fast Navigation
+
+### [✅ 007 - Ultimate Guide on Virtualization (List of Items) Optimization](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/List-and-Virtualization/All-ListView-and-Virtualization-Optimization.md)
+
+        - <VirtualizedList /> optimization
+        - <FlatList /> optimization
+        - <SectionList /> optimization
+        - <ScrollView /> with Virtualization props
+
+### [✅ 008 - Ultimate Guide on FlashList (Cell Re-Cycling) Optimization](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/List-and-Virtualization/FlashList-Cell-Recycling-details.md)
+
+        - Details about “RecyclerListView”
+        - Why Cell Re-Cycling ?
+        - Difference between "Blank Cell" & "Cell Re-cycling"
+        - FlashList Implementation
+        - All important props of FlashList
+        - Check Performance of your FlashList
+        - Reduce "Blank Space" techniques
+        - How to Migrate from "FlatList" to "FlashList" ?
+
+### [✅ 009 - Ultimate Guide on Nested Virtualization (Anti Pattern)](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/Anti-Patterns/Nested-Virtualization-anti-pattern.md)
+
+        - Nested VirtualizedLists Error
+        - Anti Pattern Reason
+        - SOLUTION code
+
+### [✅ 010 - Ultimate Guide on Component Call (Anti Pattern)](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/Anti-Patterns/Component-Call-anti-pattern.md)
+
+        - Component Call => Functional way
+        - Component Call => React way
+        - Functional way creates silent ERROR!
+        - Error analysis
+        - Rules of React Hooks (Violation)
+        - Error Solution
+
+### [✅ 011 - Ultimate Guide on IN APP PURCHASE (iOS & Android)](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/In-App-Purchase/In-App-Purchase-details-implementation.md)
+
+        - Basic Flow of Payment Gateway
+        - Sandbox Testing
+        - How GOOGLE IAP & iOS IAP works ?
+        - RevenueCat SDK
+        - Implementation instruction (iOS & Android)
+
+### [✅ 012 - Ultimate Guide on Higher Order Component, PROPS & Custom Hooks](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/Components-and-Hooks/HOC-Props-and-Custom-Hooks.md)
+
+        - Higher Order Component (HOC) pattern
+        - Render Props pattern
+        - Custom Hooks
+        - Lifting state to Parent Component
+        - When custom Hooks are better than HOC?
+        - Custom Hooks replaced "Render props pattern"
+
+### [🔥 C++ & JSI Module Guides coming soon → → Stay Tune 🚀]()
+
+# Endorsements
+
+### 🟣 [This Book](https://github.com/anisurrahman072/React-Native-Advanced-Guide) - Featured on the Top [RN Radio Podcast](https://reactnativeradio.com/episodes/rnr-285-expo-dominates-the-app-store-and-other-news) - ( by [Jamon](https://twitter.com/jamonholmgren), [Infinite Red](https://twitter.com/infinite_red) )
+
+### 🟣 [RNTL Guide](https://github.com/anisurrahman072/React-Native-Advanced-Guide/blob/master/Testing/RNTL-Component-Testing-ultimate-guide.md) - Endorsed by [Official Doc of RNTL](https://callstack.github.io/react-native-testing-library/docs/guides/community-resources) - ( by [Maciej](https://twitter.com/mdj_dev), [Callstack](https://twitter.com/callstackio) )
+
+# Contribution
+
+- If you find any issues in the guidebook, please create a pull request (PR). Your PR will help the community 🚀
+- Also, if you want to add more advanced guides to this repository, I will add you as a core contributor here 🔥
+
+# 🎯 PUBLISHED [RN SDK RELEASES R&D GUIDE](https://github.com/anisurrahman072/React-Native-SDK-Research) 🚀
+
+- I'm doing deep R&D on different RN SDK releases & new features
+- Doing R&D on React Native Skia, React Native Screen, React Native, Expo, many more new features

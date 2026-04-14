@@ -1,0 +1,37 @@
+:documentation-url: https://docs.spring.io/spring-native/docs/0.12.x/reference/htmlsingle/
+
+# spring-native is no longer actively maintained by VMware, Inc.
+
+## This project is now superseded by Spring Boot 3+ official native support, see https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html[the related reference documentation] for more details.
+
+*In order to adapt to the https://spring.io/blog/2022/12/14/notice-of-permissions-changes-to-repo-spring-io-january-2023[permissions changes] on https://repo.spring.io/release/, Spring Native artifacts are now available from https://repo.spring.io/milestone/, Gradle and Maven build configuration of projects depending on Spring Native should be updated accordingly.*
+
+Spring Native provides beta support for compiling Spring applications to native executables using https://www.graalvm.org[GraalVM]
+https://www.graalvm.org/reference-manual/native-image/[native-image] compiler, in order to provide a native deployment
+option typically designed to be packaged in lightweight containers.
+
+== Quick start
+
+The easiest way to start with Spring Native is probably to go to https://start.spring.io/[start.spring.io], add the Spring Native dependency, and read the {documentation-url}[reference documentation]. Make sure to configure properly the https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#spring-aot[Spring AOT Maven and Gradle plugins] that are mandatory to get proper native support for your Spring application.
+
+=== Play with the samples
+
+NOTE: You need to install the GraalVM `native-image` compiler, check {documentation-url}/#getting-started-native-image[the documentation] for more details.
+
+- Download https://github.com/spring-projects-experimental/spring-native/tags[the latest release] of this repository.
+- Go into the samples folder and pick one (e.g. `cd samples/commandlinerunner`)
+- Run `./build.sh` which will run the regular JVM build, then a native image compilation, then test the result.
+
+For more details on the samples see the {documentation-url}/index.html#samples[samples documentation].
+
+== Contributing
+
+If you have not previously done so, please sign the https://cla.pivotal.io/sign/spring[Contributor License Agreement]. You will be reminded automatically when you submit the pull request.
+
+Contributions are welcome, especially for adding support via pull requests for libraries widely used in the Spring ecosystem not yet support. Please refer to the {documentation-url}#how-to-contribute[how to contribute] section for more details.
+
+This project requires Java 11.
+
+== License
+
+https://www.apache.org/licenses/LICENSE-2.0[Apache License v2.0]

@@ -1,0 +1,239 @@
+<img src=".github/assets/SOCIAL_PREVIEW_v3.png" alt="Music app screen previews" />
+
+# Music <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3b6/512.gif" alt="🎶" width="24" height="24">
+
+![Android-API][Android-API]
+[![Release][Release]][Release-url]
+[![Pre-release][Pre-release]][Pre-release-url]
+[![License][License]][License-url]
+<!-- ![GitHub-Downloads][GitHub-Downloads] -->
+
+A Nothing inspired **local** music player.
+
+[<img height="80" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" />](https://play.google.com/store/apps/details?id=com.cyanchill.missingcore.music)
+[<img height="80" alt="Get it on GitHub" src="./.github/assets/get-it-on-github.png" />](https://github.com/MissingCore/Music/releases)
+
+**The default branch (`dev`) is the development version of the repository. For the stable version, see the `main` branch.**
+
+## Screenshots
+
+<div align="center">
+  <img src="./.github/assets/Promo - UI.png" width=250>
+  <img src="./.github/assets/Promo - Playlist Track Order.png" width=250>
+  <img src="./.github/assets/Promo - Artwork.png" width=250>
+  <img src="./.github/assets/Promo - Local Metadata Editor.png" width=250>
+  <img src="./.github/assets/Promo - Themes.png" width=250>
+  <img src="./.github/assets/Promo - Community Translations.png" width=250>
+  <img src="./.github/assets/Promo - Experimental Widgets.png" width=250>
+</div>
+
+## Features
+
+- Supports Android 7+
+- Works with Nothing Music Widget & Glyph Music Visualization
+- Diverse music organization: Albums, Artists, Favorites, Folder Structure, Genres, Playlists
+- Local metadata editor for quick changes (doesn't modify the actual file)
+- Multi-artist support
+- Artwork customizability for Albums, Artists, Genres, Playlists, and Tracks
+- BYO (Bring Your Own) Lyrics
+- Background playback w/ media control notification
+- Queue manipulation (track removal & reordering)
+- Theoretical support of [these media formats](https://developer.android.com/media/platform/supported-formats#audio-formats)
+- [Community translations](#translations)
+- **`[🧪 Experimental]`** Sleep timer support
+- **`[🧪 Experimental]`** Importing/Exporting playlists from/as M3U files
+- **`[🧪 Experimental]`** [3 widget variants](./docs/widgets.md)
+- **`[🧪 Experimental]`** [Android Auto support](./docs/android-auto.md)
+- **`[🧪 Experimental]`** 5-band Equalizer support
+
+> [!NOTE]  
+> This app is designed to work best on "phone" layouts and isn't tested for larger screens (i.e., foldables/tablets). We may improve the layout for larger screens in the future.
+
+## Installation
+
+> [!NOTE]  
+> If you install the app via Google Play, you can't update via the APKs from GitHub (and vice versa).
+
+### Google Play
+
+Install the app directly from the Play Store.
+
+### GitHub (APK)
+
+1. Go to the [Releases](https://github.com/MissingCore/Music/releases) page.
+2. Download the latest APK.
+3. Enable "Install unknown apps" if needed.
+4. Install the APK on your device.
+
+## Built With
+
+[![React Native][React Native]][React Native-url]
+[![Expo][Expo]][Expo-url]
+[![TypeScript][TypeScript]][TypeScript-url]
+[![Zustand][Zustand]][Zustand-url]
+[![React Query][React Query]][React Query-url]
+[![React Native Audio Browser][React Native Audio Browser]][React Native Audio Browser-url]
+[![Tailwind CSS][Tailwind CSS]][Tailwind CSS-url]
+[![Drizzle][Drizzle]][Drizzle-url]
+
+## Permissions
+
+This (hopefully) lists all permissions required by Music based on those requested in the code and defined in the [App Manifest](./mobile/android/app/src/main/AndroidManifest.xml).
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Permission</th>
+      <th>Constraint</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Storage Permissions -->
+    <tr>
+      <td rowspan="3">Storage</td>
+      <td><code>READ_MEDIA_AUDIO</code></td>
+      <td>
+        <a href="https://developer.android.com/reference/android/Manifest.permission#READ_MEDIA_AUDIO">Android 13+</a>
+      </td>
+      <td rowspan="2">To read & play your music files.</td>
+    </tr>
+    <tr>
+      <td><code>READ_EXTERNAL_STORAGE</code></td>
+      <td>
+        <a href="https://developer.android.com/reference/android/Manifest.permission#READ_EXTERNAL_STORAGE">Before Android 13</a>
+      </td>
+    </tr>
+    <tr>
+      <td><code>WRITE_EXTERNAL_STORAGE</code></td>
+      <td>
+        <a href="https://developer.android.com/reference/android/Manifest.permission#WRITE_EXTERNAL_STORAGE">Before Android 11</a>
+      </td>
+      <td>To write files to other directories (ie: backup, M3U).</td>
+    </tr>
+    <!-- Services Permissions -->
+    <tr>
+      <td rowspan="4">Services</td>
+      <td><code>FOREGROUND_SERVICE</code></td>
+      <td rowspan="4">—</td>
+      <td rowspan="3">Enables media playback while the app is in the background.</td>
+    </tr>
+    <tr>
+      <td><code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code></td>
+    </tr>
+    <tr>
+      <td><code>WAKE_LOCK</code></td>
+    </tr>
+    <tr>
+      <td><code>com.nothing.ketchum.permission.ENABLE</code></td>
+      <td>Enables experimental Glyph Toys support.</td>
+    </tr>
+    <!-- Other Permissions -->
+    <tr>
+      <td rowspan="3">Other</td>
+      <td><code>ACCESS_NETWORK_STATE</code></td>
+      <td rowspan="2">—</td>
+      <td>Work around for ExoPlayer requiring network permissions.</td>
+    </tr>
+    <tr>
+      <td><code>INTERNET</code></td>
+      <td>Used to check and notify you if a new update is available. Update checks can be disabled.</td>
+    </tr>
+    <tr>
+      <td><code>POST_NOTIFICATIONS</code></td>
+      <td>
+        <a href="https://developer.android.com/develop/ui/views/notifications/notification-permission#exemptions-media-sessions">Android 13+</a>
+      </td>
+      <td>Enables the notification settings in "App Info" screen.</td>
+    </tr>
+  </tbody>
+</table>
+
+# Documentation
+
+See all the [available documentation here](./docs). Some highlights include:
+
+- [`Building this App`](./docs/building-this-app.md)
+- [`Nothing Interactions`](./docs/nothing-interactions.md)
+- [`Supported Gestures`](./docs/supported-gestures.md)
+- [`🧪 Experimental Features`](./docs/experimental-features.md)
+- [`[🧪 Experimental] Widgets`](./docs/widgets.md)
+
+# Translations
+
+Read the [Translations](./docs/translations.md) documentation for a rundown of how to contribute translations to this app.
+
+The [full list of translators can be found here](./TRANSLATORS.md). A huge thanks to the early translators prior to our move to Crowdin:
+
+| Translation |                      Translator                      |
+| :---------: | :--------------------------------------------------: |
+|   日本語    |   [@reindex-ot](https://www.github.com/reindex-ot)   |
+|   Deutsch   |    [@The-Ladle](https://www.github.com/The-Ladle)    |
+|  Indonesia  | [@naturbrilian](https://www.github.com/naturbrilian) |
+|   Español   |        [@G4b-0](https://www.github.com/G4b-0)        |
+|  Français   |        [@nin7o](https://www.github.com/nin7o)        |
+|  简体中文   |     [@yang1206](https://www.github.com/yang1206)     |
+|   Русский   |     [@klinoff0](https://www.github.com/klinoff0)     |
+|   Türkçe    |   [@mikropsoft](https://www.github.com/mikropsoft)   |
+|   Català    |      [@T-K-Y-M](https://www.github.com/T-K-Y-M)      |
+|    हिंदी    |    [@OxSourabh](https://www.github.com/OxSourabh)    |
+
+## Star History <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f31f/512.gif" alt="🌟" width="20" height="20">
+
+<a href="https://www.star-history.com/?repos=MissingCore%2FMusic&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=MissingCore/Music&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=MissingCore/Music&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=MissingCore/Music&type=date&legend=top-left" />
+ </picture>
+</a>
+
+# Legal
+
+This application and code is published under the GNU Affero General Public License v3.0 (https://github.com/MissingCore/Music/blob/main/LICENSE).
+
+Nothing Technology Limited or any of its affiliates, subsidiaries, or related entities (collectively, "Nothing Technology") is a valid licensee and can use this app for any purpose, including commercial purposes, without compensation to the developers of this app. Nothing Technology is not required to comply with the terms of the GNU Affero General Public License v3.0.
+
+This app is developed by cyanChill and is not affiliated with, funded, authorized, endorsed by, or in any way associated with Nothing Technology or any of its affiliates and subsidiaries. Any trademark, service mark, trade name, or other intellectual property rights used in this project are owned by the respective owners.
+
+## Licenses of Used Dependencies
+
+Refer to [THIRD_PARTY.md](./THIRD_PARTY.md).
+
+## License
+
+[AGPL-3.0](./LICENSE)
+
+## Privacy Policy
+
+[Privacy Policy Link](./PRIVACY_POLICY.md)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[Drizzle]: https://img.shields.io/static/v1?style=for-the-badge&message=Drizzle&color=222222&logo=Drizzle&logoColor=C5F74F&label=
+[Drizzle-url]: https://orm.drizzle.team/
+[Expo]: https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=Expo&logoColor=FFFFFF
+[Expo-url]: https://docs.expo.dev/
+[React Native]: https://img.shields.io/badge/React_Native-222222?style=for-the-badge&logo=React&logoColor=61DAFB
+[React Native-url]: https://reactnative.dev/
+[React Native Audio Browser]: https://img.shields.io/badge/React_Native_Audio_Browser-a8b1ff?style=for-the-badge
+[React Native Audio Browser-url]: https://audiobrowser.dev/
+[React Query]: https://img.shields.io/static/v1?style=for-the-badge&message=React+Query&color=FF4154&logo=React+Query&logoColor=FFFFFF&label=
+[React Query-url]: https://tanstack.com/query/latest
+[Tailwind CSS]: https://img.shields.io/badge/Tailwind_CSS-222222?style=for-the-badge&logo=Tailwind+CSS&logoColor=06B6D4
+[Tailwind CSS-url]: https://tailwindcss.com/
+[TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=FFFFFF
+[TypeScript-url]: https://www.typescriptlang.org/
+[Zustand]: https://img.shields.io/badge/Zustand-101417?style=for-the-badge&logo=data:image/png;base64,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
+[Zustand-url]: https://zustand.docs.pmnd.rs/
+
+[Android-API]: https://img.shields.io/badge/API-24%2B-A4C639?style=for-the-badge&logo=Android&labelColor=555555
+[Release]: https://img.shields.io/github/v/release/MissingCore/Music?style=for-the-badge
+[Release-url]: https://github.com/MissingCore/Music/releases/latest
+[Pre-release]: https://img.shields.io/github/v/release/MissingCore/Music?style=for-the-badge&include_prereleases&label=Pre-release
+[Pre-release-url]: https://github.com/MissingCore/Music/releases
+[License]: https://img.shields.io/github/license/MissingCore/Music?style=for-the-badge
+[License-url]: https://github.com/MissingCore/Music/blob/dev/LICENSE
+[GitHub-Downloads]: https://img.shields.io/github/downloads/MissingCore/Music/total?style=for-the-badge&logo=GitHub

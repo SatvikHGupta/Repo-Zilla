@@ -1,0 +1,271 @@
+# Janusec Application Gateway / JANUSEC应用网关  
+
+[![Build Status](https://travis-ci.org/Janusec/janusec.svg?branch=master)](https://travis-ci.org/Janusec/janusec)
+
+
+[English Readme](#provide-fast-and-secure-application-delivery)  
+
+## 提供快速、安全的应用交付   
+
+![Janusec Application Gateway](gateway1.png)  
+
+介绍PPT： https://www.janusec.com/download/Janusec-Application-Gateway-CN.pdf   
+
+### 主要功能  
+
+JANUSEC应用网关的主要功能有：  
+
+* 向Web应用提供统一的安全接入，包括HTTPS、身份认证、安全防御（WAF/CC）等。如Web应用是通过K8S Pods部署的，该网关也可以作为K8S Ingress Controller使用，向Pods提供跟普通Web应用同样的接入和安全特性。  
+
+* 向非Web应用提供四层TCP/UDP路由转发（含K8S Pods）  
+
+* 提供ACME自动化证书（免费），用于支持用户HTTPS访问，证书到期时自动续期   
+
+### 主要特性  
+
+* 快速: Web化配置  
+
+* 安全  
+
+  + 安全接入: 一键启用HTTPS   
+
+  + 安全认证:  
+      - OAuth2: WxWork(企业微信), DingTalk(钉钉), Feishu(飞书)  
+      - LDAP+认证码双因子   
+      - CAS 2.0  
+
+  + 安全防御  
+      - WAF (Web应用防火墙，拦截SQL注入/XSS/敏感数据泄露等)    
+      - 拦截CC攻击  
+      - 支持CAPTCHA (验证码)  
+
+
+* 可扩展   
+
+  + GSLB (全局负载均衡，自带DNS服务器) ， v1.4.2版本开始提供   
+  + 静态文件缓存加速   
+  + Cookie合规管理(提供Cookie Banner与用户同意管理) ， v1.4.2版本开始提供  
+
+
+
+## 截图   
+
+### SQL注入截图  
+
+![Janusec Application Gateway Screenshot](waf-demo1.png)  
+
+### 敏感信息泄露截图  
+
+![Janusec Application Gateway Screenshot](waf-demo2.png)  
+
+## 产品网站   
+
+https://janusec.github.io/cn/   
+
+
+## 需求   
+
+* SQLite3，或PostgreSQL 10/11/12/13/14+ (开发环境，及生产环境主节点需要)  
+* Debian 9/10/11+, CentOS/RHEL 7/8+, 首选Debian 10/11+    
+* systemd  
+* nftables  
+* Golang 1.19+ (仅开发环境需要)  
+
+## 部署快速指引    
+
+详细文档可在这里获取： [Janusec应用网关快速入门](https://janusec.github.io/cn/quick-start/)  
+
+## 开发快速指引   
+
+> git clone https://github.com/Janusec/janusec.git   
+
+
+编辑`config.json`  
+
+> "host": "127.0.0.1",  
+> "port": "5432",  
+> "user": "janusec",  
+> "password": "123456",  
+> "dbname": "janusec"  
+
+Janusec将自动加密数据库口令    
+然后:  
+
+> go build  
+> su (切换到root)  
+> ./janusec  
+
+## Web管理入口 
+
+当config.json中listen=false时 ，使用如下地址:  
+
+> http://`your_primary_node_ip_address`/janusec-admin/    (首次使用)  
+> https://`your_application_domain_name`/janusec-admin/   (配置证书后)  
+
+当config.json中listen=true时，使用如下地址:  
+
+> http://`your_primary_node_ip_address:9080`/janusec-admin/    (首次使用)  
+> https://`your_primary_node_domain_name:9443`/janusec-admin/  (配置证书和应用后)  
+
+只使用主节点时，任意应用域名均可用于访问管理入口。   
+如果使用了副本节点，应为主节点申请一个单独的域名。   
+
+[Janusec应用网关配置](https://janusec.github.io/cn/quick-start/)   
+
+## 发布 
+
+目前仅支持Linux  
+
+> go build  
+> su  
+> `./release.sh`    
+
+生成的发布包位于`./dist`目录。    
+
+## Web管理发布
+
+Web化管理所需的文件在 `./static/janusec-admin/` 目录, 源码在 [Janusec-Admin Github](https://github.com/Janusec/janusec-admin) ，前端源码使用Angular 9.  
+
+## 多许可证  
+
+JANUSEC应用网关开源版本的源文件使用GNU [AGPLv3](http://www.gnu.org/licenses/agpl-3.0.html)授权.     
+
+
+## 支持  
+
+* 产品网站 [https://janusec.github.io/cn/](https://janusec.github.io/cn/)   
+* Email: `support`**@**`janusec.com`  
+* QQ群: 776900157  
+
+
+---  
+
+## Provide Fast and Secure Application Delivery  
+
+![Janusec Application Gateway](gateway1.png)  
+
+Introduction Slides: https://www.janusec.com/download/Janusec-Application-Gateway.pdf   
+
+### Main functions  
+
+The main functions of JANUSEC Application Gateway include:  
+
+* Provide unified security access to web applications, including HTTPS, OAuth Authentication, security defense (WAF/CC), etc. If the web application is deployed through K8S Pods, the gateway can also be used as K8S Ingress Controller to provide Pods with the same access and security features as ordinary web applications.  
+
+* Provide four-tier TCP/UDP forwarding to non-Web applications, including K8S Pods  
+
+* Provide ACME automation certificate (free) for HTTPS access, and automatically renew the certificate when it expires   
+
+### Key Features   
+
+* Fast Delivery : Web-based Configuration    
+
+* Security    
+
+  + Secure Access: Enable HTTPS by One Click   
+
+  + Secure Authentication:  
+      - OAuth2: WxWork, DingTalk, Feishu, Lark    
+      - LDAP + Authenticator 2FA    
+      - CAS 2.0  
+
+  + Secure Defense   
+      - WAF (Web Application Firewall), Block SQL Injection, XSS, Sensitive Data leakage etc.    
+      - Block CC Attacks  
+      - CAPTCHA   
+
+* Scalable      
+
+  + GSLB (Global Server Load Balance, with DNS Server) , provided from v1.4.2       
+  + Static Content Cache and Acceleration    
+  + Cookie Compliance Management, include Cookie Banner, Consent Management and Cookie Discovery etc., provided from v1.4.
+
+
+## Screenshots     
+
+### SQL Injection Screenshot  
+
+![Janusec Application Gateway Screenshot](waf-demo1.png)  
+
+### Sensitive Data Leakage Screenshot   
+
+![Janusec Application Gateway Screenshot](waf-demo2.png)  
+
+## Product Web Site   
+
+English:   
+https://janusec.github.io/  
+
+
+## Requirements    
+
+* SQLite3 or PostgreSQL 10/11/12/13/14+ (Required by Development and Primary Node of Deployment)  
+* Debian 9/10/11+, CentOS/RHEL 7/8+, Debian 10/11+ is preferred       
+* systemd  
+* nftables  
+* Golang 1.19+ (Required by Development Only)  
+
+## Quick Start for Deployment     
+
+Detailed documentation is available at： [Janusec Application Gateway Quick Start](https://janusec.github.io/documentation/quick-start/).   
+
+## Quick Start for Developer   
+
+> git clone https://github.com/Janusec/janusec.git   
+
+
+Edit `config.json`     
+
+> "host": "127.0.0.1",  
+> "port": "5432",  
+> "user": "janusec",  
+> "password": "123456",  
+> "dbname": "janusec"  
+
+Janusec will encrypt the password automatically, then:  
+
+> go build  
+> su (switch to root)  
+> ./janusec  
+
+## Web Administration   
+
+When listen=false in config.json:  
+
+> http://`your_primary_node_ip_address`/janusec-admin/    (first use)  
+> https://`your_application_domain_name`/janusec-admin/   (after certificate configured)  
+
+When listen=true in config.json :  
+
+> http://`your_primary_node_ip_address:9080`/janusec-admin/    (first use)  
+> https://`your_primary_node_domain_name:9443`/janusec-admin/  (after certificate configured)  
+
+When using primary node only, any application domain name can be used for admin.   
+But if you have one or more replica nodes, you should apply for a separate domain name for primary node.   
+
+[Janusec Application Gateway Configuration](https://janusec.github.io/documentation/quick-start/)   
+
+## Release   
+
+Only support Linux Now    
+
+> go build  
+> su  
+> `./release.sh`    
+
+The release package is under `./dist` .  
+
+## Web Administration Release  
+
+Release directory is `./static/janusec-admin/` , and source code is available at [Janusec-Admin Github](https://github.com/Janusec/janusec-admin) with Angular 9.  
+
+## Multiple LICENSES   
+
+The open source files are made available under the terms of the GNU Affero General Public License ([GNU AGPLv3](http://www.gnu.org/licenses/agpl-3.0.html)).   
+
+
+## Support   
+
+* Product: [https://janusec.github.io/](https://janusec.github.io/)    
+* Email: `support`**@**`janusec.com`  
+* QQ Group: 776900157 

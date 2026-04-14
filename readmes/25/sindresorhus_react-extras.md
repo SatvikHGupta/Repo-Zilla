@@ -1,0 +1,396 @@
+# react-extras
+
+> Useful components and utilities for working with [React](https://reactjs.org)
+
+## Install
+
+```sh
+npm install react-extras
+```
+
+## Usage
+
+```js
+import React from 'react';
+import {If} from 'react-extras';
+
+const App = props => (
+	<If condition={props.showUnicorn}>
+		<div className="unicorn">
+			🦄
+		</div>
+	</If>
+);
+```
+
+## API
+
+### autoBind(self, options?)
+
+Automatically binds your `React.Component` subclass methods to the instance. See the [`autoBind.react()` docs](https://github.com/sindresorhus/auto-bind#autobindreactself-options).
+
+### classNames(…input)
+
+Conditionally join CSS class names together.
+
+#### input
+
+Type: `string | object`
+
+Accepts a combination of strings and objects. Only object keys with truthy values are included. Anything else is ignored.
+
+```js
+import {classNames} from 'react-extras';
+
+classNames('unicorn', 'rainbow');
+//=> 'unicorn rainbow'
+
+classNames({awesome: true, foo: false}, 'unicorn', {rainbow: false});
+//=> 'awesome unicorn'
+
+classNames('unicorn', null, undefined, 0, 1, {foo: null});
+//=> 'unicorn'
+
+const buttonType = 'main';
+classNames({[`button-${buttonType}`]: true});
+//=> 'button-main'
+```
+
+```jsx
+import {classNames} from 'react-extras';
+
+const Button = props => {
+	console.log(props);
+	/*
+	{
+		type: 'success',
+		isBlock: false,
+		isSmall: true
+	}
+	*/
+
+	const buttonClass = classNames(
+		'button',
+		{
+			[`button-${props.type}`]: Boolean(props.type),
+			'button-block': props.isBlock,
+			'button-small': props.isSmall
+		}
+	);
+
+	console.log(buttonClass);
+	//=> 'button button-success button-small'
+
+	return <button className={buttonClass}>…</button>;
+};
+```
+
+### `<If>`
+
+React component that renders the children if the `condition` prop is `true`.
+
+Beware that even though the children are not rendered when the `condition` is `false`, they're still evaluated.
+
+If you need it to not be evaluated on `false`, you can pass a function to the `render` prop that returns the children:
+
+```jsx
+import {If} from 'react-extras';
+
+<div>
+	<If condition={props.error} render={() => (
+		<h1>{props.error}</h1>
+	)}/>
+</div>
+```
+
+Or you could just use plain JavaScript:
+
+```jsx
+<div>
+	{props.error && (
+		<h1>{props.error}</h1>
+	)}
+</div>
+```
+
+### `<Choose>`
+
+React component similar to a switch case. `<Choose>` has 2 children components:
+
+- `<Choose.When>` that renders the children if the `condition` prop is `true`.
+- `<Choose.Otherwise>` that renders the children if has no `<Choose.When>` with `true` prop `condition`.
+
+Note that even when the children are not rendered, they're still evaluated.
+
+```jsx
+import {Choose} from 'react-extras';
+
+<div>
+	<Choose>
+		<Choose.When condition={props.success}>
+			<h1>{props.success}</h1>
+		</Choose.When>
+		<Choose.When condition={props.error}>
+			<h1>{props.error}</h1>
+		</Choose.When>
+		<Choose.Otherwise>
+			<h1>😎</h1>
+		</Choose.Otherwise>
+	</Choose>
+</div>
+```
+
+Or you could just use plain JavaScript:
+
+```js
+<div>
+	{(() => {
+		if (props.success) {
+			return <h1>{props.success}</h1>;
+		}
+
+		if (props.error) {
+			return <h1>{props.error}</h1>;
+		}
+
+		return <h1>😎</h1>;
+	})()}
+</div>
+```
+
+### `<For/>`
+
+React component that iterates over the `of` prop and renders the `render` prop.
+
+```jsx
+import {For} from 'react-extras';
+
+<div>
+	<For of={['🌈', '🦄', '😎']} render={(item, index) =>
+		<button key={index}>{item}</button>
+	}/>
+</div>
+```
+
+Or you could just use plain JavaScript:
+
+```jsx
+<div>
+	{['🌈', '🦄', '😎'].map((item, index) =>
+		<button key={index}>{item}</button>
+	)}
+</div>
+```
+
+### `<Image/>`
+
+React component that improves the `<img>` element.
+
+It makes the image invisible if it fails to load instead of showing the default broken image icon. Optionally, specify a fallback image URL.
+
+```jsx
+import {Image} from 'react-extras';
+
+<Image
+	url="https://sindresorhus.com/unicorn.jpg"
+	fallbackUrl="https://sindresorhus.com/rainbow.jpg"
+/>
+```
+
+It supports all the props that `<img>` supports, but you use the prop `url` instead of `src`.
+
+### `<RootClass/>`
+
+Renderless React component that can add and remove classes to the root `<html>` element. It accepts an `add` prop for adding classes, and a `remove` prop for removing classes. Both accept either a single class or multiple classes separated by space.
+
+```jsx
+import {RootClass} from 'react-extras';
+
+<If condition={props.isDarkMode}>
+	<RootClass add="dark-mode"/>
+</If>
+```
+
+```jsx
+import {RootClass} from 'react-extras';
+
+<RootClass add="logged-in paid-user" remove="promo"/>
+```
+
+### `<BodyClass/>`
+
+Same as `<RootClass/>` but for `<body>`.
+
+Prefer `<RootClass/>` though, because it's nicer to put global classes on `<html>` as you can consistently prefix everything with the class:
+
+```css
+.dark-mode body {
+	background: #000;
+}
+
+.dark-mode a {
+	…
+}
+```
+
+With `<BodyClass/>` you need to do:
+
+```css
+body.dark-mode {
+	background: #000;
+}
+
+.dark-mode a {
+	…
+}
+```
+
+### intersperse(children, separator?)
+
+Inserts a separator between each element of the children.
+
+#### children
+
+Type: `ReactNode`
+
+The elements to intersperse with separators.
+
+#### separator
+
+Type: `ReactNode | ((index: number, count: number) => ReactNode)`\
+Default: `', '`
+
+The separator to insert between elements. Can be a React node or a function that returns a React node.
+
+```jsx
+import {intersperse} from 'react-extras';
+
+const items = ['Apple', 'Orange', 'Banana'];
+const list = intersperse(
+	items.map(item => <li key={item}>{item}</li>),
+	', '
+);
+// => [<li>Apple</li>, ', ', <li>Orange</li>, ', ', <li>Banana</li>]
+```
+
+With a function separator:
+
+```jsx
+import {intersperse} from 'react-extras';
+
+const items = ['Apple', 'Orange', 'Banana'];
+const list = intersperse(
+	items.map(item => <li key={item}>{item}</li>),
+	(index, count) => index === count - 2 ? ' and ' : ', '
+);
+// => [<li>Apple</li>, ', ', <li>Orange</li>, ' and ', <li>Banana</li>]
+```
+
+### `<Join/>`
+
+React component that renders the children with a separator between each element.
+
+```jsx
+import {Join} from 'react-extras';
+
+<Join>
+	<li>Apple</li>
+	<li>Orange</li>
+	<li>Banana</li>
+</Join>
+// => <li>Apple</li>, <li>Orange</li>, <li>Banana</li>
+```
+
+With a custom separator:
+
+```jsx
+import {Join} from 'react-extras';
+
+<Join separator=" | ">
+	<a href="#">Home</a>
+	<a href="#">About</a>
+	<a href="#">Contact</a>
+</Join>
+// => <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a>
+```
+
+With a function separator:
+
+```jsx
+import {Join} from 'react-extras';
+
+<Join separator={(index, count) => index === count - 2 ? ' and ' : ', '}>
+	<span>Apple</span>
+	<span>Orange</span>
+	<span>Banana</span>
+</Join>
+// => <span>Apple</span>, <span>Orange</span> and <span>Banana</span>
+```
+
+### useEventListener(target, eventName, handler, options?)
+
+Adds an event listener to an element and automatically removes it on cleanup.
+
+The handler always has access to the latest props/state without needing to specify dependencies.
+
+```jsx
+import {useEventListener} from 'react-extras';
+
+function Component() {
+	useEventListener(document.body, 'click', event => {
+		console.log('Body clicked!', event);
+	});
+
+	return <div>Click anywhere</div>;
+}
+```
+
+### useWindowEvent(eventName, handler, options?)
+
+Convenience hook for `useEventListener(window, …)` that is SSR-safe.
+
+```jsx
+import {useWindowEvent} from 'react-extras';
+
+function Component() {
+	useWindowEvent('resize', event => {
+		console.log('Window resized!', event);
+	});
+
+	return <div>Resize the window</div>;
+}
+```
+
+### useDocumentEvent(eventName, handler, options?)
+
+Convenience hook for `useEventListener(document, …)` that is SSR-safe.
+
+```jsx
+import {useDocumentEvent} from 'react-extras';
+
+function Component() {
+	useDocumentEvent('visibilitychange', () => {
+		console.log('Visibility changed:', document.visibilityState);
+	});
+
+	return <div>Switch tabs to see visibility changes</div>;
+}
+```
+
+### isStatelessComponent(Component)
+
+Returns a boolean of whether the given `Component` is a [functional stateless component](https://javascriptplayground.com/functional-stateless-components-react/).
+
+### getDisplayName(Component)
+
+Returns the [display name](https://reactjs.org/docs/react-component.html#displayname) of the given `Component`.
+
+### canUseDOM
+
+A boolean of whether you're running in a context with a [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction). Can be used to check if your component is running in the browser or if it's being server-rendered.
+
+## Related
+
+- [react-router-util](https://github.com/sindresorhus/react-router-util) - Useful components and utilities for working with React Router
+- [sass-extras](https://github.com/sindresorhus/sass-extras) - Useful utilities for working with Sass
+- [class-names](https://github.com/sindresorhus/class-names) - Conditionally join CSS class names together

@@ -1,0 +1,107 @@
+Android Beacon Library
+=======================
+
+[![Build Status](https://circleci.com/gh/AltBeacon/android-beacon-library.png?circle-token=4e11fb0dccaa8b98bc67fdbe38b179e4a7d07c27)](https://circleci.com/gh/AltBeacon/android-beacon-library)
+
+An Android library providing APIs to interact with beacons.  Please visit the
+[project website](http://altbeacon.github.io/android-beacon-library/) for how to use this library.
+
+**IMPORTANT:  By default, this library will only detect beacons meeting the AltBeacon specification.**
+
+If you want this library to work with proprietary or custom beacons, see the [BeaconParser](http://altbeacon.github.io/android-beacon-library/javadoc/org/altbeacon/beacon/BeaconParser.html) class.
+
+## What does this library do?
+
+It allows Android devices to use beacons much like iOS devices do.  An app can request to get notifications when one
+or more beacons appear or disappear.  An app can also request to get a ranging update from one or more beacons
+at a frequency of approximately 1Hz.
+
+## Documentation
+
+The [project website](http://altbeacon.github.io/android-beacon-library/) has [full documentation](http://altbeacon.github.io/android-beacon-library/documentation.html) 
+
+## Downloads
+
+### Binary
+
+You may [download binary releases here.](http://altbeacon.github.io/android-beacon-library/download.html)
+
+### Maven
+
+Add Maven Central to your build file's list of repositories.
+
+```groovy
+repositories {
+   mavenCentral()
+}
+```
+
+to use the Maven Central Repository
+
+```groovy
+dependencies {
+    ...
+    implementation 'org.altbeacon:android-beacon-library:${altbeacon.version}'
+    ...
+}
+```
+
+replacing `${altbeacon.version}` with the version you wish to use.
+
+## How to build this Library
+
+This project uses an AndroidStudio/gradle build system and is known working with Android Studio Flamingo | 2022.2.1 Patch 1 and Gradle 8.0
+
+Key Gradle build targets:
+
+    ./gradlew test # run unit tests. To see results: `open lib/build/reports/tests/testDebugUnitTest/index.html`
+    ./gradlew build # development build
+    ./gradlew release # release build
+
+## License
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+This software is available under the Apache License 2.0, allowing you to use the library in your applications.
+
+If you want to help with the open source project, contact david@radiusnetworks.com
+
+## Publishing to Maven
+
+The following instructions are for project administrators.
+
+1. Prerequisites: https://github.com/vanniktech/gradle-maven-publish-plugin
+
+2. Configure your  ~/.gradle/gradle.properties with:
+
+        mavenCentralUsername=<actually the token generated on central.sonatype.com>
+        mavenCentralPassword=<the password to go with the above token>
+        signing.keyId=<my GPG signing key id>
+        signing.password=<passphrase associated with the GPG signing key>
+        signing.secretKeyRingFile=<file path on the local machine to the signing key file XXXX.gpg>
+
+3. Run the build and upload
+
+        git tag <version>
+        git push --tags 
+        ./gradlew publishToMavenCentral
+
+4. Verify you see this line, the only real indication artifact upload happened:
+
+        Skipping deployment validation!
+        
+5. Go to this URL  https://central.sonatype.com/publishing/deployments, verify you see the new release, and hit the Publish button.  Keep refeshing until it is published, or check at  https://repo1.maven.org/maven2/org/altbeacon/android-beacon-library/ to see that the new release shows up.
+
+Note:  you must have Java 17 to build the project.  If that is not the version on the path, and you have Android Studio installed, you may be able to add it to the path with:
+
+`export PATH=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home/bin:$PATH`

@@ -1,0 +1,1092 @@
+:url-repo: https://github.com/MarcGiffing/bucket4j-spring-boot-starter
+:url: https://github.com/MarcGiffing/bucket4j-spring-boot-starter/tree/master
+:url-examples: {url}/examples
+:url-config-cache: {url}/cache/
+
+image:{url-repo}/actions/workflows/maven.yml/badge.svg[Build Status,link={url-repo}/actions/workflows/maven.yml]
+image:{url-repo}/actions/workflows/codeql.yml/badge.svg[Build Status,link={url-repo}/actions/workflows/codeql.yml]
+image:{url-repo}/actions/workflows/pmd.yml/badge.svg[Build Status,link={url-repo}/actions/workflows/pmd.yml]
+
+Project version overview:
+
+* > 0.20.0 - Bucket4j 8.16.x - Spring Boot 4.0.0 - Restructure Maven Modules. See <<configuration>>
+* > 0.14.0 - Bucket4j 8.15.x - Spring Boot 4.0.0 - Spring Gateway Support dropped
+* > 0.13.0 - Bucket4j 8.14.x - Spring Boot 3.5.x - Bucket4j Deps have _jdk17 in the artifactId
+* > 0.12.9 - Bucket4j 8.10.x - Spring Boot 3.4.x
+* > 0.12.8 - Bucket4j 8.10.x - Spring Boot 3.3.x
+* <= 0.12.7 - Bucket4j 8.9.0 - Spring Boot 3.2.x
+
+[[table_of_contents]]
+== Table of Contents
+
+* <<configuration>>
+* <<introduction>>
+** <<introduction_filter>>
+** <<introduction_method>>
+* <<project_configuration>>
+** <<bucket4j_complete_properties>>
+*** <<refill_speed>>
+*** <<rate_limit_strategy>>
+*** <<skip_execution_predicates>>
+*** <<cache_key_filter>>
+*** <<post-execute-condition>>
+
+* <<features>>
+** <<dynamic_config_updates>>
+** <<monitoring>>
+
+* <<appendix>>
+** <<migration_guide>>
+** <<overview_cache_autoconfiguration>>
+** <<examples>>
+** <<property_configuration_examples>>
+
+
+[[introduction]]
+== Spring Boot Starter for Bucket4j
+
+This project is a Spring Boot Starter for Bucket4j, allowing you to set access limits on your API effortlessly.
+Its key advantage lies in the configuration via properties or yaml files, eliminating the need for manual code authoring.
+
+Here are some example use cases:
+
+* Preventing DoS Attacks
+* Thwarting brute-force login attempts
+* Implementing request throttling for specific regions, unauthenticated users, and authenticated users
+* Applying rate limits for non-paying users or users with varying permissions
+
+The project offers several features, some utilizing Spring's Expression Language for dynamic condition interpretation:
+
+* Cache key for differentiate the by username, IP address, ...)
+* Execution based on specific conditions
+* Skipping based on specific conditions
+* <<dynamic_config_updates>>
+* Post-token consumption actions based on filter/method results
+
+You have two options for rate limit configuration: adding a filter for incoming web requests or applying fine-grained control at the method level.
+
+[[introduction_filter]]
+=== Use Filter for rate limiting
+
+Filters are customizable components designed to intercept incoming web requests, capable of rejecting requests to halt further processing.
+You can incorporate multiple filters for various URLs or opt to bypass rate limits entirely for authenticated users.
+When the limit is exceeded, the web request is aborted, and the client receives an HTTP Status 429 Too Many Requests error.
+
+This projects supports the following filters:
+
+* https://docs.oracle.com/javaee%2F6%2Fapi%2F%2F/javax/servlet/Filter.html[Servlet Filter] (Default)
+* https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/WebFilter.html[Webflux Webfilter] (reactive)
+* https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/global-filters.html[Spring Cloud Gateway Global Filter] (reactive)
+
+[source,properties]
+----
+bucket4j.filters[0].cache-name=buckets # the name of the cache
+bucket4j.filters[0].url=^(/hello).* # regular expression for the url
+bucket4j.filters[0].rate-limits[0].bandwidths[0].capacity=5 # refills 5 tokens every 10 seconds (interval)
+bucket4j.filters[0].rate-limits[0].bandwidths[0].time=10
+bucket4j.filters[0].rate-limits[0].bandwidths[0].unit=seconds
+bucket4j.filters[0].rate-limits[0].bandwidths[0].refill-speed=interval
+----
+
+[[introduction_method]]
+=== Use Annotations on methods for rate limiting
+
+Utilizing the '@RateLimiting' annotation, AOP intercepts your method.
+This grants you comprehensive access to method parameters, empowering you to define the rate limit key or conditionally skip rate limiting with ease.
+
+==== Method Configuration
+
+Bucket configuration is done in application.properties or application.yaml.
+
+.application.properties
+[source,properties]
+----
+bucket4j.methods[0].name=not_an_admin # the name of the configuration for annotation reference
+bucket4j.methods[0].cache-name=buckets # the name of the cache
+bucket4j.methods[0].rate-limits[0].bandwidths[0].capacity=5 # refills 5 tokens every 10 seconds (intervall)
+bucket4j.methods[0].rate-limits[0].bandwidths[0].time=10
+bucket4j.methods[0].rate-limits[0].bandwidths[0].unit=seconds
+bucket4j.methods[0].rate-limits[0].bandwidths[0].refill-speed=intervall
+bucket4j.default-method-metric-tags[0].key=IP
+bucket4j.default-method-metric-tags[0].expression="@testServiceImpl.getRemoteAddr()" # reference to a bean method to fill the metric key
+bucket4j.default-method-metric-tags[0].types[0]=REJECTED_COUNTER
+bucket4j.default-method-metric-tags[0].types[1]=CONSUMED_COUNTER
+bucket4j.default-method-metric-tags[0].types[2]=PARKED_COUNTER
+bucket4j.default-method-metric-tags[0].types[3]=INTERRUPTED_COUNTER
+bucket4j.default-method-metric-tags[0].types[4]=DELAYED_COUNTER
+----
+
+.application.yaml
+[source,yaml]
+----
+bucket4j:
+  methods:
+    - name: not_an_admin # the name of the configuration for annotation reference
+      cache-name: buckets # the name of the cache
+      rate-limit:
+        bandwidths:
+          - capacity: 5 # refills 5 tokens every 10 seconds (intervall)
+            time: 30
+            unit: seconds
+            refill-speed: interval
+  default-method-metric-tags:
+    - key: IP
+      expression: "@testServiceImpl.getRemoteAddr()" # reference to a bean method to fill the metric key
+      types:
+        - REJECTED_COUNTER
+        - CONSUMED_COUNTER
+        - PARKED_COUNTER
+        - INTERRUPTED_COUNTER
+        - DELAYED_COUNTER
+----
+
+The in this example configuration referenced testServiceImpl is not part of bucket4j-spring-boot-starter.
+If you would like to have the IP as metric tag you need to implement you own mechanism for that.
+
+Working example for method annotation and IPs in metrics: {url-examples}/general-tests/src/main/java/com/giffing/bucket4j/spring/boot/starter/example/jedis-redis[jedis-redis Example project]
+
+==== Method annotation
+
+[source,java]
+----
+@RateLimiting(
+            // reference to the property file
+            name = "not_an_admin",
+            // the rate limit is per user
+            cacheKey= "#username",
+            // only when the parameter is not admin
+            executeCondition = "#username != 'admin'",
+            // skip when parameter equals admin
+            skipCondition = "#username eq 'admin",
+            // the method name is added to the cache key to  prevent conflicts with other methods
+            ratePerMethod = true,
+            // if the limit is exceeded the fallback method is called. If not provided an exception is thrown
+            fallbackMethodName = "myFallbackMethod")
+    public String execute(String username) {
+        log.info("Method with Param {} executed", username);
+        return myParamName;
+    }
+
+    // the fallback method must have the same signature
+    public String myFallbackMethod(String username) {
+        log.info("Fallback-Method with Param {} executed", username);
+        return myParamName;
+    }
+----
+
+The '@RateLimiting' annotation on class level executes the rate limit on all public methods of the class.
+With '@IgnoreRateLimiting' you can ignore the rate limit at all on class level or for specific method on method level.
+
+[source,java]
+----
+@Component
+@Slf4j
+@RateLimiting(name = "default")
+public class TestService {
+
+    public void notAnnotatedMethod() {
+        log.info("Method notAnnotatedMethod");
+    }
+
+    @IgnoreRateLimiting
+    public void ignoreMethod() {
+        log.info("Method ignoreMethod");
+    }
+
+}
+----
+
+==== Method dependencies
+
+As the @RateLimiting mechanism uses AOP you need to ensure your spring-boot provides the necessary dependencies.
+
+Just add
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+----
+
+to your project.
+
+You can find some Configuration examples in the test project: {url-examples}/general-tests/src/main/java/com/giffing/bucket4j/spring/boot/starter/general/tests/method[Examples]
+
+[[project_configuration]]
+== Project Configuration
+
+[[bucket4j_complete_properties]]
+=== General Bucket4j properties
+
+[source,properties]
+----
+bucket4j.enabled=true # enable/disable bucket4j support
+bucket4j.cache-to-use= # If you use multiple caching implementation in your project and you want to choose a specific one you can set the cache here (jcache, hazelcast, ignite, redis)
+
+# Default Properties which can be overiden for the filters
+bucket4j.default-http-content-type=application/json
+bucket4j.default-http-status-code=TOO_MANY_REQUESTS # Enum value of org.springframework.http.HttpStatus
+bucket4j.default-http-response-body={ "message": "Too many requests!" }  # the json response which should be added to the body
+
+# Optional default metric tags for all filters
+bucket4j.default-metric-tags[0].key=IP
+bucket4j.default-metric-tags[0].expression=getRemoteAddr()
+bucket4j.default-metric-tags[0].types=REJECTED_COUNTER
+----
+
+==== Filter Bucket4j properties
+
+[source,properties]
+----
+bucket4j.filter-config-caching-enabled=true  #Enable/disable caching of filter configurations.
+bucket4j.filter-config-cache-name=filterConfigCache #The name of the cache where the configurations are stored. Defaults to 'filterConfigCache'.
+bucket4j.filters[0].id=filter1 # The id of the filter. This field is mandatory when configuration caching is enabled and should always be a unique string.
+bucket4j.filters[0].major-version=1 # [min = 1, max = 92 million] Major version number of the configuration.
+bucket4j.filters[0].minor-version=1 # [min = 1, max = 99 billion] Minor version number of the configuration. (intended for internal updates, for example based on CPU-usage, but can also be used for regular updates)
+bucket4j.filters[0].cache-name=buckets # the name of the cache key
+bucket4j.filters[0].filter-method=servlet # [servlet,webflux,gateway]
+bucket4j.filters[0].filter-order= # Per default the lowest integer plus 10. Set it to a number higher then zero to execute it after e.g. Spring Security.
+bucket4j.filters[0].http-content-type=application/json
+bucket4j.filters[0].http-status-code=TOO_MANY_REQUESTS # Enum value of org.springframework.http.HttpStatus
+bucket4j.filters[0].http-response-body={ "message": "Too many requests" } # the json response which should be added to the body
+bucket4j.filters[0].http-response-headers.<MY_CUSTOM_HEADER>=MY_CUSTOM_HEADER_VALUE # You can add any numbers of custom headers
+bucket4j.filters[0].hide-http-response-headers=true # Hides response headers like x-rate-limit-remaining or x-rate-limit-retry-after-seconds on rate limiting
+bucket4j.filters[0].url=.* # a regular expression
+bucket4j.filters[0].strategy=first # [first, all] if multiple rate limits configured the 'first' strategy stops the processing after the first matching
+bucket4j.filters[0].rate-limits[0].cache-key=getRemoteAddr() # defines the cache key. It will be evaluated with the Spring Expression Language
+bucket4j.filters[0].rate-limits[0].num-tokens=1 # The number of tokens to consume
+bucket4j.filters[0].rate-limits[0].execute-condition=1==1 # an optional SpEl expression to decide to execute the rate limit or not
+bucket4j.filters[1].rate-limits[0].post-execute-condition= # an optional SpEl expression to decide if the token consumption should only estimated for the incoming request and the returning response used to check if the token must be consumed: getStatus() eq 401
+bucket4j.filters[0].rate-limits[0].execute-predicates[0]=PATH=/hello,/world # On the HTTP Path as a list
+bucket4j.filters[0].rate-limits[0].execute-predicates[1]=METHOD=GET,POST # On the HTTP Method
+bucket4j.filters[0].rate-limits[0].execute-predicates[2]=QUERY=HELLO # Checks for the existence of a Query Parameter
+bucket4j.filters[0].rate-limits[0].skip-condition=1==1 # an optional SpEl expression to skip the rate limit
+bucket4j.filters[0].rate-limits[0].tokens-inheritance-strategy=RESET # [RESET, AS_IS, ADDITIVE, PROPORTIONALLY], defaults to RESET and is only used for dynamically updating configurations
+bucket4j.filters[0].rate-limits[0].bandwidths[0].id=bandwidthId # Optional when using tokensInheritanceStrategy.RESET or if the rate-limit only contains 1 bandwidth. The id should be unique within the rate-limit.
+bucket4j.filters[0].rate-limits[0].bandwidths[0].capacity=10
+bucket4j.filters[0].rate-limits[0].bandwidths[0].refill-capacity= # default is capacity
+bucket4j.filters[0].rate-limits[0].bandwidths[0].time=1
+bucket4j.filters[0].rate-limits[0].bandwidths[0].unit=minutes
+bucket4j.filters[0].rate-limits[0].bandwidths[0].initial-capacity= # Optional initial tokens
+bucket4j.filters[0].rate-limits[0].bandwidths[0].refill-speed=greedy # [greedy,interval]
+bucket4j.filters[0].metrics.enabled=true
+bucket4j.filters[0].metrics.types=CONSUMED_COUNTER,REJECTED_COUNTER # (optional) if your not interested in the consumed counter you can specify only the rejected counter
+bucket4j.filters[0].metrics.tags[0].key=IP
+bucket4j.filters[0].metrics.tags[0].expression=getRemoteAddr()
+bucket4j.filters[0].metrics.tags[0].types=REJECTED_COUNTER # (optional) this tag should for example only be applied for the rejected counter
+bucket4j.filters[0].metrics.tags[1].key=URL
+bucket4j.filters[0].metrics.tags[1].expression=getRequestURI()
+bucket4j.filters[0].metrics.tags[2].key=USERNAME
+bucket4j.filters[0].metrics.tags[2].expression=@securityService.username() != null ? @securityService.username() : 'anonym'
+----
+
+[[refill_speed]]
+==== Refill Speed
+
+The refill speed defines the period of the regeneration of consumed tokens.
+This starter supports two types of token regeneration.
+The refill speed can be set with the following property:
+
+[source,properties]
+----
+bucket4j.filters[0].rate-limits[0].bandwidths[0].refill-speed=greedy # [greedy,interval]
+----
+
+* *greedy*: This is the default refill speed and tries to add tokens as soon as possible.
+* *interval*: You can alternatively chose *interval* for the token regeneration which refills the token in a fixed interval.
+
+You can read more about the refill speed in the https://bucket4j.com/8.1.1/toc.html#refill[official documentation].
+
+[[rate_limit_strategy]]
+==== Rate Limit Strategy
+
+If multiple rate limits are defined the strategy defines how many of them should be executed.
+
+[source,properties]
+----
+bucket4j.filters[0].strategy=first # [first, all]
+----
+
+===== first
+
+The *first* is the default strategy.
+This the default strategy which only executes one rate limit configuration.
+If a rate limit configuration is skipped due to the provided condition.
+It does not count as an executed rate limit.
+
+===== all
+
+The *all* strategy executes all rate limit independently.
+
+[[skip_execution_predicates]]
+==== Skip and Execution Predicates (experimental)
+
+Skip and Execution Predicates can be used to conditionally skip or execute the rate limiting.
+Each predicate has a unique name and a self-contained configuration.
+The following section describes the build in Execution Predicates and how to use them.
+
+===== Path Predicates
+
+The Path Predicate takes a list of path parameters where any of the paths must match.
+See https://github.com/spring-projects/spring-framework/blob/main/spring-web/src/main/java/org/springframework/web/util/pattern/PathPattern.java[PathPattern] for the available configuration options.
+Segments are not evaluated further.
+
+[source,properties]
+----
+bucket4j.filters[0].rate-limits[0].skip-predicates[0]=PATH=/hello,/world,/admin
+bucket4j.filters[0].rate-limits[0].execute-predicates[0]=PATH=/hello,/world,/admin
+----
+
+Matches the paths '/hello', '/world' or '/admin'.
+
+===== Method Predicate
+
+The Method Predicate takes a list of method parameters where any of the methods must match the used HTTP method.
+
+----
+bucket4j.filters[0].rate-limits[0].skip-predicates[0]=METHOD=GET,POST
+bucket4j.filters[0].rate-limits[0].execute-predicates[0]=METHOD=GET,POST
+----
+
+Matches if the HTTP method is 'GET' or 'POST'.
+
+===== Query Predicate
+
+The Query Predicate takes a single parameter to check for the existence of the query parameter.
+
+----
+bucket4j.filters[0].rate-limits[0].skip-predicates[0]=QUERY=PARAM_1
+bucket4j.filters[0].rate-limits[0].execute-predicates[0]=QUERY=PARAM_1
+----
+
+Matches if the query parameter 'PARAM_1' exists.
+
+===== Header Predicate
+
+The Header Predicate takes to parameters.
+
+. First - The name of the Header Parameter which must match exactly
+. Second - An optional regular expression where any existing header under the name must match
+
+----
+bucket4j.filters[0].rate-limits[0].execute-predicates[0]=Content-Type,.*PDF.*
+----
+
+Matches if the query parameter 'PARAM_1' exists.
+
+===== Custom Predicate
+
+You can also define you own Execution Predicate:
+
+[source,java]
+----
+@Component
+@Slf4j
+public class MyQueryExecutePredicate extends ExecutePredicate<HttpServletRequest> {
+
+	private String query;
+
+	public String name() {
+		// The name which can be used on the properties
+		return "MY_QUERY";
+	}
+
+	public boolean test(HttpServletRequest t) {
+	    // the logic to implement the predicate
+		boolean result = t.getParameterMap().containsKey(query);
+		log.debug("my-query-parameter;value:%s;result:%s".formatted(query, result));
+		return result;
+	}
+
+	public ExecutePredicate<HttpServletRequest> parseSimpleConfig(String simpleConfig) {
+		// the configuration which is configured behind the equal sign
+		// MY_QUERY=P_1 -> simpleConfig == "P_1"
+		//
+		this.query = simpleConfig;
+		return this;
+	}
+}
+----
+
+[[cache_key_filter]]
+=== Cache Key for Filter
+
+To differentiate incoming request (e.g. by IP address) you can provide an expression which is used as a key resolver for the underlying cache.
+
+Depending on the filter method [servlet, webflux, gateway] different SpEL root objects can be used in the expression so that you have a direct access to the method of these request objects:
+
+* servlet: jakarta.servlet.http.HttpServletRequest (e.g. getRemoteAddr() or getRequestURI())
+* webflux: org.springframework.http.server.reactive.ServerHttpRequest
+* gateway: org.springframework.http.server.reactive.ServerHttpRequest
+
+The configured URL which is used for filtering is added to the cache-key to provide a unique cache-key for multiple URL.
+You can read more about it https://github.com/MarcGiffing/bucket4j-spring-boot-starter/issues/19[here].
+
+*Limiting based on IP-Address*:
+
+[source]
+----
+getRemoteAddress()
+----
+
+*Limiting based on Username - If not logged in use IP-Address*:
+
+[source]
+----
+@securityService.username()?: getRemoteAddr()
+----
+
+[source,java]
+----
+/**
+* You can define custom beans like the SecurityService which can be used in the SpEl expressions.
+**/
+@Service
+public class SecurityService {
+
+	public String username() {
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		if(name.equals("anonymousUser")) {
+			return null;
+		}
+		return name;
+	}
+
+}
+----
+
+[[post-execute-condition]]
+=== Post Execution (Consume) Condition
+
+If you define a post execution condition the available tokens are not consumed on a rate limit configuration execution.
+It will only estimate the remaining available tokens.
+Only if there are no tokens left the rate limit is applied by.
+If the request was proceeded by the application we can check the return value check if the token should be consumed.
+
+Example: You want to limit the rate only for unauthorized users.
+You can't consume the available token for the incoming request because you don't know if the user will be authenticated afterward.
+With the post execute condition you can check the HTTP response status code and only consume the token if it has the status Code 401 UNAUTHORIZED.
+
+image::src/main/doc/plantuml/post_execution_condition.png[]
+
+[[features]]
+== Features
+
+[[dynamic_config_updates]]
+=== Dynamically updating rate limits (experimental)
+
+Sometimes it might be useful to modify filter configurations during runtime.
+In order to support this behaviour a cache-based configuration update system has been added.
+The following section describes what configurations are required to enable this feature.
+
+==== Properties
+
+===== base properties
+
+In order to dynamically update rate limits, it is required to enable caching for filter configurations.
+
+[source,properties]
+----
+bucket4j.filter-config-caching-enabled=true  #Enable/disable caching of filter configurations.
+bucket4j.filter-config-cache-name=filterConfigCache #The name of the cache where the configurations are stored. Defaults to 'filterConfigCache'.
+----
+
+===== Filter properties
+
+- When filter caching is enabled, it is mandatory to configure a unique id for every filter.
+- Configurations are implicitly replaced based on a combination of the major and minor version.
+If changes are made to the configuration without increasing either of the version numbers, it is most likely that the changes will not be applied.
+Instead the cached configuration will be used.
+
+[source,properties]
+----
+bucket4j.filters[0].id=filter1 #The id of the filter. This should always be a unique string.
+bucket4j.filters[0].major-version=1 #[min = 1, max = 92 million] Major version number.
+bucket4j.filters[0].minor-version=1 #[min = 1, max = 99 billion] Minor version number. (intended for internal updates, for example based on CPU-usage, but can also be used for regular updates)
+----
+
+===== RateLimit properties
+
+For each ratelimit a tokens inheritance strategy can be configured.
+This strategy will determine how to handle existing rate limits when replacing a configuration.
+If no strategy is configured it will default to 'RESET'.
+
+Further explanation of the strategies can be found at https://bucket4j.com/8.1.1/toc.html#tokensinheritancestrategy-explanation[Bucket4J TokensInheritanceStrategy explanation]
+
+[source,properties]
+----
+bucket4j.filters[0].rate-limits[0].tokens-inheritance-strategy=RESET #[RESET, AS_IS, ADDITIVE, PROPORTIONALLY]
+----
+
+===== Bandwidth properties
+
+This property is only mandatory when *BOTH* of the following statements apply to your configuration.
+
+- The rate-limit uses a different TokensInheritanceStrategy than 'RESET'
+- The rate-limit contains more than 1 bandwidth
+
+This is required so Bucket4J knows how to map the current bandwidth tokens to the updated bandwidths.
+It is possible to configure id's when 'RESET' strategy is applied, but the id's should still be unique within the rate-limit then.
+
+[source,properties]
+----
+bucket4j.filters[0].rate-limits[0].bandwidths[0].id=bandwidthId #The id of the bandwidth; Optional when the rate-limit only contains 1 bandwidth or when using tokensInheritanceStrategy.RESET.
+----
+
+==== Example project
+
+An example on how to dynamically update a filter can be found at:
+{url-examples}/caffeine[Caffeine example project].
+
+Some important considerations:
+
+- This is an experimental feature and might be subject to changes.
+- Configurations will be read from the cache during startup (when using a persistent cache).
+This means that putting corrupted configurations into the cache during runtime can cause the application to crash during startup.
+- Most configuration errors can be prevented by using the Jakarta validator to validate updated configurations.
+In the example this is done by adding @Valid to the request body method parameter, but it is also possible to @Autowire the Validator and use it directly to validate the configuration.
+- Some Filter properties are not intended to be modified during runtime.
+To simplify validating a configuration update the Bucket4JUtils.validateConfigurationUpdate method has been added.
+This method executes the following validations and will return a ResponseEntity:
+** old configuration != null  -> NOT_FOUND
+** new configuration has a higher version than the old configuration -> BAD_REQUEST
+** filterMethod not changed -> BAD_REQUEST
+** filterOrder not changed -> BAD_REQUEST
+** cacheName not changed -> BAD_REQUEST
+- The configCacheManager currently does *not* contain validation in the setValue method.
+The configuration should be validated before calling the this method.
+
+[[monitoring]]
+=== Monitoring - Spring Boot Actuator
+
+Spring Boot ships with a great support for collecting metrics.
+This project automatically provides metric information about the consumed and rejected buckets.
+You can extend these information with configurable https://micrometer.io/docs/concepts#_tag_naming[custom tags] like the username or the IP-Address which can then be evaluated in a monitoring system like prometheus/grafana.
+
+[source,yml]
+----
+bucket4j:
+  enabled: true
+  filters:
+  - cache-name: buckets
+    filter-method: servlet
+    filter-order: 1
+    url: .*
+    metrics:
+      tags:
+        - key: IP
+          expression: getRemoteAddr()
+          types: REJECTED_COUNTER # for data privacy reasons the IP should only be collected on bucket rejections
+        - key: USERNAME
+          expression: "@securityService.username() != null ? @securityService.username() : 'anonym'"
+        - key: URL
+          expression: getRequestURI()
+    rate-limits:
+      - execute-condition:  "@securityService.username() == 'admin'"
+        cache-key: "@securityService.username()?: getRemoteAddr()"
+        bandwidths:
+        - capacity: 30
+          time: 1
+          unit: minutes
+----
+
+[[appendix]]
+== Appendix
+
+[[migration_guide]]
+=== Migration Guide
+
+This section is meant to help you migrate your application to new version of this starter project.
+
+==== Spring Boot Starter Bucket4j 0.20
+
+* Introduces a restructured Maven module architecture that requires explicit definition of dependencies for different use cases.
+
+==== Spring Boot Starter Bucket4j 0.14
+
+* Upgrade to Spring Boot 4
+
+
+==== Spring Boot Starter Bucket4j 0.12
+
+* Removed deprecated 'bucket4j.filters[x].rate-limits[x].expression' property.
+Use 'bucket4j.filters[x].rate-limits[x].cache-key' instead.
+* three new metric counter are added per default (PARKED, INTERRUPTED and DELAYED)
+
+==== Spring Boot Starter Bucket4j 0.9
+
+* Upgrade to Spring Boot 3
+* Spring Boot 3 requires Java 17 so use at least Java 17
+* Replaced Java 8 compatible Bucket4j dependencies
+* Exclude example webflux-infinispan due to startup problems
+
+==== Spring Boot Starter Bucket4j 0.8
+
+===== Compatibility to Java 8
+
+The version 0.8 tries to be compatible with Java 8 as long as Bucket4j is supporting Java 8. With the release of Bucket4j 8.0.0 Bucket4j decided to migrate to Java 11 but provides dedicated artifacts for Java 8.
+The project is switching to the dedicated artifacts which supports Java 8. You can read more about it https://github.com/bucket4j/bucket4j#java-compatibility-matrix[here].
+
+===== Rename property expression to cache-key
+
+The property *..rate-limits[0].expression* is renamed to *..rate-limits[0].cache-key*.
+An Exception is thrown on startup if the *expression* property is configured.
+
+To ensure that the property is not filled falsely the property is marked with *@Null*.
+This change requires a Bean Validation implementation.
+
+===== JSR 380 - Bean Validation implementation required
+
+To ensure that the Bucket4j property configuration is correct an Validation API implementation is required.
+You can add the Spring Boot Starter Validation which will automatically configures one.
+
+[source,xml]
+----
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+----
+
+===== Explicit Configuration of the Refill Speed - API Break
+
+The refill speed of the Buckets can now configured explicitly with the Enum RefillSpeed.
+You can choose between a greedy or interval refill see the https://bucket4j.com/8.1.1/toc.html#refill[official documentation].
+
+Before 0.8 the refill speed was configured implicitly by setting the fixed-refill-interval property explicit.
+
+[source,properties]
+----
+bucket4j.filters[0].rate-limits[0].bandwidths[0].fixed-refill-interval=0
+bucket4j.filters[0].rate-limits[0].bandwidths[0].fixed-refill-interval-unit=minutes
+----
+
+These properties are removed and replaced by the following configuration:
+
+[source,properties]
+----
+bucket4j.filters[0].rate-limits[0].bandwidths[0].refill-speed=interval
+----
+
+You can read more about the refill speed configuration here <<refill_speed>>
+
+[[overview_cache_autoconfiguration]]
+=== Overview Cache Autoconfiguration
+
+The following list contains the Caching implementation which will be autoconfigured by this starter.
+
+[cols="1,1,1"]
+|===
+|*Reactive*
+|*Name*
+|*cache-to-use*
+
+|N
+|{url-config-cache}/cache-jcache[JSR 107 -JCache]
+|jcache
+
+|Yes
+|{url-config-cache}/cache-ignite[Ignite]
+|jcache-ignite
+
+|N
+|{url-config-cache}/cache-postgresql[PostgreSQL]
+|jcache
+
+
+|no
+|{url-config-cache}/cache-hazelcast[Hazelcast]
+|hazelcast-spring
+
+|yes
+|{url-config-cache}/cache-hazelcast[Hazelcast]
+|hazelcast-reactive
+
+|Yes
+|{url-config-cache}/cache-infinispan[Infinispan]
+|infinispan
+
+|No
+|{url-config-cache}/cache-redis-jedis[Redis-Jedis]
+|redis-jedis
+
+|Yes
+|{url-config-cache}/cache-lettuce[Redis-Lettuce]
+|redis-lettuce
+
+|Yes
+|{url-config-cache}/cache-redis-resdisson[Redis-Redisson]
+|redis-redisson
+
+|===
+
+Instead of determine the Caching Provider by the Bucket4j Spring Boot Starter project you can implement the SynchCacheResolver or the AsynchCacheResolver by yourself.
+
+You can enable the cache auto configuration explicitly by using the *cache-to-use* property name or setting it to an invalid value to disable all auto configurations.
+
+[source,properties]
+----
+bucket4j.cache-to-use=jcache #
+----
+
+[[examples]]
+=== Examples
+
+* {url-examples}/ehcache[Ehcache]
+* {url-examples}/hazelcast[Hazelcast]
+* {url-examples}/caffeine[Caffeine]
+* {url-examples}/redis-jedis[Redis Jedis]
+* {url-examples}/redis-lettuce[Redis Lettuce]
+* {url-examples}/redis-redisson[Redis Redisson]
+* {url-examples}/webflux[Webflux (Async)]
+* {url-examples}/gateway[Spring Cloud Gateway (Async)]
+* {url-examples}/webflux-infinispan[Infinispan]
+
+[[property_configuration_examples]]
+=== Property Configuration Examples
+
+Simple configuration to allow a maximum of 5 requests within 10 seconds independently from the user.
+
+[source,yml]
+----
+bucket4j:
+  enabled: true
+  filters:
+  - cache-name: buckets
+    url: .*
+    rate-limits:
+      - bandwidths:
+        - capacity: 5
+          time: 10
+          unit: seconds
+----
+
+Conditional filtering depending of anonymous or logged in user.
+Because the *bucket4j.filters[0].strategy* is *first*
+you don't have to check in the second rate-limit that the user is logged in.
+Only the first one is executed.
+
+[source,yml]
+----
+bucket4j:
+  enabled: true
+  filters:
+  - cache-name: buckets
+    filter-method: servlet
+    url: .*
+    rate-limits:
+      - execute-condition:  @securityService.notSignedIn() # only for not logged in users
+        cache-key: "getRemoteAddr()"
+        bandwidths:
+        - capacity: 10
+          time: 1
+          unit: minutes
+      - execute-condition: "@securityService.username() != 'admin'" # strategy is only evaluate first. so the user must be logged in and user is not admin
+        cache-key: @securityService.username()
+        bandwidths:
+        - capacity: 1000
+          time: 1
+          unit: minutes
+      - execute-condition:  "@securityService.username() == 'admin'"  # user is admin
+        cache-key: @securityService.username()
+        bandwidths:
+        - capacity: 1000000000
+          time: 1
+          unit: minutes
+----
+
+Configuration of multiple independently filters (servlet|gateway|webflux filters) with specific rate limit configurations.
+
+[source,yml]
+----
+bucket4j:
+  enabled: true
+  filters: # each config entry creates one servlet filter or other filter
+  - cache-name: buckets # create new servlet filter with bucket4j configuration
+    url: /admin*
+    rate-limits:
+      bandwidths: # maximum of 5 requests within 10 seconds
+      - capacity: 5
+        time: 10
+        unit: seconds
+  - cache-name: buckets
+    url: /public*
+    rate-limits:
+      - cache-key: getRemoteAddress() # IP based filter
+        bandwidths: # maximum of 5 requests within 10 seconds
+        - capacity: 5
+          time: 10
+          unit: seconds
+  - cache-name: buckets
+    url: /users*
+    rate-limits:
+      - skip-condition: "@securityService.username() == 'admin'" # we don't check the rate limit if user is the admin user
+        cache-key: "@securityService.username()?: getRemoteAddr()" # use the username as key. if authenticated use the ip address
+        bandwidths:
+        - capacity: 100
+          time: 1
+          unit: seconds
+        - capacity: 10000
+          time: 1
+          unit: minutes
+----
+
+[[configuration]]
+== Configuration
+
+https://mvnrepository.com/artifact/com.giffing.bucket4j.spring.boot.starter/bucket4j-spring-boot-starter[Maven Central]
+
+=== Overview
+
+Using Bucket4j Spring Boot Starter requires **two dependencies**:
+
+1. **Feature Module** - Defines how rate limiting is applied (e.g., servlet filter, webflux, method annotations)
+2. **Cache Module** - Defines where the token bucket state is persisted (e.g., Redis, Hazelcast, JCache)
+
+Both dependencies must be explicitly defined in your `pom.xml`. The cache module is no longer automatically included.
+
+==== Processing Models
+
+The starter supports different processing models depending on the feature module:
+
+* *Synchronous* - Blocking operations using traditional servlet filters or method-level AOP interception
+  - `starter-servlet` - Servlet Filter (blocking)
+  - `starter-aop` - Method Annotations via AOP (blocking)
+
+* *Asynchronous/Reactive* - Non-blocking operations for reactive applications
+  - `starter-webflux` - Webflux WebFilter (non-blocking)
+
+===== Feature Modules
+
+==== Servlet Filter (Synchronous/Blocking)
+
+Use this for traditional Spring Boot applications with servlet-based request handling.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>starter-servlet</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Webflux Filter (Asynchronous/Reactive)
+
+Use this for reactive Spring Boot applications with Spring WebFlux.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>starter-webflux</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Method-level Annotations via AOP (Synchronous/Blocking)
+
+Use this for fine-grained rate limiting on individual methods using the `@RateLimiting` annotation.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>starter-aop</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+===== Cache Implementation Modules
+
+In addition to the feature module above, you must explicitly choose and add a cache implementation.
+The cache module is responsible for storing the token bucket state and is independent of the feature module.
+
+==== JCache (JSR 107) - Synchronous
+
+Supports both synchronous processing models.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-jcache</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Hazelcast - Synchronous and Asynchronous
+
+Supports both synchronous and asynchronous processing models with distributed caching.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-hazelcast</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Redis (Jedis) - Synchronous Only
+
+Use for synchronous applications requiring Redis-based caching.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-redis-jedis</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Redis (Lettuce) - Asynchronous
+
+Supports reactive applications requiring Redis-based caching. Recommended for reactive applications.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-redis-lettuce</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Redis (Redisson) - Asynchronous
+
+Supports reactive applications with advanced Redis features.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-redis-redisson</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Infinispan - Asynchronous
+
+Supports asynchronous processing models with Infinispan distributed caching.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-infinispan</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+==== Ignite - Asynchronous
+
+Supports asynchronous processing models with Apache Ignite distributed caching.
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-ignite</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+===== Example Configurations
+
+====== Example 1: Synchronous Servlet Filter with Redis
+
+Rate limiting on incoming servlet requests using synchronous processing with Redis caching:
+
+[source,xml]
+----
+<!-- Feature Module: Servlet Filter (Synchronous) -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>servlet</artifactId>
+    <version>${version}</version>
+</dependency>
+
+<!-- Cache Module: Redis with Jedis -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-redis-jedis</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+====== Example 2: Asynchronous Webflux Filter with Redis
+
+Rate limiting on incoming reactive requests using asynchronous processing with Redis caching:
+
+[source,xml]
+----
+<!-- Feature Module: Webflux Filter (Asynchronous/Reactive) -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>webflux</artifactId>
+    <version>${version}</version>
+</dependency>
+
+<!-- Cache Module: Redis with Lettuce (supports reactive) -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-redis-lettuce</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+====== Example 3: Synchronous Method Annotations with Hazelcast
+
+Rate limiting on individual methods using synchronous AOP interception with Hazelcast caching:
+
+[source,xml]
+----
+<!-- Feature Module: AOP for Method Annotations (Synchronous) -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>aop</artifactId>
+    <version>${version}</version>
+</dependency>
+
+<!-- Cache Module: Hazelcast -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-hazelcast</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+====== Example 4: Combined Synchronous Features
+
+Using both servlet filter and method annotations (both synchronous) with JCache:
+
+[source,xml]
+----
+<!-- Feature Module: Servlet Filter (Synchronous) -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>servlet</artifactId>
+    <version>${version}</version>
+</dependency>
+
+<!-- Feature Module: AOP for Method Annotations (Synchronous) -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+    <artifactId>aop</artifactId>
+    <version>${version}</version>
+</dependency>
+
+<!-- Cache Module: JCache -->
+<dependency>
+    <groupId>com.giffing.bucket4j.spring.boot.starter.cache</groupId>
+    <artifactId>cache-jcache</artifactId>
+    <version>${version}</version>
+</dependency>
+----
+
+
+* Back to <<table_of_contents>>

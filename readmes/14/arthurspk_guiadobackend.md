@@ -1,0 +1,582 @@
+<p align="center">
+  <a href="https://github.com/arthurspk/guiadobackend">
+    <img src="./images/guia.png" alt="Guia do Desenvolvedor Back-end" width="160" height="160">
+  </a>
+  <h1 align="center">Guia do Desenvolvedor Back-end</h1>
+</p>
+
+## :dart: O guia para alavancar a sua carreira
+
+Abaixo você encontrará conteúdos para te guiar e ajudar a se torna um desenvolvedor back-end, caso você já atue como back-end confere o repositórios para descobrir novas ferramentas para o seu dia-a-dia, os caminhos que você pode tomar e as tecnologias para incorporar na sua stack para se tornar um profissional atualizado e diferenciado no back-end, faça bom uso do guia e bons estudos!
+
+<sub> <strong>Segue nas redes sociais para acompanhar mais conteúdo: </strong> <br>
+[<img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">](https://github.com/arthurspk)
+[<img src = "https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white">](https://www.facebook.com/seixasqlc/)
+[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/arthurspk/)
+[<img src = "https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white">](https://twitter.com/manotoquinho)
+[![Discord Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/NbMQUPjHz7)
+[<img src = "https://img.shields.io/badge/instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white">](https://www.instagram.com/guiadevbrasil/)
+[![Youtube Badge](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/channel/UCzmXzz_VR0Li8-YOvWN_t3g)
+</sub>
+
+## 💌 Doações
+
+> Olá! Se você está lendo isso, é porque provavelmente já conhece o meu repositório no GitHub, que oferece conteúdo gratuito para ajudar desenvolvedores a aprimorarem suas habilidades. E se você está aqui, talvez esteja considerando contribuir com uma doação para apoiar a continuação do projeto.
+
+- [Clique aqui para realizar realizar uma doação! 💓](https://beacons.ai/doacoesguiadev)
+
+> Se você quiser contribuir, existem várias opções disponíveis, incluindo PayPal, PagSeguro, Mercado Pago, Buy Me A Coffe, Pic Pay e Pix. Qualquer doação, por menor que seja, é extremamente bem-vinda e será usada com responsabilidade e transparência. Obrigado por considerar apoiar meu projeto! Juntos, podemos continuar a compartilhar conhecimento e ajudar a criar uma comunidade de desenvolvedores mais forte e colaborativa.
+
+## :closed_book: E-Book
+
+> Este repositório é um projeto gratuito para a comunidade de desenvolvedores. Você pode me ajudar comprando o e-book "e-Front" se estiver interessado em aprender ou melhorar suas habilidades de desenvolvimento front-end. O e-book é completo e cobre tecnologias essenciais como HTML, CSS, JavaScript, React, TypeScript e mais. O valor é simbólico e sua compra me ajuda a produzir e fornecer mais conteúdo gratuito para a comunidade. Adquira agora e comece sua jornada no desenvolvimento front-end.
+
+- eFront - Estudando Desenvolvimento Front-end do Zero. [Clique aqui para comprar](https://hotm.art/cSMObU)
+
+## ⚠️ Aviso importante
+
+> Antes de tudo você pode me ajudar e colaborar, deu bastante trabalho fazer esse repositório e organizar para fazer seu estudo ou trabalho melhor, portanto você pode me ajudar das seguinte maneiras
+
+- Me siga no [Github](https://github.com/arthurspk)
+- Acesse as redes sociais do [Guia Dev Brasil](https://linktr.ee/guiadevbrasil)
+- Mande feedbacks no [LinkedIn](https://www.linkedin.com/in/arthurspk/)
+
+## 📛 Direitos autorais
+
+> Esse projeto tomou como rerefência para ser feito os roadmaps feito pelo projeto [roadmap.sh](https://roadmap.sh/roadmaps) você pode conferir todo o projeto original feito pelos autores principais pelos links abaixo, desde já agradecendo a todos eles por fornecer esse conteúdo que serviu de extrema importância e de base para a criação deste repositório.
+
+- [Roadmap.sh](https://roadmap.sh/roadmaps) - Site do roadmap.sh aonde você encontrará diversos roadmaps em inglês.
+- [Repositório Oficial do Projeto](https://github.com/kamranahmedse/developer-roadmap/blob/master/license) - Repositório oficial do projeto em inglês.
+
+## 💡 Nossa proposta
+
+> A proposta deste guia é fornecer conteúdos para estudo e ferramentas para guiá-lo se você estiver confuso sobre qual o próximo aprendizado, não influenciar você a seguir os 'hypes' e 'trendys' do momento. Acreditamos que com um <b>maior conhecimento das diferentes estruturas e soluções disponíveis poderá escolher a ferramenta que melhor se aplica às suas demandas.</b> E lembre-se, 'hypes' e 'trendys' nem sempre são as melhores opções.
+
+## :beginner: Para quem está começando agora
+
+> Não se assuste com a quantidade de conteúdo apresentados neste guia. Acredito que quem está começando pode usá-lo não como um objetivo, mas como um apoio para os estudos. <b>Neste momento, dê enfoque no que te dá produtividade e o restante marque como <i>Ver depois</i></b>. Ao passo que seu conhecimento se torna mais amplo, a tendência é este guia fazer mais sentido e fácil de ser assimilado. Bons estudos e entre em contato sempre que quiser! :punch:
+
+## 🚨 Colabore
+
+- Abra Pull Requests com atualizações
+- Discuta ideias em Issues
+- Compartilhe o repositório com a sua comunidade
+
+## 🌍 Tradução
+> Se você deseja acompanhar esse repositório em outro idioma que não seja o Português Brasileiro, você pode optar pelas escolhas de idiomas abaixo, você também pode colaborar com a tradução para outros idiomas e a correções de possíveis erros ortográficos, a comunidade agradece.
+
+<img src = "https://i.imgur.com/lpP9V2p.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>English — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/GprSvJe.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Spanish — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/4DX1q8l.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Chinese — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/6MnAOMg.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Hindi — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/8t4zBFd.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Arabic — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/iOdzTmD.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>French — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/PILSgAO.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Italian — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/0lZOSiy.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Korean — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/3S5pFlQ.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Russian — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/i6DQjZa.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>German — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+<img src = "https://i.imgur.com/wWRZMNK.png" alt="Guia Extenso de Programação" width="16" height="15">・<b>Japanese — </b> [Click Here](https://github.com/arthurspk/guiadevbrasil)<br>
+
+## 📚 ÍNDICE
+
+[🗺️ Back-end roadmap](#%EF%B8%8F-back-end-roadmap) <br>
+[🐧 Linux](#-linux) <br>
+[🐵 Git & Github](#-git--github) <br>
+[🐶 HTTP](#-http) <br>
+[🐼 APIs](#-apis) <br>
+[🐺 HTML](#-html) <br>
+[🐱 CSS](#-css) <br>
+[🦁 JavaScript](#-javascript) <br>
+[🐍 Python](#-python) <br>
+[🦊 Java](#-java) <br>
+[🦝 C](#-c) <br>
+[🐮 C++](#-c-1) <br>
+[🐷 C#](#-c-2) <br>
+[🐗 R](#-r) <br>
+[🐭 Kotlin](#-kotlin) <br>
+[🐹 Golang](#-go) <br>
+[🐯 PHP](#-php) <br>
+[🐰 TypeScript](#-typescript) <br>
+[🐻 Ruby](#-ruby) <br>
+[🐻‍❄️ Grunt](#-grunt) <br>
+[🐨 Gulp.js](#-gulp-js) <br>
+[🐸 Lua](#-lua) <br>
+[🦓 Django](#-django) <br>
+[🐴 Node.js](#-node-js) <br>
+[🦄 Ext.js](#-ext-js) <br>
+[🐔 MongoDB](#-mongodb) <br>
+[🐲 PostgreeSQL](#-postgreesql) <br>
+[🐒 SQL](#-sql) <br>
+[🦏 MySQL](#-mysql) <br>
+[🐤 ASP.net](#-asp-net) <br>
+[🐈 Raspberry Pi](#-raspberry-pi) <br>
+[🦈 AWS Cloud](#-aws-cloud) <br>
+[🐬 Inteligência Artificial](#-inteligência-artificial) <br>
+[🐩 Machine Learning](#-machine-learning) <br>
+[🐋 Data Science](#-data-science) <br>
+[🐟 NumPy](#-numpy) <br>
+[🐠 Pandas](#-pandas) <br>
+[🦐 SciPy](#-scipy) <br>
+[🦑 Matplotlib](#-matplotlib) <br>
+[🐙 Estatística](#-estatística) <br>
+[🦞 XML](#-xml) <br>
+[🕷️ XML AJAX](#-xml-ajax) <br>
+[🦉 XML DOM](#-xml-dom) <br>
+[🐞 XML DTD](#-xml-dtd) <br>
+[🦂 XML Schema](#-xml-schema) <br>
+[🦆 XSLT](#-xslt) <br>
+[🐓 XPath](#-xpath) <br>
+[🦃 XQuery](#-xquery) <br>
+[🐦 API Rest](#-api-rest) <br>
+[🦅 API Json](#-api-json) <br>
+[🐳 Docker](#-docker) <br>
+[🦚 Padrões de arquitetura](#-padrões-de-arquitetura) <br>
+[📚 Recomendação de livros](#-recomendação-de-livros) <br>
+[🛠️ Ferramentas & Desafios](#-ferramentas-e-desafios) <br>
+
+## 🗺️ Back-end roadmap
+
+![Back-end Roadmap](./images/backend.jpg)
+
+## ◾ Linux
+
+> Linux é um termo popularmente empregado para se referir a sistemas operativos ou sistemas operacionais que utilizam o Kernel Linux. O núcleo foi desenvolvido pelo programador finlandês Linus Torvalds.
+
+- [Melhores distros linux para programadores](https://github.com/arthurspk/guiadevbrasil#-melhores-distros-linux-para-programadores) - Segue a lista das melhores distros de Linux para programadores, diretamente do arquivo geral do Guia Dev Brasil.
+- [Guia Foca](https://guiafoca.org/) - O GuiaFoca é um guia que traz desde explicações básicas sobre computadores e o sistema GNU/Linux até a administração e segurança do sistema. Os assuntos do guia são explicados em linguagem clara e organizados de forma linear e didática, evitando termos técnicos nos níveis iniciais, até que o usuário se habitue com sua utilização de forma gradual.
+- [Informações sobre distros](https://distrowatch.com/) - Informações e atualizações sobre distros.
+- [Cursos de Linux](https://pastebin.com/L3sy0k1H) - Cursos de Linux para te guiar do básico ao avançado.
+
+## ◾ Git & Github
+
+> Git é um sistema de controle de versões distribuído, usado principalmente no desenvolvimento de software, mas pode ser usado para registrar o histórico de edições de qualquer tipo de arquivo.
+
+- [Git - W3Schools](https://www.w3schools.com/git/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Git4Noobs](https://github.com/DanielHe4rt/git4noobs) - A ideia é ensinar para os usuários iniciantes que o Git não é nenhum "monstro" de se aprender e também ensinar como usar num ambiente onde há mais de um desenvolvedor atuando no projeto sem desorganizar ou perder algum traço de código no processo.
+- [Conhecendo os super poderes do Git](https://github.com/theandersonn/comandos-git) - Guia com seleção de comandos para o Trabalho com Git e GitHub
+- [Aprenda Git](https://learngitbranching.js.org/?locale=pt_BR) - Aprenda a utilizar o Git e seus comandos através desse site.
+- [Git School](https://git-school.github.io/visualizing-git/) - Escola do Git, várias ferramentas para treinar e aprender Git.
+- [Git Flow Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/) - Este cheatsheet demonstra o uso básico e o efeito das operações do git-flow
+- [Cursos de Git & Github](https://github.com/arthurspk/guiadevbrasil#-cursos-de-git-e-github) - Cursos de Git & Github do repositório geral do Guia Dev Brasil
+
+## ◾ HTTP
+
+> O Hypertext Transfer Protocol, sigla HTTP é um protocolo de comunicação utilizado para sistemas de informação de hipermídia, distribuídos e colaborativos. Ele é a base para a comunicação de dados da World Wide Web.
+
+- [MDN - HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP) - O MDN Web Docs é o website oficial de Mozilla para desenvolvimento de padrões web
+
+## ◾ APIs
+
+> O conceito de API nada mais é do que uma forma de comunicação entre sistemas. Elas permitem a integração entre dois sistemas, em que um deles fornece informações e serviços que podem ser utilizados pelo outro, sem a necessidade de o sistema que consome a API conhecer detalhes de implementação do software, as APIs permitem que o usuário final utilize um aplicativo, software ou até uma simples planilha, consultando, alterando e armazenando dados de diversos sistemas, sem que o usuário precise acessá-los diretamente.
+
+- [MDN - APIs](https://developer.mozilla.org/pt-BR/docs/Web/API) - O MDN Web Docs é o website oficial de Mozilla para desenvolvimento de padrões web
+- [APIs Públicas](https://github.com/public-apis/public-apis) - Uma lista coletiva de APIs gratuitas para uso em software e desenvolvimento web
+
+## ◾ HTML
+
+> HTML (Linguagem de Marcação de HiperTexto) é o bloco de construção mais básico da web. Define o significado e a estrutura do conteúdo da web. Outras tecnologias além do HTML geralmente são usadas para descrever a aparência/apresentação (CSS) ou a funcionalidade/comportamento (JavaScript) de uma página da web, sendo assim HTML é uma linguagem essência para você que quer se tornar desenvolvedor front-end.
+
+- [MDN - HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML) - O MDN Web Docs é o website oficial de Mozilla para desenvolvimento de padrões web
+- [Cursos de HTML](https://github.com/arthurspk/guiadevbrasil#-cursos-de-html-e-css) - Cursos de HTML do repositório geral do Guia Dev Brasil
+
+## ◾ CSS
+
+> CSS (Cascading Style Sheets) é um mecanismo para adicionar estilo a um documento web. O código CSS pode ser aplicado diretamente nas tags ou ficar contido dentro das tags <style>. Também é possível, em vez de colocar a formatação dentro do documento, criar um link para um arquivo CSS que contém os estilos.
+
+- [MDN - CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS) - O MDN Web Docs é o website oficial de Mozilla para desenvolvimento de padrões web
+- [Cursos de CSS](https://github.com/arthurspk/guiadevbrasil#-cursos-de-html-e-css) - Cursos de CSS do repositório geral do Guia Dev Brasil
+
+## ◾ JavaScript
+
+> JavaScript é uma linguagem de programação interpretada estruturada, de script em alto nível com tipagem dinâmica fraca e multiparadigma. Juntamente com HTML e CSS, o JavaScript é uma das três principais tecnologias da World Wide Web.
+
+- [MDN - JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/CSS) - O MDN Web Docs é o website oficial de Mozilla para desenvolvimento de padrões web
+- [Cursos de JavaScript](https://github.com/arthurspk/guiadevbrasil#-cursos-de-javascript) - Cursos de JavaScript do repositório geral do Guia Dev Brasil
+
+## ◾ Python
+
+> Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Um dos usos do Python é automatizar tarefas, no entanto, a linguagem também permite coletar, organizar e salvar informações de páginas na internet; monitorar redes sociais; construir um site ou app; criar jogos; rodar algoritmos de machine learning; criar aplicações de inteligência artificial (IA), dentre outros
+
+- [Python - W3Schools](https://www.w3schools.com/python/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem Python](https://docs.python.org/pt-br/3/tutorial/) - Documentação oficial da linguagem Python em PT-BR
+- [Cursos de Python](https://github.com/arthurspk/guiadevbrasil#-cursos-de-python) - Cursos de Python diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Java
+
+> Java é uma linguagem de programação orientada a objetos. O Java permite executar jogos, fazer upload de fotos, bater papo on-line, fazer tours virtuais e usar serviços, como treinamento on-line, transações bancárias on-line e mapas interativos. Se você não tiver o Java, muitas aplicações e websites simplesmente não funcionarão, aprenda Java e programe em uma qualquer plataforma: Uma das grandes vantagens do Java é que ele além de ser uma linguagem é uma plataforma de desenvolvimento. Com ele é possível desenvolver aplicações para desktop, celular, cartão, web, televisão digital, etc.
+
+- [Java - W3Schools](https://www.w3schools.com/java/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem Java](https://docs.oracle.com/javase/8/docs/api/) - A documentação do Java encontra-se em inglês porém você pode usar uma extensão ou o google translater para traduzir
+- [Aprenda programação Java em detalhes - Scaler Topics](https://www.scaler.com/topics/java/) - Scaler Topics fornece artigos de programação relacionados a Python, Java, Estrutura de Dados, C/C++ e outras linguagens de programação populares com tutoriais fáceis de seguir e programas de exemplo.
+- [Cursos de Java](https://github.com/arthurspk/guiadevbrasil#-cursos-de-java) - Cursos de Java diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ C
+
+> C é uma linguagem de programação compilada de propósito geral, estruturada, imperativa, procedural, padronizada pela Organização Internacional para Padronização, a linguagem C pode ser facilmente encontrada em grandes jogos do mercado atual, editores de imagem e vídeo, robôs, sistemas de automação, e também muitos sistemas operacionais são programados totalmente ou parcialmente em C, como por exemplo o Windows, o Linux e o Mac OS.
+
+- [C - W3Schools](https://www.w3schools.com/c/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem C](https://docs.microsoft.com/pt-br/cpp/c-language/?view=msvc-170) - Documentação oficial da linguagem C em PT-BR
+- [Cursos de C](https://github.com/arthurspk/guiadevbrasil#-cursos-de-c-1) - Cursos de C diretamente do repositório geral do Guia Dev Brasil
+
+## ◾ C++
+
+> C++ é uma linguagem de programação compilada multi-paradigma e de uso geral, é usado para o desenvolvimento de sistemas embarcados, bibliotecas gráficas, jogos, sistemas operacionais, entre outros, permitindo desenvolver desde tarefas simples como aplicações na linha de comando ou web, até sistemas complexos de tempo real, muito usadas no mercado financeiro. No ensino acadêmico, ela tem grande aceitação porque abrange as linguagens de alto e baixo nível e é open source.
+
+- [C++ - W3Schools](https://www.w3schools.com/cpp/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem C++](https://docs.microsoft.com/pt-br/cpp/cpp/?view=msvc-170) - Documentação oficial da linguagem C++ em PT-BR
+- [Cursos de C++](https://github.com/arthurspk/guiadevbrasil#-cursos-de-c-2) - Cursos de C++ diretamente do repositório geral do Guia Dev Brasil
+- [Tutorial de C++ para iniciantes](https://www.scaler.com/topics/css) - Aprenda C++ para iniciantes. Este tutorial consiste em tópicos C++ passo a passo completos.  
+
+## ◾ C#
+
+> C# é uma linguagem de programação, multiparadigma, de tipagem forte, desenvolvida pela Microsoft como parte da plataforma .NET. A sua sintaxe orientada a objetos foi baseada no C++ mas inclui muitas influências de outras linguagens de programação, como Object Pascal e, principalmente, Java.
+
+- [Tour pela linguagem C#](https://docs.microsoft.com/pt-br/dotnet/csharp/tour-of-csharp/) - Um pouco mais sobre a linguagem C# e o que ela pode fazer.
+- [C# - W3Schools](https://www.w3schools.com/cs/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem C#](https://docs.microsoft.com/pt-br/dotnet/csharp/) - Documentação oficial da linguagem C# em PT-BR
+- [Cursos de C#](https://github.com/arthurspk/guiadevbrasil#-cursos-de-c) - Cursos de C# diretamente do repositório geral do Guia Dev Brasil
+
+## ◾ R
+
+> R é uma linguagem de programação multi-paradigma orientada a objetos, programação funcional, dinâmica, fracamente tipada, voltada à manipulação, análise e visualização de dados, dessa forma, a linguagem de programação R auxilia na coleta, tratamento e transformação desses dados. Além disso, ela é responsável por ajudar na implementação de algoritmos para realizar análise estatísticas, modelos de inferência, regressão e visualização de dados
+
+- [R - W3Schools](https://www.w3schools.com/r/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem R](https://www.r-project.org/other-docs.html) - Documentação oficial da linguagem R, não está disponivel em PT-BR mas pode ser traduzida para o idioma de sua escolha pelo google translate.
+- [Cursos de R](#) - Cursos de R diretamente do repositório geral do Guia Dev Brasil
+
+## ◾ Kotlin
+
+> Kotlin é uma linguagem de programação de código aberto estática, compatível com programação orientada a objetos e funcional. O Kotlin fornece sintaxe e conceitos semelhantes de outras linguagens, incluindo C#, Java e Scala, entre muitos outros, é uma linguagem de programação amplamente usada por desenvolvedores Android em qualquer lugar.
+
+- [Kotlin - W3Schools](https://www.w3schools.com/kotlin/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem Kotlin](https://kotlinlang.org/docs/home.html) - Documentação oficial da linguagem Kotlin, não está disponivel em PT-BR mas pode ser traduzida para o idioma de sua escolha pelo google translate.
+- [Cursos de Kotlin](https://github.com/arthurspk/guiadevbrasil#-cursos-de-kotlin) - Cursos de Kotlin diretamente do repositório geral do Guia Dev Brasil
+
+## ◾ Go
+
+> O Golang é uma linguagem explicitamente projetada, destinada a resolver problemas com linguagens e ferramentas existentes, enquanto aproveita nativamente as arquiteturas de hardware modernas. Ela foi projetada não só com equipes de desenvolvedores em mente, mas também com equipes de manutenção a longo prazo.
+
+- [GO - W3Schools](https://www.w3schools.com/go/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem GO](https://go.dev/doc/) - Documentação oficial da linguagem GO, não está disponivel em PT-BR mas pode ser traduzida para o idioma de sua escolha pelo google translate.
+- [Cursos de GO](https://github.com/arthurspk/guiadevbrasil#-cursos-de-go) - Cursos de GO diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ PHP
+
+> O PHP (um acrônimo recursivo para PHP: Hypertext Preprocessor ) é uma linguagem de script open source de uso geral, muito utilizada, e especialmente adequada para o desenvolvimento web e que pode ser embutida dentro do HTML.
+
+- [PHP - W3Schools](https://www.w3schools.com/php/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem PHP](https://www.php.net/manual/pt_BR/index.php) - Documentação oficial da linguagem PHP em PT-BR
+- [Cursos de PHP](https://github.com/arthurspk/guiadevbrasil#-cursos-de-php) - Cursos de PHP diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ TypeScript
+
+> Trata-se de uma ferramenta que permite escrever um código, fazendo programações orientadas a objetos sem perder suas vantagens. Ao compilar um código TypeScript, é gerado um código JavaScript, e esse código é o que será executado no browser
+
+- [TypeScript - W3Schools](https://www.w3schools.com/typescript/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação da linguagem TypeScript](https://www.typescriptlang.org/docs/) - Documentação oficial da linguagem TypeScript, não está disponivel em PT-BR mas pode ser traduzida para o idioma de sua escolha pelo google translate.
+- [Curso de TypeScript](#) - Cursos de TypeScript diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Ruby
+
+> Ruby é uma linguagem de programação relativamente nova. É interpretada multiparadigma, possui uma tipagem dinâmica e ainda tem um gerenciamento de memória automático. É também uma linguagem multiplataforma, sendo assim suportada por diversos tipo de sistemas operacionais, Windows, Linux, entre outros, muitas aplicações famosas utilizam o Ruby, como os sites Airbnb e SoundCloud, a rede social Twitch e o site de streaming de séries e filmes Hulu. O Ruby pode ser muito útil, pois serve para criar diversos programas para desktop.
+
+- [Ruby em 20 minutos](https://www.ruby-lang.org/pt/documentation/quickstart/) - Este é um pequeno tutorial de Ruby que não deverá demorar mais de 20 minutos para completar.
+- [Documentação da linguagem Ruby](https://www.ruby-lang.org/pt/documentation/) - Documentação oficial da linguagem Ruby em PT-BR
+- [Cursos de Ruby](https://github.com/arthurspk/guiadevbrasil#-cursos-de-ruby) - Cursos de Ruby diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Grunt
+
+> Grunt é um executor de tarefas JavaScript, uma ferramenta usada para executar automaticamente tarefas frequentes, como minificação, compilação, teste de unidade e fiapos. Ele usa uma interface da linha de comandos para executar tarefas personalizadas definidas em um arquivo.
+
+- [Documentação do Grunt](https://gruntjs.com/getting-started) - Documentação oficial do Grunt em inglês.
+- [Cursos de Grunt](#) - Cursos de Grunt diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Gulp js
+
+> Gulp. js é uma ferramenta de automação de tarefas em JavaScript. Tarefas como minificar, otimizar e compilar arquivos, tão repetitivas e necessárias ao desenvolvimento, podem ser automatizadas com o Gulp.
+
+- [Documentação do Gulp](https://gulpjs.com/docs/en/getting-started/quick-start) - Documentação oficial do Gulp em inglês.
+- [Cursos de Gulp.js](#) - Cursos de Gulp.js diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Lua
+
+> Lua é uma linguagem de programação interpretada, de script em alto nível, com tipagem dinâmica e multiparadigma, reflexiva e leve, projetada por Tecgraf da PUC-Rio em 1993 para expandir aplicações em geral, de forma extensível, para prototipagem e para ser embarcada em softwares complexos, como jogos.
+
+- [Documentação da linguagem Lua](https://www.lua.org/portugues.html#:~:text=O%20que%20%C3%A9%20Lua%3F,dados%20e%20descri%C3%A7%C3%A3o%20de%20dados.) - Documentação oficial da linguagem Lua em PT-BR.
+- [Cursos de Lua](#) - Cursos de Lua diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Django
+
+> Django é um framework para desenvolvimento rápido para web, escrito em Python, que utiliza o padrão model-template-view, usado em grandes empresas como o Instagram, Mozilla e o Pinterest, o Django Framework atrai atenção dos desenvolvedores de python porque permite a criação de aplicações web com processos muito otimizados.
+
+- [Django - W3Schools](https://www.w3schools.com/django/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do Django](https://docs.djangoproject.com/en/4.0/) - Documentação do Django em inglês.
+- [Cursos de Django](#) - Cursos de Django diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Node JS
+
+> O Node. js é um ambiente de execução na porta 80 padrão,baseado na pilha da web aberta (HTML, CSS e JS). Ou seja, é uma plataforma em que é possível criar aplicações Javascript sem depender de um browser para a execução. Sua execução em single-thread não exige resposta a cada requisição.
+
+- [Node.js - W3Schools](https://www.w3schools.com/nodejs/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do Node.js](https://nodejs.org/en/docs/) - Documentação do Node.js em inglês.
+- [Cursos de Node.js](#) - Cursos de Node.js diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Ext JS
+
+> ExtJS é um framework de aplicações Java Script puro que funciona em qualquer Browser, desde do IE6 para até a mais recente versão do Chrome. Ele permite que você criar as melhores aplicações multiplataformas usando nada além de um Browser, e tem uma API fenomenal.
+
+- [Documentação do Ext.js](https://docs.sencha.com/extjs/6.2.0/) - Documentação oficial do ExtJS em inglês.
+- [Cursos de Ext.js](#) - Cursos de Ext.js diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ MongoDB
+
+> MongoDB é um software de banco de dados orientado a documentos livre, de código aberto e multiplataforma, escrito na linguagem C++. Classificado como um programa de banco de dados NoSQL, o MongoDB usa documentos semelhantes a JSON com esquemas.
+
+- [Documentação do MongoDB](https://www.mongodb.com/docs/) - Documentação Oficial do MongoDB em inglês.
+- [Cursos de MongoDB](#) - Cursos de MongoDB diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ PostgreeSQL
+
+> PostgreSQL é um sistema gerenciador de banco de dados objeto-relacional baseado no POSTGRES, Versão 4.2, desenvolvido na Universidade da Califórnia no Departamento de Ciências da Computação em Berkeley, o qual foi pioneiro em muitos conceitos que vieram a estar disponíveis em alguns bancos de dados comerciais mais tarde.
+
+- [Documentação do PostgreeSQL](https://www.postgresql.org/docs/) - Documentação Oficial do PostgreeSQL em inglês
+- [Documentação do PostgreeSQL em PT-BR](https://ftp.unicamp.br/pub/apoio/postgresql/pgdocptbr800-1.2.pdf) - Documentação do PostgreeSQL em PT-BR
+- [Cursos de PostgreeSQL](#) - Cursos de PostgreeSQL diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ SQL
+
+> Structured Query Language, ou Linguagem de Consulta Estruturada ou SQL, é a linguagem de pesquisa declarativa padrão para banco de dados relacional. Muitas das características originais do SQL foram inspiradas na álgebra relacional.
+
+- [SQL - W3Schools](https://www.w3schools.com/sql/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do SQL](https://docs.microsoft.com/pt-br/sql/?view=sql-server-ver15) - Documentação Oficial do SQL em inglês
+- [Cursos de SQL](#) - Cursos de SQL diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ MySQL
+
+> O MySQL é um sistema de gerenciamento de banco de dados, que utiliza a linguagem SQL como interface. É atualmente um dos sistemas de gerenciamento de bancos de dados mais populares da Oracle Corporation, com mais de 10 milhões de instalações pelo mundo.
+
+- [MySQL - W3Schools](https://www.w3schools.com/mysql/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do MySQL](https://dev.mysql.com/doc/) - Documentação Oficial do MySQL em inglês
+- [Cursos de MySQL](#) - Cursos de MySQL diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Nestjs
+
+> O Nestjs é um framework que permite criar aplicações node eficientes e escalaveis. Utiliza Express por debaixo dos panos, porém também é compativel com Fastify. Sua arquitetura lembra muito a do Angular.
+
+- [Nest](https://docs.nestjs.com/) - Documentação oficial.
+- [Treina Web](https://www.treinaweb.com.br/blog/o-que-e-nestjs) - Hellow World com Nest.
+- [EZDevs](https://ezdevs.com.br/nestjs-introducao-e-aplicacao-de-crud/) - Tutorial basico de um CRUD com Nest e Mongo.
+- [Youtube](https://www.youtube.com/watch?v=PHIMN85trgk) - Video tutorial do basico ao avançado (Para iniciantes).
+
+## ◾ ASP net
+
+> ASP.NET é a plataforma da Microsoft para o desenvolvimento de aplicações Web e é o sucessor da tecnologia ASP. Permite, através de uma linguagem de programação integrada na .NET Framework, criar páginas dinâmicas. Não é nem uma linguagem de programação como VBScript, PHP, nem um servidor web como IIS ou Apache.
+
+- [ASP - W3Schools](https://www.w3schools.com/asp/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do ASP.net](https://docs.microsoft.com/pt-br/aspnet/core/?view=aspnetcore-6.0) - Documentação Oficial do PostgreeSQL em PT-BR.
+- [Cursos de ASP.net](#) - Cursos de ASP.net diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Raspberry Pi
+
+> Raspberry Pi é uma série de mini-computadores de placa única multiplataforma, de tamanho reduzido com componentes integrados, que se conecta a um monitor de computador ou televisão, e usa um teclado e um mouse padrão.
+
+- [Raspberry Pi - W3Schools](https://www.w3schools.com/nodejs/nodejs_raspberrypi.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do Raspberry Pi](https://www.raspberrypi.com/documentation/) - Documentação Oficial do PostgreeSQL em inglês
+- [Curso de Raspberry Pi](#) - Cursos de Raspberry Pi diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ AWS Cloud
+
+> Amazon Web Services, também conhecido como AWS, é uma plataforma de serviços de computação em nuvem, que formam uma plataforma de computação na nuvem oferecida pela Amazon.com. Os serviços são oferecidos em várias áreas geográficas distribuídas pelo mundo.
+
+- [AWS Cloud - W3Schools](https://www.w3schools.com/aws/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do AWS](https://docs.aws.amazon.com/) - Documentação oficial da linguagem Lua em inglês.
+- [AWS Cloud - Escola da Nuvem](https://www.escoladanuvem.org/cursos/fundamentos-aws/) - A Escola da Nuvem é uma organização da sociedade civil, sem fins lucrativos, que prepara estudantes para carreiras na nuvem e os conecta a empregadores em potencial.
+- [Cursos de AWS](#) - Cursos de AWS diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Inteligência artificial
+
+> Inteligência artificial é a inteligência similar à humana exibida por sistemas de software, além de também ser um campo de estudo acadêmico.
+
+- [IA - W3Schools](https://www.w3schools.com/ai/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Inteligência artificial - O que é IA?](https://mittechreview.com.br/topicos/inteligencia-artificial/) - Tópico sobre o que é inteligência artificial.
+- [Cursos de Inteligência Artificial](#) - Cursos de Inteligência Artificial diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Machine Learning
+
+> O aprendizado automático ou a aprendizagem automática ou também aprendizado de máquina ou aprendizagem de máquina é um subcampo da Engenharia e da ciência da computação que evoluiu do estudo de reconhecimento de padrões e da teoria do aprendizado computacional em inteligência artificial.
+
+- [Machine Learning - W3Schools](https://www.w3schools.com/python/python_ml_getting_started.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do Azure Machine Learning](https://docs.microsoft.com/pt-br/azure/machine-learning/) - Documentação oficial sobre Machine Learning em PT-BR.
+- [Cursos de Machine Learning](#) - Cursos de Machine Learning diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Data Science
+
+> Ciência de dados é uma área interdisciplinar voltada para o estudo e a análise de dados econômicos, financeiros e sociais, estruturados e não-estruturados, que visa a extração de conhecimento, detecção de padrões e/ou obtenção de insights para possíveis tomadas de decisão.
+
+- [Data Science - W3School](https://www.w3schools.com/datascience/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Ferramentas e organização em um projeto de Data Science](https://medium.com/dftblog/ferramentas-que-uso-e-como-organizo-um-projeto-de-data-science-5fd400ea26fe) - Ferramentas e organização para se colocar em prática em um projeto de Data Science.
+- [Cursos de Data Science](#) - Cursos de Data Science diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ NumPy
+
+> NumPy é uma biblioteca para a linguagem de programação Python, que suporta o processamento de grandes, multi-dimensionais arranjos e matrizes, juntamente com uma grande coleção de funções matemáticas de alto nível para operar sobre estas matrizes.
+
+- [NumPy - W3Schools](https://www.w3schools.com/python/numpy/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do NumPy](https://numpy.org/doc/stable/) - Documentação oficial do NumPy em inglês.
+- [Cursos de NumPy](#) - Cursos de NumPy diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Pandas
+
+> Em programação de computadores, pandas é uma biblioteca de software criada para a linguagem Python para manipulação e análise de dados. Em particular, oferece estruturas e operações para manipular tabelas numéricas e séries temporais. É software livre sob a licensa licença BSD.
+
+- [Pandas - W3Schools](https://www.w3schools.com/python/pandas/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do Pandas](https://pandas.pydata.org/docs/) - Documentação oficial do Pandas em inglês.
+- [Cursos de Pandas](#) - Cursos de Pandas diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ SciPy
+
+> SciPy é uma biblioteca Open Source em linguagem Python que foi feita para matemáticos, cientistas e engenheiros. Também tem o nome de uma popular conferência de programação científica com Python. A sua biblioteca central é NumPy que fornece uma manipulação conveniente e rápida de um array N-dimensional.
+
+- [SciPy - W3Schools](https://www.w3schools.com/python/scipy/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do SciPy](https://docs.scipy.org/doc/scipy/) - Documentação oficial do SciPy em inglês.
+- [Cursos de SciPy](#) - Cursos de SciPy diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Matplotlib
+
+> Matplotlib é uma biblioteca de software para criação de gráficos e visualizações de dados em geral, feita para e da linguagem de programação Python e sua extensão de matemática NumPy. Originalmente criada pelo biólogo e neurocientista americano John D
+
+- [Matplotlib - W3Schools](https://www.w3schools.com/python/matplotlib_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do Matplotlib](https://devdocs.io/matplotlib~3.1/) - Documentação oficial do Matplotlib em inglês.
+- [Cursos de Matplotlib](#) - Cursos de Matplotlib diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Estatística
+
+> Estatística é a ciência que utiliza as teorias probabilísticas para explicar a frequência da ocorrência de eventos, tanto em estudos observacionais quanto em experimentos para modelar a aleatoriedade e a incerteza de forma a estimar ou possibilitar a previsão de fenômenos futuros, conforme o caso.
+
+- [Estatística - W3Schools](https://www.w3schools.com/statistics/index.php) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Cursos de Estatística](#) - Cursos de Estatística diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XML
+
+> XML é uma recomendação da W3C para gerar linguagens de marcação para necessidades especiais. É um dos subtipos da SGML capaz de descrever diversos tipos de dados. Seu propósito principal é a facilidade de compartilhamento de informações por intermédio da internet.
+
+- [XML - W3Schools](https://www.w3schools.com/xml/default.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do XML](https://docs.microsoft.com/pt-br/dotnet/fsharp/language-reference/xml-documentation#:~:text=Coment%C3%A1rios%20em%20documenta%C3%A7%C3%A3o%20XML%20s%C3%A3o,XML%20em%20tempo%20de%20compila%C3%A7%C3%A3o.) - Documentação oficial do XML em PT-BR.
+- [Cursos de XML](#) - Cursos de XML diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XML AJAX
+
+> Ajax é o uso metodológico de tecnologias como Javascript e XML, providas por navegadores, para tornar páginas Web mais interativas com o usuário, utilizando-se de solicitações assíncronas de informações. Foi inicialmente desenvolvida pelo estudioso Jessé James Garret e mais tarde por diversas associações.
+
+- [XML Ajax - W3Schools](https://www.w3schools.com/xml/ajax_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Ajax - MDN](https://developer.mozilla.org/pt-BR/docs/Web/Guide/AJAX) - Documentação oficial do Ajax em PT-BR.
+- [Cursos de Ajax](#) - Cursos de XML Ajax diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XML DOM
+
+> A classe do DOM (Document Object Model) XML é uma representação na memória de um documento XML. O DOM permite que você leia, manipule e modifique programaticamente um documento XML. A classe XmlReader também lê XML. No entanto, ela fornece acesso não armazenado em cache, apenas de encaminhamento e somente leitura.
+
+- [XML DOM - W3Schools](https://www.w3schools.com/xml/dom_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Modelo de Objeto de Documento (DOM)](https://developer.mozilla.org/pt-BR/docs/Web/API/Document_Object_Model) - Documentação oficial do XML DOM em PT-BR.
+- [Cursos de DOM](#) - Cursos de XML DOM diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XML DTD
+
+> Uma definição de tipo de documento é um conjunto de declarações de marcação que definem um tipo de documento para uma linguagem de marcação da família da SGML. Uma Definição de Tipo de Documento define os blocos de construção lícitos de um documento XML.
+
+- [XML DTD - W3Schools](https://www.w3schools.com/xml/xml_dtd_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentos com DTDs](https://www.gta.ufrj.br/grad/00_1/miguel/link6.htm) - Documentos com DTDs em PT-BR pela UFRJ.
+- [Cursos de XML DTD](#) - Cursos de XML DTD diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XML Schema
+
+> XML Schema é uma linguagem baseada no formato XML para definição de regras de validação em documentos no formato XML. Foi a primeira linguagem de esquema para XML a obter o status de recomendação por parte do W3C. Esta linguagem é uma alternativa ao DTD, cuja sintaxe não é baseada no formato XML.
+
+- [XML Schema - W3Schools](https://www.w3schools.com/xml/schema_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [XML Schema para documentos XML](https://www.devmedia.com.br/um-estudo-sobre-o-xml-schema-para-documentos-xml/5264) - Estudo sobre o XML Schema para documentos XML.
+- [Cursos de XML](#) - Cursos de XML Schema diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XSLT
+
+> XSL Transformations, ou XSLT, é uma linguagem de marcação XML usada para criar documentos XSL que, por sua vez, definem a apresentação dos documentos XML nos browsers e outros aplicativos que os suportem. É importante observar que o documento XSL não altera o documento XML original, ou seja, não cria outro documento.
+
+- [XLST - W3Schools](https://www.w3schools.com/xml/xsl_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Introdução ao XSLT](https://medium.com/@alexjosesilva/aplica%C3%A7%C3%B5es-com-xslt-xls-ed384482817c) - Introdução ao XSLT em PT-BR
+- [Cursos de XSLT](#) - Cursos de XSLT diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XPath
+
+> XPath, a XML Path Language, é uma linguagem de consulta para selecionar nós de um documento XML. Ademais, XPath pode ser usada para computar valores do conteúdo de um documento XML. XPath foi definido pelo World Wide Web Consortium
+
+- [XPath - W3Schools](https://www.w3schools.com/xml/xpath_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do XPath](https://docs.microsoft.com/pt-br/dotnet/standard/data/xml/xpath-queries-and-namespaces) - Documentação oficial do XPath em PT-BR.
+- [Cursos de XPath](#) - Cursos de XPath diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ XQuery
+
+> XQuery é uma linguagem de consulta, com alguns recursos de programação, que é projetada para fazer consultas em coleções de dados em XML. Ela é semanticamente similar ao SQL. XQuery foi desenvolvido pelo grupo de trabalho XML Query do W3C. Foi desenvolvido em colaboração com o XSLT 2.0 pelo Grupo de Trabalho XSL.
+
+- [XQuery - W3Schools](https://www.w3schools.com/xml/xquery_intro.asp) - W3Schools é um site educacional voltado ao aprendizado de tecnologias web. Seu conteúdo inclui tutoriais e referências relacionadas a diversas linguagens.
+- [Documentação do XQuery](https://docs.microsoft.com/pt-br/sql/xquery/xquery-language-reference-sql-server?view=sql-server-ver15) - Documentação oficial do XQuery em PT-BR.
+- [Cursos de XQuery](#) - Cursos de XQuery diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ API Rest
+
+> Representational State Transfer, em português Transferência Representacional de Estado, é um estilo de arquitetura de software que define um conjunto de restrições a serem usadas para a criação de web services.
+
+- [O que é API rest?](https://www.redhat.com/pt-br/topics/api/what-is-a-rest-api) - O que é um API Rest e como funciona?
+- [Cursos de API Rest](#) - Cursos de API Rest diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ API Json
+
+> A API JSON é um formato que funciona com HTTP. Ele descreve como os clientes devem solicitar ou editar dados de um servidor e como o servidor deve responder a essas solicitações.
+
+- [Uma especicação para construir API'S em JSon](https://jsonapi.org/) - Especificação para a construir API's em JSON
+- [Cursos de API Json](#) - Cursos de API JSON diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Docker
+
+> Docker é um conjunto de produtos de plataforma como serviço que usam virtualização de nível de sistema operacional para entregar software em pacotes chamados contêineres. Os contêineres são isolados uns dos outros e agrupam seus próprios softwares, bibliotecas e arquivos de configuração.
+
+- [Docker 101 Tutorial](https://www.docker.com/101-tutorial/) - Neste tutorial prático e individualizado, você aprenderá a criar imagens, executar contêineres, usar volumes para persistir dados e montar no código-fonte e definir seu aplicativo usando o Docker Compose. Você aprenderá até mesmo sobre alguns tópicos avançados, como práticas recomendadas de criação de rede e imagem.
+- [Documentação do Docker](https://docs.docker.com/) - Documentação do Docker em inglês.
+- [Cursos de Docker](#) - Cursos de Docker diretamente do repositório geral do Guia Dev Brasil.
+
+## ◾ Padrões de arquitetura
+
+> Um padrão de arquitetura é uma solução geral e reutilizável para um problema que ocorre com frequência em arquitetura de software dentro de um determinado contexto. Padrões de arquitetura são similares aos padrões de projeto de software, mas possuem um escopo mais amplo
+
+- [Refactoring Guru](https://refactoring.guru/pt-br/design-patterns) - Padrões de projetos "Design patterns"
+- [Quais são os tipos de arquitetura de software e como escolher o melhor para seu projeto](https://posdigital.pucpr.br/blog/tipos-de-arquitetura-de-software) - Melhores tipos de arquitetura de software.
+
+## ◾ Recomendação de livros
+
+- [Clean Code - Código Limpo](https://g.co/kgs/62wx9t)
+- [Refactoring - Refatoração](https://g.co/kgs/Hf2eY3)
+- [Clean Archtecture - Arquitertura Limpa](https://g.co/kgs/Hf2eY3)
+- [O programador pragmático](https://g.co/kgs/5nbqB3)
+
+# ◾ Ferramentas e Desafios
+
+> Sites para treinar projetos back-end
+
+- [Dev Challenge Back-End](https://devchallenge.vercel.app/challenges?type=backend) - Treine suas habilidades com desafios Back-end
+- [HackerRank](https://www.hackerrank.com/) - Desafios de Programação Back-end. IDE integrada
+- [CoderByte](https://coderbyte.com/) - Desafios de Programação Back-end. IDE integrada
+- [CodeWars](https://www.codewars.com/) - Desafios de Programação Back-end. IDE integrada
+- [Coding Games](https://www.codingame.com/start) - Desafios Programação Back-end com foco em temática de jogos. IDE integrada
+- [Edabit](https://edabit.com/) - Desafios de Programação Back-end. IDE integrada
+- [ChallengeRocket](https://challengerocket.com/) - Desafios de Programação Back-end. IDE integrada
+- [CodeForces](https://codeforces.com/) - Desafios de Programação Back-end com a compilação e testes feito pela plataforma porém sem IDE integrada
+- [CodeSignal](https://app.codesignal.com/login) - Desafios de Programação Back-end. IDE integrada
+- [Codility](https://www.codility.com/) - Desafios de Programação Back-end. IDE integrada
+- [CSES](https://cses.fi/problemset/) - Desafios de Programação Back-end. IDE integrada
+- [DailyCodingProblem](https://www.dailycodingproblem.com/) - Desafios de Programação Back-end enviados por e-mail. Solução do problema Premium
+- [Exercism.io](https://exercism.org/) - Desafios de Programação Back-end. Sem IDE integrada. Requer download de CLI.
+- [LeetCode](https://leetcode.com/) - Desafios de Programação Back-end. IDE integrada
+- [BinarySearch](https://binarysearch.com/) - Desafios de Programação Back-end. IDE integrada
+- [CodeAbbey](https://www.codeabbey.com/) - Desafios de Programação Back-end. IDE integrada
+- [ProjectEuler](https://projecteuler.net/) - Desafios de Programação Back-end focado em problemas matemáticos. IDE integrada
+- [Sphere Onlune Judge (SPOJ)](https://www.spoj.com/) - Desafios de Programação Back-end com a compilação e testes feito pela plataforma porém sem IDE integrada
+- [TopCoder](https://www.topcoder.com/) - Desafios e Arena de Programação Back-end. IDE integrada
+- [URI/Beecrowd](https://www.beecrowd.com.br/judge/en/login) - Desafios Programação Back-end, matemáticos e SQL. IDE integrada

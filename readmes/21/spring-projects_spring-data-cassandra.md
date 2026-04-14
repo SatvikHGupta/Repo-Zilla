@@ -1,0 +1,169 @@
+= Spring Data for Apache Cassandra image:https://img.shields.io/badge/Revved%20up%20by-Develocity-06A0CE?logo=Gradle&labelColor=02303A["Revved up by Develocity", link="https://ge.spring.io/scans?search.rootProjectNames=Spring Data for Apache Cassandra"]
+
+The primary goal of the https://projects.spring.io/spring-data[Spring Data] project is to make it easier to build Spring-powered applications that use new data access technologies such as non-relational databases, map-reduce frameworks, and cloud based data services.
+
+The Apache Cassandra NoSQL Database offers many new capabilities for teams seeking a solution to handle high velocity, high volume and variable data flows.
+This new way of thinking introduces new concepts and a learning curve that can be intimidating to team members and team managers. Spring Data for Apache Cassandra offers a familiar interface to those who have used other Spring Data modules in the past.
+
+The learning curve for developing applications with Apache Cassandra is significantly reduced when using Spring Data for Apache Cassandra.
+With the power to stay at a high level with annotated POJOs, or at a low level with high performance data ingestion capabilities, the Spring Data for Apache Cassandra templates are sure to meet every application need.
+
+== Features
+
+* Build repositories based on common Spring Data interfaces
+* Support for synchronous, reactive, and asynchronous data operations
+* Support for XML based Keyspace creation and CQL Table creation
+* JavaConfig and XML Support for all Cluster and Session Capabilities
+* Exception Translation to the familiar Spring DataAccessException hierarchy
+* Convenient QueryBuilders to eliminate the need to learn CQL
+* Automatic implementation of Repository interfaces including support for custom query methods
+* Based on the 4.x DataStax CQL Java Driver
+
+== Code of Conduct
+
+This project is governed by the https://github.com/spring-projects/.github/blob/e3cc2ff230d8f1dca06535aa6b5a4a23815861d4/CODE_OF_CONDUCT.md[Spring Code of Conduct]. By participating, you are expected to uphold this code of conduct. Please report unacceptable behavior to spring-code-of-conduct@pivotal.io.
+
+== Getting Started
+
+Here is a quick teaser of an application using Spring Data Repositories in Java:
+
+[source,java]
+----
+public interface PersonRepository extends CrudRepository<Person, Long> {
+
+  List<Person> findByLastname(String lastname);
+
+  List<Person> findByFirstnameLike(String firstname);
+}
+
+@Service
+public class MyService {
+
+  private final PersonRepository repository;
+
+  public MyService(PersonRepository repository) {
+    this.repository = repository;
+  }
+
+  public void doWork() {
+
+    repository.deleteAll();
+
+    Person person = new Person();
+    person.setFirstname("Matthew");
+    person.setLastname("Adams");
+    repository.save(person);
+
+    List<Person> lastNameResults = repository.findByLastname("Adams");
+    List<Person> firstNameResults = repository.findByFirstnameLike("M*");
+ }
+}
+
+@Configuration
+@EnableCassandraRepositories
+class ApplicationConfig extends AbstractCassandraConfiguration {
+
+  @Override
+  public String getContactPoints() {
+    return "localhost";
+  }
+
+  @Override
+  protected String getKeyspaceName() {
+    return "springdata";
+  }
+}
+----
+
+=== Maven configuration
+
+Add the Maven dependency:
+
+[source,xml]
+----
+<dependency>
+  <groupId>org.springframework.data</groupId>
+  <artifactId>spring-data-cassandra</artifactId>
+  <version>${version}</version>
+</dependency>
+----
+
+If you'd rather like the latest snapshots of the upcoming major version, use our Maven snapshot repository and declare the appropriate dependency version.
+
+[source,xml]
+----
+<dependency>
+  <groupId>org.springframework.data</groupId>
+  <artifactId>spring-data-cassandra</artifactId>
+  <version>${version}-SNAPSHOT</version>
+</dependency>
+
+<repository>
+  <id>spring-snapshot</id>
+  <name>Spring Snapshot Repository</name>
+  <url>https://repo.spring.io/snapshot</url>
+</repository>
+----
+
+== Getting Help
+
+Having trouble with Spring Data? We’d love to help!
+
+* Check the
+https://docs.spring.io/spring-data/cassandra/docs/current/reference/html/[reference documentation], and https://docs.spring.io/spring-data/cassandra/docs/current/api/[Javadocs].
+* Learn the Spring basics – Spring Data builds on Spring Framework, check the https://spring.io[spring.io] web-site for a wealth of reference documentation.
+If you are just starting out with Spring, try one of the https://spring.io/guides[guides].
+* Ask a question - we monitor https://stackoverflow.com[stackoverflow.com] for questions tagged with https://stackoverflow.com/tags/spring-data[`spring-data-cassandra`].
+* Report bugs with Spring Data for Apache Cassandra at https://github.com/spring-projects/spring-data-cassandra/issues[github.com/spring-projects/spring-data-cassandra/issues].
+
+== Reporting Issues
+
+Spring Data uses GitHub as issue tracking system to record bugs and feature requests. If you want to raise an issue, please follow the recommendations below:
+
+* Before you log a bug, please search the
+https://github.com/spring-projects/spring-data-cassandra/issues[issue tracker] to see if someone has already reported the problem.
+* If the issue does not already exist, https://github.com/spring-projects/spring-data-cassandra/issues/new[create a new issue].
+* Please provide as much information as possible with the issue report, we like to know the version of Spring Data that you are using and JVM version.
+* If you need to paste code, or include a stack trace use Markdown +++```+++ escapes before and after your text.
+* If possible try to create a test-case or project that replicates the issue. Attach a link to your code or a compressed file containing your code.
+
+== Building from Source
+
+You don’t need to build from source to use Spring Data (binaries in https://repo.spring.io[repo.spring.io]), but if you want to try out the latest and greatest, Spring Data can be easily built with the https://github.com/takari/maven-wrapper[maven wrapper].
+You also need JDK 17.
+
+[source,bash]
+----
+ $ ./mvnw clean install
+----
+
+If you want to build with the regular `mvn` command, you will need https://maven.apache.org/run-maven/index.html[Maven v3.8.0 or above].
+
+_Also see link:CONTRIBUTING.adoc[CONTRIBUTING.adoc] if you wish to submit pull requests, and in particular please sign the https://cla.pivotal.io/sign/spring[Contributor’s Agreement] before your first non-trivial change._
+
+== Initial Contributors
+
+Spring Data for Apache Cassandra was initially created and supported by the following companies and individuals:
+
+* http://www.prowaveconsulting.com[Prowave Consulting] - David Webb
+* http://www.scispike.com[SciSpike] - Matthew Adams
+* John McPeek
+
+=== Building reference documentation
+
+Building the documentation builds also the project without running tests.
+
+[source,bash]
+----
+ $ ./mvnw clean install -Pantora
+----
+
+The generated documentation is available from `spring-data-cassandra-distribution/antora/site/index.html`.
+
+== Examples
+
+* https://github.com/spring-projects/spring-data-examples/[Spring Data Examples] contains example projects that explain specific features in more detail.
+
+== License
+
+Spring Data for Apache Cassandra is Open Source software released under the https://www.apache.org/licenses/LICENSE-2.0.html[Apache 2.0 license].

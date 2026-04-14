@@ -1,0 +1,161 @@
+<p align="center">
+  <h1 align="center">React Native Vector Image</h1>
+  <h3 align="center">iOS/Android native vector assets generated from SVG.</h3>
+</p>
+
+[![Tests](https://github.com/oblador/react-native-vector-image/actions/workflows/tests.yml/badge.svg)](https://github.com/oblador/react-native-vector-image/actions/workflows/tests.yml) [![npm](https://img.shields.io/npm/v/react-native-vector-image.svg)](https://npmjs.com/package/react-native-vector-image)
+
+- Faster render – ~5x faster than `react-native-svg`.
+- Smaller JS bundle = faster startup.
+- Native support for dark mode.
+- Web support for Expo.
+
+## Installation
+
+```sh
+yarn add react-native-vector-image
+```
+
+### Android
+
+Edit `android/app/build.gradle` to look like this (without the +):
+
+```diff
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
++ apply from: "../../node_modules/react-native-vector-image/strip_svgs.gradle"
+```
+
+### iOS
+
+Open your project in Xcode, select the _Build Phases_ tab, and edit the `Bundle React Native code and images` script to look like this (without the +):
+
+```diff
+set -e
+
+WITH_ENVIRONMENT="$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh"
+REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"
+
+/bin/sh -c "$WITH_ENVIRONMENT $REACT_NATIVE_XCODE"
++ ../node_modules/react-native-vector-image/strip_svgs.sh
+```
+
+<img width="1212" alt="" src="https://user-images.githubusercontent.com/378279/115999935-544c0600-a5ee-11eb-9c59-6fb50e434ed0.png">
+
+### Expo
+
+After installing this npm package, add the [config plugin](https://docs.expo.io/guides/config-plugins/) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
+
+```json
+{
+  "expo": {
+    "plugins": ["react-native-vector-image"]
+  }
+}
+```
+
+Next, rebuild your app as described in the ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide.
+
+#### Options
+
+```json
+{
+  "expo": {
+    "plugins": [
+      [
+        "react-native-vector-image",
+        {
+          // These are default options, change if you want a different value:
+          "stripSvgs": false, // if true, svgs will be removed from bundle. expo-updates package crashes when svgs it expects in the bundle are not there
+          "metroConfigFile": "metro.config.js",
+          "resetCache": false,
+          "bundleWithExpo": true,
+          "entryFile": "index.ts"
+        }
+      ]
+    ]
+  }
+}
+```
+
+Shout out to [zamplyy](https://github.com/zamplyy) for making the first version of the Expo plugin.
+
+## Usage
+
+Since native vector assets cannot be served over http via metro dev server, they must be generated and compiled into the app bundle.
+
+### Step 1: import an .svg file
+
+```js
+import VectorImage from 'react-native-vector-image';
+
+const App = () => <VectorImage source={require('./image.svg')} />;
+```
+
+To add dark mode to your image, create a new file with an `.dark.svg` extension, ie `image.svg` = light and `image.dark.svg` = dark.
+
+### Step 2: generate native assets
+
+This takes a while as metro has to go through all the code to find the imported SVGs.
+
+_Note: for Expo just use the plugin and `npx expo prebuild`._
+
+```sh
+yarn react-native-vector-image generate
+```
+
+| Argument               | Description                                                          | Default                       |
+| ---------------------- | -------------------------------------------------------------------- | ----------------------------- |
+| `--entry-file`         | Path to the app entrypoint file.                                     | `index.js`                    |
+| `--config`             | Path to the metro config file.                                       | `metro.config.js`             |
+| `--reset-cache`        | Reset metro cache before extracting SVG assets.                      | `false`                       |
+| `--bundle-with-expo`   | Whether to bundle the app with Expo presets or using metro directly. | `false`                       |
+| `--ios-output`         | Path to an iOS `.xcassets` folder.                                   | `ios/AppName/Images.xcassets` |
+| `--no-ios-output`      | Disable iOS output.                                                  | `false`                       |
+| `--android-output`     | Path to an Android `res` folder.                                     | `android/app/src/main/res`    |
+| `--no-android-output`  | Disable Android output.                                              | `false`                       |
+| `--current-color`      | Replace any `currentColor` color references in SVGs.                 | `#000000`                     |
+| `--current-color-dark` | Replace any `currentColor` color references in `.dark.svg` SVGs.     | `#ffffff`                     |
+
+### Step 3: recompile
+
+```sh
+yarn react-native run-ios
+# or
+yarn react-native run-android
+```
+
+### Optional: using source/drawable
+
+If you need to use the underlying image source/drawable you can use the `VectorImage.resolveAssetSource` method, for example with Expo's native tabs:
+
+```tsx
+const iconSource = VectorImage.resolveAssetSource(require('./icon.svg'));
+
+return (
+  <NativeTabs.Trigger name="index">
+    <Icon src={iconSource} drawable={iconSource.uri} />
+  </NativeTabs.Trigger>
+);
+```
+
+## Troubleshooting
+
+### `generate` command outputs "Error while parsing image.svg"
+
+Some optimizations applied by SVGO are not compatible with the SVG parser on Android. Try to re-export the SVG without optimizing it.
+
+### `<VectorImage />` warns "Could not find image"
+
+It means that the native vector asset does not exist or is out of sync with the SVG. Simply generate the files and recompile the app.
+
+### the `generate` command does not generate any new assets
+
+Make sure your image component is used (imported) somewhere in your code, otherwise the asset generator won't find it.
+
+## License
+
+[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson 2021
+
+[`svg2vd`](https://github.com/Shopify/svg2vd): MIT © 2020 Shopify

@@ -1,0 +1,301 @@
+= Relm
+
+Asynchronous, GTK+-based, GUI library, inspired by Elm, written in Rust.
+
+*This library is in beta stage: it has not been thoroughly tested and its API may change at any time.*
+
+image:https://img.shields.io/github/workflow/status/antoyo/relm/CI[link="https://github.com/antoyo/relm/actions"]
+image:https://img.shields.io/badge/Relm-Tutorial-blueviolet[link="https://relm.antoyo.xyz/documentation/tutorial/"]
+image:https://img.shields.io/crates/v/relm.svg[link="https://crates.io/crates/relm"]
+image:https://img.shields.io/badge/rust-documentation-blue.svg[link="https://docs.rs/relm/"]
+image:https://img.shields.io/crates/d/relm.svg[link="https://crates.io/crates/relm"]
+image:https://img.shields.io/matrix/relm:matrix.org?logo=matrix[link="https://matrix.to/#/#relm:matrix.org?via=matrix.org"]
+image:https://img.shields.io/crates/l/relm.svg[link="LICENSE"]
+image:https://img.shields.io/badge/Donate-Patreon-orange.svg[link="https://www.patreon.com/antoyo"]
+
+== Requirements
+
+Since relm is based on GTK+, you need this library on your system in order to use it.
+
+See https://www.gtk.org/docs/installations/[this page] for information on how to install GTK+.
+
+== Usage
+
+First, add this to your `Cargo.toml`:
+
+[source,toml]
+----
+gtk = "^0.16.0"
+relm = "^0.24.0"
+relm-derive = "^0.24.0"
+----
+
+Next, add this to your crate:
+
+[source,rust]
+----
+use relm::{connect, Relm, Update, Widget};
+use gtk::prelude::*;
+use gtk::{Window, Inhibit, WindowType};
+use relm_derive::Msg;
+----
+
+Then, create your model:
+
+[source,rust]
+----
+struct Model {
+    // …
+}
+----
+
+The model contains the data related to a `Widget`. It may be updated by the `Widget::update` function.
+
+Create your message `enum`:
+
+[source,rust]
+----
+#[derive(Msg)]
+enum Msg {
+    // …
+    Quit,
+}
+----
+
+Messages are sent to `Widget::update` to indicate that an event happened. The model can be updated when an event is received.
+
+Create a `struct` which represents a `Widget` which contains the GTK+ widgets (in this case, the main window of the application) and the model:
+
+[source,rust]
+----
+struct Win {
+    // …
+    model: Model,
+    window: Window,
+}
+----
+
+To make this `struct` a relm `Widget` that can be shown by the library, implement the `Update` and `Widget` traits:
+
+[source,rust]
+----
+impl Update for Win {
+    // Specify the model used for this widget.
+    type Model = Model;
+    // Specify the model parameter used to init the model.
+    type ModelParam = ();
+    // Specify the type of the messages sent to the update function.
+    type Msg = Msg;
+
+    // Return the initial model.
+    fn model(_: &Relm<Self>, _: ()) -> Model {
+        Model {
+        }
+    }
+
+    // The model may be updated when a message is received.
+    // Widgets may also be updated in this function.
+    fn update(&mut self, event: Msg) {
+        match event {
+            Msg::Quit => gtk::main_quit(),
+        }
+    }
+}
+
+impl Widget for Win {
+    // Specify the type of the root widget.
+    type Root = Window;
+
+    // Return the root widget.
+    fn root(&self) -> Self::Root {
+        self.window.clone()
+    }
+
+    // Create the widgets.
+    fn view(relm: &Relm<Self>, model: Self::Model) -> Self {
+        // GTK+ widgets are used normally within a `Widget`.
+        let window = Window::new(WindowType::Toplevel);
+
+        // Connect the signal `delete_event` to send the `Quit` message.
+        connect!(relm, window, connect_delete_event(_, _), return (Some(Msg::Quit), Inhibit(false)));
+        // There is also a `connect!()` macro for GTK+ events that do not need a
+        // value to be returned in the callback.
+
+        window.show_all();
+
+        Win {
+            model,
+            window,
+        }
+    }
+}
+----
+
+Finally, show this `Widget` by calling `Win::run()`:
+
+[source,rust]
+----
+fn main() {
+    Win::run(()).unwrap();
+}
+----
+
+=== `#[widget]` attribute
+
+A `#[widget]` attribute is provided to simplify the creation of a widget.
+
+This attribute does the following:
+
+ * Provide a `view!` macro to create the widget with a declarative syntax.
+ * Automatically create the `fn root()`, `type Msg`, `type Model`, `type ModelParam` and `type Root` items.
+ * Automatically insert the call to `Widget::set_property()` in the `update()` function when assigning to an attribute of the model.
+ * Automatically create the `Widget` `struct`.
+ * `Update` and `Widget` traits can be implemented at once.
+
+To use this attribute, add the following code:
+
+[source,rust]
+----
+use relm_derive::widget;
+----
+
+Here is an example using this attribute:
+
+[source,rust]
+----
+#[derive(Msg)]
+pub enum Msg {
+    Decrement,
+    Increment,
+    Quit,
+}
+
+pub struct Model {
+    counter: u32,
+}
+
+#[widget]
+impl Widget for Win {
+    fn model() -> Model {
+        Model {
+            counter: 0,
+        }
+    }
+
+    fn update(&mut self, event: Msg) {
+        match event {
+            // A call to self.label1.set_text() is automatically inserted by the
+            // attribute every time the model.counter attribute is updated.
+            Msg::Decrement => self.model.counter -= 1,
+            Msg::Increment => self.model.counter += 1,
+            Msg::Quit => gtk::main_quit(),
+        }
+    }
+
+    view! {
+        gtk::Window {
+            gtk::Box {
+                orientation: Vertical,
+                gtk::Button {
+                    // By default, an event with one paramater is assumed.
+                    clicked => Msg::Increment,
+                    // Hence, the previous line is equivalent to:
+                    // clicked(_) => Increment,
+                    label: "+",
+                },
+                gtk::Label {
+                    // Bind the text property of this Label to the counter attribute
+                    // of the model.
+                    // Every time the counter attribute is updated, the text property
+                    // will be updated too.
+                    text: &self.model.counter.to_string(),
+                },
+                gtk::Button {
+                    clicked => Msg::Decrement,
+                    label: "-",
+                },
+            },
+            // Use a tuple when you want to both send a message and return a value to
+            // the GTK+ callback.
+            delete_event(_, _) => (Msg::Quit, Inhibit(false)),
+        }
+    }
+}
+----
+
+NOTE: The `struct Win` is now automatically created by the attribute, as are the function `root()` and the associated types `Model`, `ModelParam`, `Msg` and `Container`.
+You can still provide the method and the associated types if needed, but you cannot create the `struct`.
+
+WARNING: The `#[widget]` makes the generated `struct` public: hence, the corresponding model and message types must be public too.
+
+[WARNING]
+====
+Your program might be slower when using this attribute because the code generation is simple.
+For instance, the following code
+[source,rust]
+----
+fn update(&mut self, event: Msg) {
+    for _ in 0..100 {
+        self.model.counter += 1;
+    }
+}
+----
+will generate this function:
+[source,rust]
+----
+fn update(&mut self, event: Msg) {
+    for _ in 0..100 {
+        self.model.counter += 1;
+        self.label1.set_text(&self.model.counter.to_string());
+    }
+}
+----
+====
+
+[WARNING]
+====
+Also, the `set_property()` calls are currently only inserted when assigning to an attribute of the model.
+For instance, the following code
+[source,rust]
+----
+fn update(&mut self, event: Msg) {
+    self.model.text.push_str("Text");
+}
+----
+will not work as expected.
+
+Please use the following variation if needed.
+[source,rust]
+----
+fn update(&mut self, event: Msg) {
+    self.model.text += "Text";
+}
+----
+====
+
+For more information about how you can use relm, you can take a look at the https://github.com/antoyo/relm/tree/master/relm-examples/[examples].
+
+== Donations
+
+If you appreciate this project and want new features to be
+implemented, please support me on Patreon.
+
+image:https://c5.patreon.com/external/logo/become_a_patron_button.png[link="https://www.patreon.com/antoyo"]
+
+== Projects using `relm`
+
+ * https://github.com/sanpii/yellow-pitaya[Yellow Pitaya]: A desktop interface for the redpitaya hardware oscilloscope.
+ * https://github.com/juchiast/gameoflife[Game of Life]: Conway's Game of Life Simulator
+ * https://github.com/etrombly/country_parser[Country Parser]: Parses Google location history and displays timeline of countries visited
+ * https://github.com/niklasf/rust-chessground[Chessground]: An experimental chessboard widget
+ * https://github.com/sanpii/effitask[Effitask]: Graphical task manager, based on the todo.txt format
+ * https://github.com/knack-supply/curve-tracer[KS Curve Tracer]: A companion app for AD2 curve tracer
+ * https://github.com/emmanueltouzery/cigale[Cigale]: Tool to prepare the timesheet of the tasks you did at work
+ * https://github.com/emmanueltouzery/projectpad2[Projectpad]: Manage secret credentials and server information as a software developer or sysadmin.
+ * https://github.com/crrodger/timezoners[TimezoneRS]: A GUI application to visually see the time in different time zones
+ * https://github.com/Schmiddiii/Tubefeeder[Tubefeeder] / https://gitlab.com/schmiddi-on-mobile/pipeline[Pipeline]: Watch YouTube, LBRY, and PeerTube videos in one place.
+ * https://github.com/emmanueltouzery/hotwire[Hotwire]: Study network traffic of a few popular protocols in a simple way
+ * https://mzte.de/git/LordMZTE/gue[gue]: GUI for controlling phillips hue lights
+ * https://github.com/mycitadel/mycitadel-desktop[MyCitadel Wallet]: MyCitadel Cryptocurrency Wallet app
+
+If you want to add your project to this list, please https://github.com/antoyo/relm/pulls[create a pull request].

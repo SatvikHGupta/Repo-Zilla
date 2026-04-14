@@ -1,0 +1,55 @@
+
+# surmon.me.native
+
+[![nodepress](https://raw.githubusercontent.com/surmon-china/nodepress/main/branding/badge.svg)](https://github.com/surmon-china/nodepress)
+&nbsp;
+[![GitHub stars](https://img.shields.io/github/stars/surmon-china/surmon.me.native.svg?style=for-the-badge)](https://github.com/surmon-china/surmon.me.native/stargazers)
+&nbsp;
+[![GitHub forks](https://img.shields.io/github/forks/surmon-china/surmon.me.native.svg?style=for-the-badge)](https://github.com/surmon-china/surmon.me.native/network)
+&nbsp;
+[![GitHub license](https://img.shields.io/github/license/surmon-china/surmon.me.native.svg?style=for-the-badge)](https://github.com/surmon-china/surmon.me.native/blob/master/LICENSE)
+
+**[Surmon.me](https://surmon.me) blog app, built with [React Native](https://github.com/facebook/react-native).** 
+
+[**Download Android apk**](https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/dist/android/surmon.me.apk) 📲
+
+- [Changelog](./CHANGE_LOG.md)
+- [Documentation](./DOCUMENT.md)
+
+**Related projects:**
+- RESTful API service: [`NodePress`](https://github.com/surmon-china/nodepress) built with NestJS.
+- SSR blog: [`surmon.me`](https://github.com/surmon-china/surmon.me) built with Vue.
+- Blog admin site: [`surmon.me.admin`](https://github.com/surmon-china/surmon.me.admin) built with React and [Veact](https://github.com/veactjs/veact).
+
+## IOS Runtime
+
+<a href="https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/g-1.gif" target="_blank">
+  <img src="https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/g-1.gif" width="31%" />
+</a>
+<span>&nbsp;&nbsp;&nbsp;</span>
+<a href="https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/g-2.gif" target="_blank">
+  <img src="https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/g-2.gif" width="31%" />
+</a>
+<span>&nbsp;&nbsp;&nbsp;</span>
+<a href="https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/g-3.gif" target="_blank">
+  <img src="https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/g-3.gif" width="31%" />
+</a>
+
+## Screenshot
+
+### IOS
+
+![](https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/ios/p-1.jpg)
+
+![](https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/ios/p-2.jpg)
+
+![](https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/ios/p-3.jpg)
+
+### Android
+
+![](https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/android/p-1.jpg)
+
+![](https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/android/p-2.jpg)
+
+![](https://raw.githubusercontent.com/surmon-china/surmon.me.native/master/screenshots/android/p-3.jpg)
+

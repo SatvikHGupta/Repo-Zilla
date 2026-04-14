@@ -1,0 +1,170 @@
+= react-you-do-you
+
+image:https://github.com/netzwerg/react-you-do-you/actions/workflows/main.yml/badge.svg[]
+
+An example of how I use React + Redux + Material-UI + TypeScript.
+
+Or: The code I wish existed when I got started. +
+Or: A project template to start off on the right foot.
+
+This is how I do it – *you do you* 💖
+
+Deployed live version: ✨ https://netzwerg.github.io/react-you-do-you ✨
+
+== Setup & Tooling
+**  https://reactjs.org[React 17] based on https://vitejs.dev[Vite]:
+*** Compilation, linting, etc.
+*** Development mode with auto-reloading
+*** Test watcher
+*** Optimized production build
+*** see <<scripts, Available Scripts>>
+** https://yarnpkg.com/features/pnp[Yarn 3] (with Plug'n'Play i.e. without `node_modules`)
+** https://www.typescriptlang.org/[TypeScript 4.9] for compile-time safety
+** https://prettier.io[Prettier] for formatting, auto-triggered on commit via https://github.com/typicode/husky[Husky]
+** https://redux-toolkit.js.org[Redux Toolkit] for state management
+** https://material-ui.com/[Material UI 5] component library (using MUI System for CSS)
+** https://ladle.dev[Ladle] to build & test UI components in isolation
+** https://playwright.dev[Playwright] to detect regressions through visual snapshots
+** GitHub Actions & Pages Continuous Delivery
+
+== Structure
+Organize *by feature*:
+
+* Each feature gets its own folder
+* Defines its own slice of models/actions/reducer
+* Defines its own components, clearly separated into presentation (inside `components` folder) and glue-code/logic (inside `containers` folder)
+
+== State Management
+
+* Keep state in a *fully typed, immutable* model:
+** Use interfaces or type aliases rather than classes (rule of thumb: prefer interfaces because they give better compile error message, use type aliases for sum type awesomeness)
+** Use TypeScript's `readonly` keyword and `Readonly[Array|Stream|Set|Map]` utility types
+* Use https://redux-toolkit.js.org[Redux Toolkit], an _"opinionated, batteries-included toolset for efficient Redux development"_
+** Compose feature-specific reducers
+** Write container components to connect presentation components to the Redux store. *Why?* Presentation components are more re-usable if they don't know how state is shaped nor how it's managed.
+** Use https://github.com/reduxjs/redux-thunk[redux-thunk] for async actions
+** Optional: https://redux-toolkit.js.org/usage/immer-reducers[Write Reducers with Immer]
+
+== Broad Overview
+
+image::docs/container-vs-component.png[]
+
+== User Interface
+
+Use https://material-ui.com/[Material UI 5], a React component library based on https://en.m.wikipedia.org/wiki/Material_Design[Material Design]:
+
+* Huge selection of components, fully customizable
+* Theme support (e.g. light vs dark)
+* CSS utilities (MUI System)
+
+== Testing
+
+I am mostly developing prototypes these days, so I am not an expert when it comes to testing.
+However, this is the minimum I *always* test:
+
+* Slices: Making sure each action is handled correctly (~80% of my logic)
+* Error-free rendering of each component ("Rendering Smoke Tests")
+
+== Ladle
+
+The project contains a full https://ladle.dev[Ladle] configuration.
+Writing stories for your UI components allows building & testing them in isolation.
+Example stories are contained in link:src/stories[src/stories].
+
+To run locally:
+
+`yarn ladle serve`
+
+== Playwright
+
+An example setup to detect regressions through https://ladle.dev/docs/visual-snapshots[visual snapshots] is configured in link:src/e2e[src/e2e]
+
+NOTE: These tests are not running automatically – adding them to your CI is up to you
+
+To run the playwright tests locally, first install the required browser binaries:
+
+`yarn playwright install`
+
+Then, to run the tests:
+
+1. Build ladle: `yarn ladle build`
+2. Start ladle: `yarn ladle preview -p 61000`
+3. Run playwright: `yarn playwright test ./src/e2e/snapshot.spec.ts`
+
+== Continuous Integration & Delivery
+
+On every push or pull request, a set of link:.github/workflows/main.yml[GitHub Actions] are kicked off:
+
+* Run all tests
+* Check for circular dependencies
+* Build & deploy the app
+
+If successful, the app is available on `https://<username>.github.io/<reponame>` (via GitHub Pages).
+
+== Usage
+
+=== Explore Locally
+
+WARNING: Requires Node ^14.17.0 || >=16.0.0 (https://github.com/facebook/create-react-app/issues/11792#issuecomment-998851765[Details])
+
+[source]
+----
+git clone https://github.com/netzwerg/react-you-do-you.git
+cd react-you-do-you
+yarn install
+yarn start
+----
+
+=== Editor Setup
+
+Since we are using Yarn 3 with Plug'n'Play, Smart IDEs (such as VSCode or IntelliJ) require special configuration for TypeScript to work. See: https://yarnpkg.com/getting-started/editor-sdks[Editor SDKs].
+
+To setup VS Code, run the following command:
+
+[source]
+----
+yarn dlx @yarnpkg/sdks vscode
+----
+
+Once the Editor SDK is installed, VS Code will ask you to choose a TypeScript version. Choose "Use Workspace Version".
+
+=== As Project Template
+
+* Rename root folder to `my-fancy-new-project-name`
+* Replace all occurrences of `react-you-do-you` with `my-fancy-new-project-name`
+* Remove existing Git repo: `rm -rf .git`
+* Initialize a new Git repo: `git init`
+
+[[scripts]]
+== Available Scripts
+
+=== `yarn start`
+
+Compiles and runs the app in development mode.
+
+Open http://localhost:3000 to view it in the browser.
+
+The page will reload if you make edits.
+You will also see any compile or lint errors in the console.
+
+=== `yarn test`
+
+Launches the test runner in interactive watch mode.
+
+=== `yarn run build`
+
+Builds the app for production to the `build` folder.
+
+=== `yarn run lint`
+
+Runs ESLint (with TypeScript support) on all `&#42;.ts` or `&#42;.tsx` files in the `src` directory.
+
+=== `yarn run lint:fix`
+
+Runs ESLint (with TypeScript support) on all `&#42;.ts` or `&#42;.tsx` files in the `src` directory, automatically *fixing* problems.
+
+=== `yarn ladle serve`
+
+Runs Ladle
+
+&copy; Rahel Lüthy 2019 - 2023 link:LICENSE[MIT License]

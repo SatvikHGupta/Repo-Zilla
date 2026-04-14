@@ -1,0 +1,105 @@
+[NOTE]
+====
+``Dew`` 当前基于 ``JDK21`` + ``Spring boot 3.x`` 构建， ``Spring Cloud`` 为可选项，但更推荐使用 ``K8S`` 作为服务调度容器。
+
+如需基于 ``Spring boot 2.x`` 的容器版本请切换到 https://github.com/gudaoxuri/dew/releases/tag/3.0.0-RC5[3.0.0-RC5] tag.
+如需基于 ``Spring boot 1.x`` 的非容器版本请切换到 https://github.com/gudaoxuri/dew/releases/tag/1.5.1-RC[1.5.1-RC] tag.
+
+基于Rust的微服务框架见： https://github.com/ideal-world/tardis
+====
+
+== Dew微服务体系 Dew Microservice System
+
+image::https://img.shields.io/travis/gudaoxuri/dew.svg[link="https://travis-ci.org/gudaoxuri/dew"]
+image::https://api.codacy.com/project/badge/Grade/aacfdad1579043f0a2c1928b53096b7b[link="https://app.codacy.com/app/gudaoxuri/dew?utm_source=github.com&utm_medium=referral&utm_content=gudaoxuri/dew&utm_campaign=Badge_Grade_Dashboard"]
+image::https://img.shields.io/badge/license-ASF2-blue.svg["Apache License 2",link="https://www.apache.org/licenses/LICENSE-2.0.txt"]
+image::https://img.shields.io/maven-central/v/group.idealworld.dew/parent-starter[Maven Central]
+
+微服务一站式解决方案( http://doc.dew.idealworld.group )，提供：架构指南、容器优先/兼容Spring与Service Mesh的框架、最佳实践。
+
+[quote,]
+____
+Dew [du:] 意为 `露水` ，希望此体系可以像晨间的露水一样透明、静谧、丰盈。让使用者尽量不要感知Dew的存在，专注业务实现。
+____
+
+=== 设计理念
+
+==== 微服务架构的尴尬
+
+几乎人人都在谈微服务，每个IT企业都在做微服务架构，但大部分项目都会存在这样的尴尬：
+
+* 什么是微服务？怎么做微服务架构？为什么这么乱？
+
+> **缺乏微服务架构设计思想** 导致成功的微服务项目屈指可数，只听说微服务的好，却不知微服务的坑
+
+* 架构好了，框架怎么选择？ dubbo、Spring Boot/Cloud、Istio、Vert.x、还是自研？大一点的企业都会选择自研，但自研又会遇到如下问题：
+** 无法传承，框架的研发人员离职后没有可以接手
+** 上手难度大，很多框架喜欢重复造轮子，做出来的与业界主流思想/标准格格不入，导致学习培训成本很高
+** 功能片面，不通用，服务框架讲求通用性，尽量让整个公司使用同一套规范以方便维护，但很多框架只实现了某些特定场景的功能，无法通用化
+** 维护成本高，尤其是对于完全自研的框架，往往需要专职人员维护
+** 与主流脱节，无法分享微服务化、容器化、服务网格化的红利
+
+> **没有合适的微服务框架** 导致人员技能要求高、项目研发成本高
+
+* 框架选型也有了，但怎么测试、发布与运维？都在说容器化，要怎么做？
+
+> **缺少一体化的研发流程支撑** 导致各项目规范不统一、发布效率低、容器化问题频出
+
+==== Dew设计理念
+
+上述问题是Dew必须面对的，应对的设计核心理念是：
+
+----
+提供微服务架构指南 + 扩展主流微服务框架
+----
+
+.**提供微服务架构指南**
+
+项目要上微服务，其架构思想是前提，《微服务架构设计》(https://gudaoxuri.gitbook.io/microservices-architecture) 做为入门书籍非常合适。
+
+.**扩展主流微服务框架**
+
+. 简单，用最通用的、标准的、开发人员都熟悉的开发模型
+. 全面，尽量重用市场已有能力实现，减少框架自身的维护成本
+. 轻量，原则上不引入高侵入性的三方框架/类库
+. 可替换，只做扩展，尽量不修改基础框架代码，开发人员完全可以直接基于基础框架开发
+. 主流，整合流行的微服务框架
+
+实现上我们选择 `Spring Boot` 这一业界主流框架，对上兼容 `Spring Boot` 与 `Service Mesh`。
+
+=== 项目结构
+
+----
+|- framework
+|-  |- modules
+|-  |-  |- parent-starter                  // 父Pom模块
+|-  |-  |- boot-starter                    // 核心模块，包含Spring Boot Web相关依赖
+|-  |-  |- cluster-common                  // 集群能力接口
+|-  |-  |- cluster-common-test             // 集群测试模块
+|-  |-  |- cluster-hazelcast               // Hazelcast集群能力实现
+|-  |-  |- cluster-rabbit                  // RabbitMQ集群能力实现
+|-  |-  |- cluster-redis                   // Redis集群能力实现
+|-  |-  |- cluster-mqtt                    // MQTT集群能力实现
+|-  |-  |- cluster-rocket                  // Rocket MQ集群能力实现
+|-  |-  |- cluster-skywalking              // Skywalking集群能力实现
+|-  |-  |- idempotent-starter              // 幂等处理模块
+|-  |-  |- dbutils-starter                 // 动态数据库处理模块
+|-  |-  |- ossutils-starter                // OSS处理模块
+|-  |-  |- hbase-starter                   // Spring Boot HBase Starter 模块
+|-  |-  |- test-starter                    // 单元测试模块
+|-  |- assists                             // 框架辅助工具
+|-  |-  |- sdkgen-maven-plugin             // SDK自动生成、上传插件
+|-  |- checkstyle                          // 项目CheckStyle
+|- devops                                  // DevOps部分 【！新版本暂不可用！】
+|-  |- maven                               // DevOps使用到的Maven插件
+|-  |-  |- dew-maven-plugin                // DevOps核心插件
+|-  |-  |- dew-maven-agent                 // DevOps部署优化插件
+|-  |- sh                                  // DevOps执行脚本
+|-  |- cicd                                // 各CI服务的 CI/CD 配置
+|-  |-  |- gitlabci                        // Gitlab CI CI/CD配置
+|-  |-  |- jenkins                         // Jenkins CI/CD配置
+|-  |- docker                              // DevOps使用到的镜像
+|-  |-  |- dew-devops                      // 集成 Java Maven Node Git 的镜像
+|-  |- it                                  // 集成测试
+|- docs                                    // 文档
+----

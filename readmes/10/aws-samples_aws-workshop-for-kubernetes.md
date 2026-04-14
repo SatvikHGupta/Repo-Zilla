@@ -1,0 +1,47 @@
+= Kubernetes the AWSome Way!
+:icons:
+:linkattrs:
+:imagesdir: resources/images
+
+image:stop_sign01.png[align="left",width=120]
+
+**This content is outdated and is no longer maintained. Please go to https://www.eksworkshop.com/ for newest EKS tutorials!**
+
+image:kubernetes-aws-smile.png[alt="kubernetes and aws logos", align="left",width=420]
+
+This is a self-paced workshop designed for Development and Operations teams who would like to leverage Kubernetes on Amazon Web Services (AWS).
+
+This workshop provides instructions to create, manage, and scale a Kubernetes cluster on AWS, as well as how to deploy applications, scale them, run stateless and stateful containers, perform service discovery between different microservices, and other similar concepts.
+
+It also shows deep integration with several AWS technologies.
+
+We recommend at least 2 hours to complete the workshop.
+
+Click the button below to start!
+
+image::button-start-standard.png[link=01-path-basics/101-start-here/]
+
+== Extended Paths
+
+The workshop also contains extended paths for Developers or Operations Engineers.
+The extended paths go into much greater detail regarding features and capabilities of Kubernetes specifically for those Teams.
+We recommend at least 4 hours for each of the extended paths.
+
+Click on one of the two buttons below to start!
+
+:frame: none
+:grid: none
+:valign: top
+
+[align="center", cols="2*", grid="none", frame="none"]
+|=====
+|image:button-start-developer.png[link=01-path-basics/101-start-here]
+|image:button-start-operations.png[link=01-path-basics/101-start-here]
+|=====
+
+
+NOTE: You will incur charges as you go through these workshop guides as it will exceed the link:http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-limits.html[limits of AWS free tier]. An estimate of charges (<$20/day) can be seen at this link:https://calculator.s3.amazonaws.com/index.html#r=FRA&s=EC2&key=calc-E6DBD6F1-C45D-4827-93F8-D9B18C5994B0[simple monthly calculator]
+
+=== Participation
+
+You can share this workshop via https://amzn.to/k8s-on-aws. We encourage participation; if you find anything, please submit an issue. However, if you want to help raise the bar, **submit a PR**!

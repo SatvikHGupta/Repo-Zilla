@@ -1,0 +1,1149 @@
+<a id="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![Unlicense License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+<img width="100%" alt="Lara Dashboard" src="https://github.com/user-attachments/assets/c56009a4-718f-43dc-bd1e-caad5417b05b"  />
+
+**⚡ Lara Dashboard** CMS By Laravel (7.x - 12.x) - Manages Users, Roles, Permissions, Modules, Settings, Translations, Contents(Post, Page, Category, Tags), AI Agent, System logs, Monitoring, Rest API's and every actions of your Laravel application. A complete Agentic CMS solution for Laravel application with Tailwind CSS integrated with all starting features including modules, dark/lite mode, charts, tables, forms, lots of components and many more. This also includes beautiful architecture for module developers to make a complete Agent base solutions. By our preimium modules, you can get more features like CRM, HRM, Course Management and so on.
+
+**Demo:** https://laradashboard.com/try-demo/
+
+```
+Email - superadmin@example.com
+password - 12345678
+```
+
+## 📋 Requirements:
+
+-   Spatie role permission package `^6.4`
+-   Pest test package `^4.x`
+-   Tailwind CSS >= 4.x
+-   Laravel Modules - https://laravelmodules.com/docs/12/getting-started/introduction
+-   Laravel Events (A WordPress like action/filter hooks) - https://github.com/tormjens/eventy
+-   PHP 8.3 or 8.4
+-   Node.js >= 20.19 - https://nodejs.org/en/download/
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### 🛠️ Built With
+
+-   [![PHP][PHP.com]][PHP-url]
+-   [![Laravel][Laravel.com]][Laravel-url]
+-   [![Tailwind CSS][TailwindCSS.com]][TailwindCSS-url]
+-   [![JavaScript][JavaScript.com]][JavaScript-url]
+-   [![Alpine JS][AlpineJS.com]][AlpineJS-url]
+-   [![React][React.js]][React-url]
+-   [![MySQL][MySQL.com]][MySQL-url]
+-   <a href="https://penguinui.com/">
+      <img src="https://res.cloudinary.com/ds8pgw1pf/image/upload/v1721401292/penguinui/main-assets/Logo.png" alt="Penguin UI" style="height: 30px;">
+     </a>
+-   <a href="https://tailadmin.com" style="display: flex; align-items: center; text-decoration: none; color: #3d51e0;">
+      <img src="https://avatars.githubusercontent.com/u/95587422?v=4" alt="Tail Admin" style="height: 20px;"> <span style="color:#3d51e0; margin-left: 5px;">Tail Admin</span>
+     </a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📝 Changelog
+
+**[v1.1.1] - 2026-04-10**
+-   **Feat:** Scheduled queue worker — runs every minute via `schedule:run` to process queued jobs (workflow actions, emails) without requiring a long-running worker.
+-   **Improve:** Sidebar submenu supports deeper (3rd and 4th level) nesting with proper indentation.
+-   **Improve:** Sidebar submenu expands without an inner scrollbar; the sidebar wrapper handles overflow when nav is long.
+-   **Fix:** Cleaned up user dropdown styling in the admin header — removed stray borders and uneven top margins for consistent spacing.
+
+**[v1.1.0] - 2026-04-05**
+-   **Feat:** Account created notification — admin-created users receive an email with login link and password-set URL.
+-   **Feat:** Quick-add dropdown in admin header with hook support (`filter.quick_add_dropdown`).
+-   **Feat:** Admin menu badge support (`setBadge()` / `setBadgeClass()` on `AdminMenuItem`).
+-   **Feat:** Email connection toggle (activate/deactivate) with inline action button.
+-   **Feat:** Email connection status filter (active, disabled, connected, failed).
+-   **Feat:** Setting image removal endpoint for site logos/icons via AJAX.
+-   **Feat:** Send login link action on user edit page.
+-   **Improve:** Demo mode restrictions on core upgrade, backup, and restore operations.
+-   **Improve:** Seeder defaults for authentication, site tagline, copyright, and contact settings.
+-   **Fix:** Renamed "Inactive" to "Disabled" for email connection status labels (consistency).
+-   **Fix:** Removed duplicate demo-mode check in module update flow.
+
+**[v1.0.3] - 2026-03-29**
+-   **Fix:** Fixed marketplace module images not loading (JSON-encoded icon/banner URLs from API were not decoded properly).
+
+**[v1.0.2] - 2026-03-29**
+-   **Feat:** Marketplace module browser — browse, search, and install modules from the marketplace.
+-   **Feat:** Module packaging and distribution commands (`module:zip`, `module:package`, `module:compile-css`).
+-   **Feat:** Claude Code agents and commands for faster module development workflow.
+-   **Docs:** Added developer documentation for Tailwind CSS prefixing, AI architecture, theme development, permissions, and module packaging.
+-   **Fix:** Fixed CRUD generator base controller replacement test for updated nwidart stubs.
+-   **Fix:** Assign menu permissions to superadmin migration.
+
+**[v1.0.1] - 2026-03-28**
+-   **Fix:** Fixed automattic module and core upgrade issue on some servers.
+-   **Fix:** Fixed module stubs and crud command to generate files properly.
+
+**[v1.0.0] - 2026-03-27**
+-   **Feat:** Upgraded to Laravel 13 and Livewire 4.
+-   **Feat:** Base setup for Starter 26 theme.
+-   **Feat:** CRUD Generator (`module:make-crud`) with Model, Datatable, Views, Routes, Menu scaffolding.
+-   **Feat:** Inbound/Outbound email connection management.
+-   **Feat:** Manual core upgrade system with backup/restore functionality.
+-   **Feat:** Social authentication with Laravel Socialite.
+-   **Feat:** Cache/performance management section in settings page.
+-   **Feat:** Menu architecture for frontend with filter hooks support.
+-   **Feat:** Compact file uploader component.
+-   **Feat:** Clean all action logs button.
+-   **Feat:** AI filter hooks for extensible AI integrations.
+-   **Enhancement:** Module CRUD command improved — generates Blade views instead of Livewire components.
+-   **Enhancement:** Translation system refactored with chunked data saving.
+-   **Enhancement:** Quick links dropdown at navbar.
+-   **Enhancement:** Post list updated with Updated column and activity log timestamps.
+-   **Enhancement:** Media selector modal responsive improvement.
+-   **Refactor:** Unified server-side block rendering for email and page contexts.
+-   **Refactor:** Blocks refactored to remove unnecessary padding and standalone page improvement.
+-   **Refactor:** Better structure for module installations.
+-   **Fix:** Security fixes with sanitization in content rendering.
+-   **Fix:** Email verification link, template preview, and campaign tracking fixes.
+-   **Fix:** Fixed missing authorization checks.
+-   **Fix:** Module installation, upload, and delete bug fixes.
+-   **Fix:** Fixed cached permission issues.
+-   **Fix:** Numerous test fixes and CI improvements.
+
+**[v0.9.14] - 2026-03-16**
+-   **Refactor:** Unified server-side block rendering for email and page contexts via render.php
+-   **New:** EmailStyleHelper PHP utility for email-safe inline CSS from layoutStyles
+-   **New:** Server-side render.php for 13 blocks (divider, spacer, footer, social, preformatted, accordion, countdown, table, video, text-editor, html, columns, section)
+-   **Improvement:** Email blocks now use server-side placeholders for consistent rendering with layoutStyles support
+-   **Fix:** Email campaign preview, send, and tracking now process dynamic blocks correctly
+
+**[v0.9.13] - 2026-03-16**
+-   **Refactor:** Block improvements for emails
+-   **Fix:** Module approval now syncs updated version assets and metadata
+
+**[v0.9.12] - 2026-03-14**
+-   **Fix:** Fixed security issue with sanitization in content rendering
+-   **Improvement:** Refactored code and pre block for better code snippet support
+-   **Fix:** Fixed email verification link to show valid link
+
+**[v0.9.11] - 2026-03-09**
+-   **Fix:** Fixed missing authorization checks
+-   **Fix:** Module crud with migration and some other registration logics
+-   **Improvement:** Translation system chunks data saving
+
+**[v0.9.10] - 2026-02-26**
+-   **Fix:** Block editor text block, heading block line break and some other issues.
+-   **Fix:** Module list page module icon was not consistent.
+
+**[v0.9.9.4] - 2026-02-24**
+-   **Fix:** Fixed cached permission.
+
+**[v0.9.9.1] - 2026-02-24**
+-   **Fix:** Upgrade core issue on some servers.
+-   **Enhancement:** Added mailer class column to email logs table.
+
+**[v0.9.9] - 2026-02-22**
+-   **Feat:** Menu management for frontend.
+-   **Enhancement:** Module command, module crud command improvements.
+-   **Enhancement:** Several pages more filter hook supported.
+-   **Fix:** Improved several test cases.
+
+**[v0.9.8] - 2026-02-17**
+-   **Feat:** Social authentication with Laravel Socialite.
+-   **Feat:** Cache / performance management section in settings page with cache clear, config cache, route cache, view cache and so on.
+-   **Enhancement:** Imoprove core download and update system with better UI/UX.
+
+**[v0.9.7] - 2026-02-14**
+-   **Fix:** Demo was not loading the faker.
+-   **Enhancement:** Post list updated with Updated column.
+-   **Enhancement:** Created date in activity log list page.
+-   **Enhancement:** Media library modal responsive improvement.
+-   **Fix:** Fixed Module:make-crud command to generate menus properly.
+-   **Feat:** Added clean all logs button in activity log list page.
+
+**[v0.9.6] - 2026-02-13**
+-   **Feat:** Compact attachment component.
+-   **Fix:** Fixed module replace modal scroll issue.
+-   **Fix:** Demo app refresh issue.
+
+**[v0.9.5] - 2026-02-12**
+-   **Fix:** Fixed module installation issue on some servers.
+
+**[v0.9.3] - 2026-02-08**
+-   **Feat:** Inbound/Outbound email connection managent.
+-   **Feat:** CRUD Generator (`module:make-crud`) - Rapid scaffolding for modules with Model, Datatable, Views, Routes, Menu.
+-   **Enhancement:** Fallback queue handling management.
+-   **Enhancement:** Quick links dropdown at navbar.
+-   **Enhancement:** Updated some stubs for easy module generation following laradashboard.
+
+**[v0.9.2] - 2025-01-11**
+-   **Feat:** Manual core upgrade system with backup/restore functionality.
+-   **Feat:** Production-ready zip distribution with vendor folder support.
+-   **Feat:** cPanel/shared hosting support without document root changes.
+-   **Enhancement:** Storage directory structure auto-creation during upgrades.
+
+**[v0.9.1] - 2025-01-04**
+-   **Feat:** AI Agent - Agentic CMS assistant to help you create, manage, and optimize content using AI.
+-   **Feat:** Beautiful onboarding experience for initial installation.
+-   **Enhancement:** Improved AI content generation and fine-tuning options in post/page editor.
+-   **Enhancement:** Module improvement stability, upgrade notices.
+
+**[v0.9.0] - 2025-12-19**
+-   **chore:** Revamping the versions to v0.9.x.
+
+**[v2.4.0-beta] - 2025-12-19**
+
+-   **Feat:** Post / Page Builder - Manage posts/pages with visual drag and drop builder.
+-   **Feat:** Email Management System - Email connections, email templates with visual builder.
+-   **Feat:** Notifications Management - Centralized notification settings and management.
+-   **Feat:** Detail Pages - User, Role, Permission, Module detail views with comprehensive information.
+-   **Enhancement:** Improved module detail page with better UI/UX.
+-   **Enhancement:** Improved role detail page with better UI/UX.
+-   **Enhancement:** Module installation process improved with better UI/UX.
+
+**[v2.3.0-beta] - 2025-09-07**
+
+-   **Feat:** Datatable integration for Users, Roles, Permissions, Posts, Categories, Tags.
+-   **Feat:** Several new components.
+-   **Feat:** Observer added for models.
+-   **Feat:** Introduce hooks with more managed/documented way.
+-   **Enhancement:** Updated code structure, new components, improved code quality.
+-   **Fix:** Several small UI bugs.
+
+**[v2.2.0-beta] - 2025-08-17**
+
+-   **Feat:** Media library manager.
+-   **Feat:** Improved user / profile UI/UX with lots of options.
+-   **Feat:** Implement reCAPTCHA and custom admin login integration with configurable page settings.
+-   **Enhancement:** Update menu structure.
+-   **Fix:** Several small UI bugs.
+
+**[v2.0.1-beta] - 2025-07-27**
+
+-   **Feat:** Refactor Lara Dashboard whole Admin UI - Icons, Accessibility, Components, Pages, Layouts and so on.
+-   **Enhancement:** Keep search form design consistent as `form-control` height.
+-   **Enhancement:** Global variable for editor script to handle from any module.
+-   **Enhancement:** Cleanup many codes to separate service to keep business logics separated.
+-   **Enhancement:** Fixed several unit tests.
+-   **Fix:** User chart data with SQLite supported.
+-   **Fix:** Remove some unnecessary console logs.
+-   **Doc:** Added Coding standard docs.
+
+**[v2.0-beta] - 2025-07-20**
+
+-   **Feat:** Refactor Lara Dashboard whole Admin UI - Icons, Accessibility, Components, Pages, Layouts and so on.
+-   **Enhancement:** Improve components, reusibility, and code quality.
+-   **Fix:** Some random UI fixes.
+
+**[v1.7.0-beta] - 2025-07-13**
+
+-   **Feat:** Rest API For Lara Dashboard, Scramble API documentation.
+-   **Enhancement:** Cleanup class names to use more standard class names.
+-   **Fix:** Some random UI fixes.
+
+**[v1.6.0-beta] - 2025-06-21**
+
+-   **Enhancement:** Write/Update Standard Unit Tests, pint, rector, phpstan for the project.
+-   **Fix:** Potential fix for code scanning alert no. 1: Workflow does not contain permissions.
+-   **Fix:** Language switcher if no icon is selected.
+-   **Fix:** Non-Translated keys keep empty instead the placeholder.
+
+**[v1.5.0-beta] - 2025-06-01**
+
+-   **Feature**: Content Management System (CMS) with Content(Post/Page), Content Category, Content Tag management.
+-   **Feature**: Post/Page activity chart in Dashboard.
+-   **Feature**: Bulk delete for Users, Roles, Posts, Categories, Tags.
+-   **Enhancement**: Sorting features for Users, Roles, Permissions, Posts, Categories, Tags.
+-   **Enhancement**: Components - Confirm delete, Success/Error messages, Toast, Text Editor, Breadcrumbs, Action dropdown.
+-   **Fix**: System dark mode issues.
+-   **Fix**: Modules refactorring in demo mode.
+
+**[v1.3.0-beta] - 2025-05-18**
+
+-   **Feature**: Admin Menu architecture with more extendible way.
+-   **Feature**: Permission List and detail page.
+-   **Enhancement**: Improved module compatibility.
+
+**[v1.2.0-beta] - 2025-05-12**
+
+-   **Feature - Translation Management**: Added Translation management sytem with supporting 21 languages by default and possibility to add any in a second.
+-   **Enhancement - Dashboard Redesign**: Dashboard redesigned with new card, user history chart, several more design improvements.
+-   **Enhancement**: Role list page, user list page to add links of users list sorting by role and role edit page linkings.
+-   **Enhancement**: Cleanup code base to use services, requests more, use SOLID whenever needed.
+-   **Fix**: Fixed #109 Submenu dropdown icon doesn't change on open/close submenu of a menu item.
+-   **Fix**: Fixed #105 Sidebar Icon not working good if collapsed.
+-   **Fix**: Fixed #93 Theme primary color, secondary color was not working.
+-   **Fix**: Fixed #99 Superadmin role shouldn't be edited.
+-   **Fix**: Fixed Mobile responsive has some issues.
+-   **Fix**: Fixed Sidebar toggle was not persistent issue.
+-   **Fix**: Fixed Role create -> selecting permission group can't check the permissions in that group checkboxes automatically.
+
+**[v1.0.0-beta] - 2025-04-21**
+
+-   **Feature - Forget Password Management**: Enhanced the forget password functionality for better reliability and user experience.
+-   **Feature - Settings Management**: Added comprehensive settings management features, including API support.
+-   **Enhancement - Role-Based Access Control (RBAC) Improvements**: Improved authorization mechanisms and role-based access control.
+-   **Feature - Admin Impersonation**: Administrators can now log in as other users and switch back to their original accounts seamlessly.
+-   **Enhancement - UI/UX Enhancements**: Updated the role create/edit form for a more intuitive and user-friendly experience.
+-   **Enhancement - User Profile and Management Enhancements**: Refactored user-related operations to utilize `UserService` and `RolesService` for better separation of concerns and maintainability.
+-   **Docs - Documentation and Configuration Updates**:
+    -   Updated `.env.example` to include a `GITHUB_LINK` variable for improved project visibility.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔄 Versions:
+
+Latest version `v1.0.1` - https://github.com/laradashboard/laradashboard/releases/tag/v1.0.1
+
+<details>
+<summary>View Old versions</summary>
+
+-   Laravel `7.x` & PHP -`7.x`
+
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/Laravel7.x
+    -   Branch - https://github.com/ManiruzzamanAkash/laravel-role/tree/Laravel7.x
+
+-   Laravel `9.7` & PHP - `8.x`
+
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/Laravel9.x
+
+-   Laravel `11.x`
+
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/v11.x-main
+
+-   Laravel `12.x` & PHP >= `8.3`
+
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/Laravel12.x
+
+-   Laravel `12.x` & Tail Admin Template Integration
+
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/Laravel12.x-tailadmin
+
+-   Laravel `12.x` & Module & Action Log integration
+
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/Laravel12.x-module-logs
+
+-   v1.0.0 - Settings, Forget password and lots of refactorring
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/v1.0.0
+-   v1.2.0 - Translation Management, Dashboard Redesign, Role/User List improvements
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/v1.2.0
+-   v1.3.0 - Admin Menu architecture, Permission List and detail page
+    -   Tag - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/v1.3.0
+-   v1.5.0 - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/v1.5.0
+-   v1.6.0 - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/v1.6.0
+-   v1.7.0 - https://github.com/ManiruzzamanAkash/laravel-role/releases/tag/v1.7.0
+
+More release tags - https://github.com/laradashboard/laradashboard/releases
+
+</details>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🚀 Project Setup
+
+**Clone and Go Project**
+
+```console
+git clone git@github.com:laradashboard/laradashboard.git
+cd laradashboard
+```
+
+**Database & env creation**
+
+-   Create database called - `laradashboard`
+-   Create `.env` file by copying `.env.example` file
+
+```bash
+cp .env.example .env
+```
+
+**Install Composer & Node Dependencies**
+
+```console
+composer install
+npm install
+```
+
+**Generate Artisan key**
+
+```console
+php artisan key:generate
+```
+
+**Link storage for file upload processing**
+```console
+php artisan storage:link
+```
+
+**Migrate Database with seeder**
+
+```console
+php artisan migrate:fresh --seed
+```
+
+**Run Project**
+
+```php
+composer run dev
+```
+
+So, You've got the project of Lara Dashboard on your local machine - http://localhost:8000
+
+[Note]: For hot reloading to work, you must need node js version >= 20.19
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔨 Build Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run build` | Build core only |
+| `npm run build:all` | Build core + all enabled modules |
+| `npm run build:modules` | Build all enabled modules |
+| `npm run build:modules -- --modules=crm` | Build specific module |
+| `npm run build:modules -- --modules=crm,customform` | Build multiple modules |
+| `npm run dev` | Dev server (core + modules) |
+| `npm run dev:core` | Dev server (core only) |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📦 Distribution Package (Zip Build)
+
+Create a production-ready zip package for distribution or manual upgrades. This package includes the vendor folder so users don't need Composer installed.
+
+**Using the Admin Panel:**
+1. For production distribution, first run: `composer install --no-dev --optimize-autoloader`
+2. Go to **Settings → Core Upgrades**
+3. Click **Create Backup**
+4. Select backup type (Core + Modules recommended)
+5. Check **Include vendor folder** for production deployment
+6. Download the generated zip file
+7. Restore dev dependencies: `composer install`
+
+**Manual Zip Creation:**
+
+```bash
+# Build all assets first
+npm run build:all
+
+# Install production-only dependencies (removes dev packages like Pest, PHPUnit, etc.)
+composer install --no-dev --optimize-autoloader
+
+# Create distribution zip (excludes node_modules, .git, tests, uploads, etc.)
+zip -r laradashboard-v$(cat version.json | grep -o '"version": "[^"]*' | cut -d'"' -f4).zip \
+    app bootstrap config database resources routes vendor Modules \
+    public/.htaccess public/index.php public/favicon.ico public/robots.txt \
+    public/asset public/backend public/build public/build-* public/css public/js public/images/logo \
+    storage/app/.gitignore storage/app/public/.gitignore \
+    storage/framework/.gitignore storage/framework/cache/.gitignore \
+    storage/framework/sessions/.gitignore storage/framework/views/.gitignore \
+    storage/logs/.gitignore \
+    artisan composer.json composer.lock package.json version.json index.php \
+    .env.example .htaccess vite.config.js tailwind.config.js postcss.config.js \
+    -x "*.git*" -x "node_modules/*" -x "tests/*" -x "storage/logs/*" -x "public/images/uploads/*" -x "public/uploads/*"
+
+# Restore dev dependencies for local development
+composer install
+```
+
+> **Note:** Running `composer install --no-dev` before creating the zip ensures the vendor folder only contains production dependencies, significantly reducing the package size.
+
+**What's included in the distribution package:**
+- `app/` - Application code
+- `bootstrap/` - Bootstrap files
+- `config/` - Configuration files
+- `database/` - Migrations, seeders, factories
+- `public/` - Public assets (build, css, js, images)
+- `resources/` - Views, JS, CSS, lang files
+- `routes/` - Route definitions
+- `vendor/` - Composer dependencies (optional, for production)
+- `index.php` - Root entry point for shared hosting (cPanel)
+- `.htaccess` - Apache rewrite rules
+- `.env.example` - Environment template
+- Core config files (composer.json, package.json, etc.)
+
+**Shared Hosting (cPanel) Deployment:**
+
+The package includes `index.php` and `.htaccess` in the root directory, so it works out-of-the-box on shared hosting without changing document root:
+
+```bash
+# Upload all files to public_html/
+# No need to change document root - just upload and configure .env
+```
+
+If you prefer the standard Laravel setup (recommended for VPS/dedicated servers):
+1. Point your domain's document root to the `public/` directory
+2. Or create a symlink: `ln -s /path/to/laradashboard/public /home/user/public_html`
+
+**Fresh Installation from Zip:**
+```bash
+# Extract the zip
+unzip laradashboard-vX.X.X.zip -d laradashboard
+cd laradashboard
+
+# Configure environment
+cp .env.example .env
+php artisan key:generate
+
+# Update .env with your database credentials
+# DB_DATABASE=your_database
+# DB_USERNAME=your_user
+# DB_PASSWORD=your_password
+
+# Run migrations
+php artisan migrate --seed
+php artisan storage:link
+
+# If vendor was not included, run:
+composer install --no-dev --optimize-autoloader
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔄 Previously From laravel-role
+
+We were previously at https://github.com/ManiruzzamanAkash/laravel-role, so you need to change the URL if you moved from there
+
+```console
+git remote set-url origin git@github.com:laradashboard/laradashboard.git
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## ⚙️ How it works
+
+1. Login using Super Admin Credential -
+    1. Email - `superadmin@example.com`
+    1. Password - `12345678`
+1. Forget password - Password forget and reset will work if email is set up properly
+1. Create User
+1. Create Role
+1. Assign Permission to Roles
+1. Assign Multiple Role to an User
+1. Check by login with the new credentials.
+1. If you've not enough permission to do any task, you'll get a warning message.
+1. Dashboard with Beautiful chart integrated
+1. Module Based Development - Custom Module Add/Enable/Disable/Delete with detail view
+1. Monitoring - Logging of every action of your application
+1. Monitoring - Laravel Pulse
+1. Translation Management - Add/Edit/Delete Language, Add/Edit/Delete Translation
+1. Settings - General, Site Appearance, Content, Integration, Security settings
+1. Admin Menu - Add/Edit/Delete Menu, Submenu, Link
+1. Admin Impersonation - Login as another user and switch back to your original account
+1. Custom Error Pages - 404, 500, 503, 403
+1. Content Management System - Add/Edit/Delete Content, Content Category, Content Tag
+1. AI Content Generation - Configure AI providers (OpenAI, Anthropic, etc.) for content generation
+1. Email Management - Email connections, email templates with visual builder, notifications
+1. Detail Pages - User, Role, Permission, Module detail views with comprehensive information
+1. Rest API - Rest API's for Users, Roles, Permissions, Settings, Translations, Content(Post/Page/Category/Tag) and so on.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📧 Email setup
+
+You can use Mailpit to test emails easily - https://mailpit.axllent.org/
+
+Installation link - https://mailpit.axllent.org/docs/install/
+
+```bash
+MAIL_MAILER=smtp
+MAIL_HOST=127.0.0.1
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=dev@example.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+Browse Emails - http://localhost:8025
+
+>[!NOTE] You can also create custom Email connection from Email Connections page.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📚 Documentation
+
+https://laradashboard.com/docs/
+
+## 🔗 Rest API Documentation
+
+We've used [Scramble](https://github.com/dedoc/scramble) to automatically generate the Rest API documentation for Lara Dashboard. You can find the API documentation at:
+
+http://localhost:8000/docs/api
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Tests
+
+We've used Laravel Pint, Rector, Larastan(PHPstan) - static analysis and Pest for unit tests, e2e (browser) tests.
+
+```bash
+composer run test
+```
+
+
+```bash
+composer run test
+```
+
+**Format:** To format the code, we've used `pint`. You can run the following command to format the code:
+
+```bash
+composer run format
+```
+
+**Type Safety:** To improve type safety, we've used `rector`. You can run the following command to add type hints:
+
+```bash
+composer run type-check
+```
+
+You can also run individual commands for each tool (optional):
+
+```bash
+composer run pint
+composer run phpstan
+composer run pest
+```
+
+## 🛠️ Troubleshooting
+
+<details>
+<summary><strong>Laragon/Windows: ext-sockets missing</strong></summary>
+
+If you get this error during `composer install`:
+```
+pestphp/pest-plugin-browser requires ext-sockets * -> it is missing from your system
+```
+
+**Fix:** Enable the sockets extension in `php.ini`:
+```ini
+extension=sockets
+```
+
+Or via Laragon UI: Right-click tray → **PHP** → **Extensions** → check **sockets**
+
+**Quick workaround:**
+```bash
+composer install --ignore-platform-req=ext-sockets
+```
+</details>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🚀 Laravel Boost
+
+Laravel Boost is already installed in this project to provide enhanced development and debugging tools for Lara Dashboard.
+
+**How to use Boost:**
+
+Visit the [Laravel Boost documentation](https://github.com/laravel/boost).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📸 Screenshots
+
+### 🔐 Login & Authentication
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Login Page</strong><br/>
+      <img width="100%" alt="Login Page" src="/demo-screenshots/00-Login-Page-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Forget Password Page (Dark Mode)</strong><br/>
+      <img width="100%" alt="Forget Password Page" src="/demo-screenshots/01-Forget-password.png"/>
+    </td>
+  </tr>
+</table>
+
+### 📊 Dashboard
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Dashboard (Light Mode)</strong><br/>
+      <img width="100%" alt="Dashboard Light Mode" src="/demo-screenshots/03-Dashboard-Page-lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Dashboard (Dark Mode)</strong><br/>
+      <img width="100%" alt="Dashboard Dark Mode" src="/demo-screenshots/04-Dashboard-Page-Dark-Mode.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Dashboard Collapsed Sidebar</strong><br/>
+      <img width="100%" alt="Dashboard Collapsed Sidebar" src="/demo-screenshots/04_1-Dashboard-Collapsed-Sidebar.png"/>
+    </td>
+  </tr>
+</table>
+
+### 🔑 Role Management
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Role List (Light Mode)</strong><br/>
+      <img width="100%" alt="Role List" src="/demo-screenshots/05-Role-List-Lite.png"/>
+    </td>
+    <td width="50%">
+      <strong>Role List (Dark Mode)</strong><br/>
+      <img width="100%" alt="Role List Dark" src="/demo-screenshots/06-Role-List-Dark.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Role Create</strong><br/>
+      <img width="100%" alt="Role Create" src="/demo-screenshots/07-Role-Create.png"/>
+    </td>
+    <td width="50%">
+      <strong>Role Edit</strong><br/>
+      <img width="100%" alt="Role Edit" src="/demo-screenshots/08-Role-Edit.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Role Detail</strong><br/>
+      <img width="100%" alt="Role Detail" src="/demo-screenshots/08_1-Role-Detail-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Permission List</strong><br/>
+      <img width="100%" alt="Permission List" src="/demo-screenshots/09-Permissions-List-Lite-Mode.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Permission Detail</strong><br/>
+      <img width="100%" alt="Permission Detail" src="/demo-screenshots/09_1-Permission-Detail-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <!-- Reserved for future screenshot -->
+    </td>
+  </tr>
+</table>
+
+### 👥 User Management
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Users List (Light mode)</strong><br/>
+      <img width="100%" alt="Users List (Light mode)" src="/demo-screenshots/10-User-List-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>User Create (Dark mode)</strong><br/>
+      <img width="100%" alt="User Create" src="/demo-screenshots/11-User-Create-Dark-Mode.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>User Detail</strong><br/>
+      <img width="100%" alt="User Detail" src="/demo-screenshots/12_1-User-Detail-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Profile Edit</strong><br/>
+      <img width="100%" alt="Profile Edit" src="/demo-screenshots/12-Profile-Edit-Lite-Mode.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>User Delete</strong><br/>
+      <img width="100%" alt="User Delete" src="/demo-screenshots/13-User-Delete-Lite-Mode.png" />
+    </td>
+    <td width="50%">
+      <!-- Reserved for future screenshot -->
+    </td>
+  </tr>
+</table>
+
+### 📝 Content Management - CMS
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Posts List</strong><br/>
+      <img width="100%" alt="Users List (Light mode)" src="/demo-screenshots/31-Post-List-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Post Create</strong><br/>
+      <img width="100%" alt="Users List (Dark mode)" src="/demo-screenshots/30-Post-List-Dark-Mode.png" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Pages List</strong><br/>
+      <img width="100%" alt="Users List (Light mode)" src="/demo-screenshots/38-Pages-List-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Page Edit</strong><br/>
+      <img width="100%" alt="Users List (Dark mode)" src="/demo-screenshots/39-Pages-Edit-Dark-Mode.png" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Category List & Create</strong><br/>
+      <img width="100%" alt="Category List & Create" src="/demo-screenshots/34-Category-List-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Category Edit</strong><br/>
+      <img width="100%" alt="Category Edit" src="/demo-screenshots/35-Category-Edit-Dark-Mode.png" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Tag List & Create</strong><br/>
+      <img width="100%" alt="Tag Create" src="/demo-screenshots/36-Tags-List-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Tag Edit</strong><br/>
+      <img width="100%" alt="Tag Delete" src="/demo-screenshots/37-Tags-Edit-Dark-Mode.png" />
+    </td>
+  </tr>
+</table>
+
+### 📁 Media Management
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Media List (Light Mode)</strong><br/>
+      <img width="100%" alt="Media List" src="/demo-screenshots/60-Media-List-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Media List (Dark Mode)</strong><br/>
+      <img width="100%" alt="Media List Dark" src="/demo-screenshots/61-Media-List-Dark-Mode.png"/>
+    </td>
+  </tr>
+</table>
+
+### 🤖 AI Content Generation
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>AI Providers Settings</strong><br/>
+      <img width="100%" alt="AI Content Generation" src="/demo-screenshots/70-AI-Providers-Lite-Mode-Post.png"/>
+    </td>
+    <td width="50%">
+      <strong>AI Providers Settings</strong><br/>
+      <img width="100%" alt="Inline AI" src="/demo-screenshots/71-Inline-AI-Editor.png"/>
+    </td>
+  </tr>
+</table>
+
+### 📧 Email Management
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Email Connections</strong><br/>
+      <img width="100%" alt="Email Connections" src="/demo-screenshots/72-Email-Connections-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Email Templates</strong><br/>
+      <img width="100%" alt="Email Templates" src="/demo-screenshots/73-Email-Templates-Lite-Mode.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Email Template Create</strong><br/>
+      <img width="100%" alt="Email Template Create" src="/demo-screenshots/74-Email-Templates-Create-Dark-Mode.png"/>
+    </td>
+    <td width="50%">
+      <strong>Notifications Settings</strong><br/>
+      <img width="100%" alt="Notifications Settings" src="/demo-screenshots/75-Notifications-Lite-Mode.png"/>
+    </td>
+  </tr>
+</table>
+
+### 🧩 Module Management
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Module List</strong><br/>
+      <img width="100%" alt="Module List" src="/demo-screenshots/14-Module-List.png"/>
+    </td>
+    <td width="50%">
+      <strong>Install Module</strong><br/>
+      <img width="100%" alt="Install Module" src="/demo-screenshots/15-Module-Install.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Module Detail</strong><br/>
+      <img width="100%" alt="Module Detail" src="/demo-screenshots/16-Module-Detail-Lite-Mode.png"/>
+    </td>
+    <td width="50%">
+      <!-- Reserved for future module screenshot -->
+    </td>
+  </tr>
+</table>
+
+### ⚙️ Settings Pages
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>General Settings</strong><br/>
+      <img width="100%" alt="General Settings" src="/demo-screenshots/40-Settings-General.png"/>
+    </td>
+    <td width="50%">
+      <strong>Site Appearance</strong><br/>
+      <img width="100%" alt="Site Appearance" src="/demo-screenshots/41-Settings-Site-Appearance-Dark-Mode.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Content Settings</strong><br/>
+      <img width="100%" alt="Content Settings" src="/demo-screenshots/42-Settings-Content.png"/>
+    </td>
+    <td width="50%">
+      <strong>Integration Settings</strong><br/>
+      <img width="100%" alt="Integration Settings" src="/demo-screenshots/43-Settings-Integration.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Security Settings</strong><br/>
+      <img width="100%" alt="Security Settings" src="/demo-screenshots/44-Settings-Performance-Security.png"/>
+    </td>
+  </tr>
+</table>
+
+### 🌐 Translations Pages
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Translations List (Light Mode)</strong><br/>
+      <img width="100%" alt="Translations List" src="/demo-screenshots/50-Translation-List-Lite-Mode.png" />
+    </td>
+    <td width="50%">
+      <strong>Translations List (Dark Mode)</strong><br/>
+      <img width="100%" alt="Translations List Dark" src="/demo-screenshots/51-Translation-List-Dark-Mode.png" />
+    </td>
+  </tr>
+</table>
+
+### 📊 Monitoring
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Action Logs</strong><br/>
+      <img width="100%" alt="Action Logs" src="/demo-screenshots/20-Action-Log-List.png"/>
+    </td>
+    <td width="50%">
+      <strong>Laravel Pulse</strong><br/>
+      <img width="100%" alt="Laravel Pulse" src="/demo-screenshots/91-Laravel-Pulse-Dashboard-for-Monitoring.png"/>
+    </td>
+  </tr>
+</table>
+
+### 🧩 Rest API Management
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Rest API</strong><br/>
+      <img width="100%" alt="Rest API" src="/demo-screenshots/120-Rest-API-Documentation.png"/>
+    </td>
+    <td width="50%">
+      <strong>Rest API Login</strong><br/>
+      <img width="100%" alt="Rest API Login" src="/demo-screenshots/121-Rest-API-Login.png"/>
+    </td>
+  </tr>
+</table>
+
+### 🔧 Other Pages / Sections / Tests
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Custom Error Pages</strong><br/>
+      <img width="100%" alt="Custom Error Pages" src="/demo-screenshots/100-Custom-Error-Pages.png"/>
+    </td>
+    <td width="50%">
+      <strong>Post activity Chart</strong><br/>
+      <img width="100%" alt="Post activity Chart" src="/demo-screenshots/102-Post-activity-Chart.png"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Pest, Pint, Rector, PHPstan tests</strong><br/>
+      <img width="100%" alt="Pest, Pint, Rector, PHPstan tests" src="/demo-screenshots/103-Unit-Tests-Demo.png"/>
+    </td>
+  </tr>
+</table>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔗 Live Demo
+
+https://laradashboard.com/try-demo/
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## ✨ Premium Features
+
+Please visit at Lara Dashboard to get more premium moduels - https://laradashboard.com. Premium modules included CRM, HRM, Course Managements and so on.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🧩 Core modules
+
+-   **Task Manager** - https://github.com/laradashboard/TaskManager - Basic Task Manager module for Lara Dashboard | Standard Starter Module for Lara Dashboard.
+-   **User Avatar** - https://github.com/laradashboard/UserAvatar - A very simple module create an avatar for a user. Handle migration, entries/updates in user forms and so on.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📦 Module Development
+
+Lara Dashboard uses [nwidart/laravel-modules](https://laravelmodules.com/) for modular architecture. Modules are self-contained packages with pre-compiled assets - no npm required on the server.
+
+### Quick Start
+
+```bash
+# Create a new module
+php artisan module:make Blog
+
+# Build and package for distribution
+php artisan module:compile-css Blog --dist
+php artisan module:package Blog --no-vendor
+# Output: Blog-v1.0.0.zip
+```
+
+### CRUD Generator
+
+Rapidly scaffold complete CRUD operations with a single command:
+
+```bash
+# 1. Create migration first
+php artisan module:make-migration create_blog_posts_table Blog
+
+# 2. Run migration
+php artisan migrate
+
+# 3. Generate complete CRUD (Model, Datatable, Views, Routes, Menu)
+php artisan module:make-crud Blog --migration=create_blog_posts_table
+
+# Or use model name (auto-detects migration)
+php artisan module:make-crud Blog --model=Post
+
+# 4. Clear cache and visit /admin/blog/posts
+php artisan optimize:clear
+```
+
+**What gets generated:**
+- ✅ Model with fillable fields and casts
+- ✅ Datatable with sorting, searching, pagination
+- ✅ Index, Show, Create, Edit Livewire components
+- ✅ Blade views with breadcrumb navigation
+- ✅ Routes (index, create, show, edit)
+- ✅ Sidebar menu item
+
+**[📖 Full CRUD Generator Guide](docs/LaraDocs/developer-guide/crud-generator.md)** - Covers customization, filters, permissions, and best practices.
+
+### Installing Modules
+
+**Via Web UI:** Upload ZIP at **Modules → Install Module** (assets publish automatically)
+
+**Via CLI:**
+```bash
+unzip Blog-v1.0.0.zip -d modules/
+php artisan module:enable Blog
+```
+
+**[📖 Full Module Development Guide](docs/module-development.md)** - Covers module structure, Tailwind CSS setup, building, packaging, and best practices.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 👥 Contributing
+
+Want to contribute? Fork the project, make your changes, and submit a pull request. Even small improvements to documentation are appreciated!
+
+Please be sure to read our [Contribution Guide](CONTRIBUTING.md) before submitting your PR.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## ➶ Coding Standards
+
+✨ Following a consistent coding standard ensures code quality, readability, and easier collaboration for everyone.
+📏 Please be sure to read our [Contribution Guide](Coding-Standard.md) before submitting your PR.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### 🌟 Top contributors:
+
+<a href="https://github.com/laradashboard/laradashboard/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=laradashboard/laradashboard" alt="contrib.rocks image" />
+</a>
+
+### ✩ Growth Story
+
+[![Star History Chart](https://api.star-history.com/svg?repos=laradashboard/laradashboard&type=Date)](https://www.star-history.com/#laradashboard/laradashboard&Date)
+
+## 💖 Support
+
+If you like my work you may consider buying me a ☕ / 🍕
+
+<a href="https://www.patreon.com/maniruzzaman" target="_blank" title="Buy Me A Coffee">
+    Go to Patreon
+</a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📞 Connect
+
+-   Join Facebook Community (For any questions, latest updates) - https://www.facebook.com/groups/laradashboard
+-   Linkedin Community - https://www.linkedin.com/groups/14690156
+-   Youtube channel (For tutorials) - https://www.youtube.com/@laradashboard
+-   Maniruzzaman Akash - [@LinkedIn](https://www.linkedin.com/in/maniruzzamanakash) | manirujjamanakash@gmail.com
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/laradashboard/laradashboard.svg?style=for-the-badge
+[contributors-url]: https://github.com/laradashboard/laradashboard/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/laradashboard/laradashboard.svg?style=for-the-badge
+[forks-url]: https://github.com/laradashboard/laradashboard/network/members
+[stars-shield]: https://img.shields.io/github/stars/laradashboard/laradashboard.svg?style=for-the-badge
+[stars-url]: https://github.com/laradashboard/laradashboard/stargazers
+[issues-shield]: https://img.shields.io/github/issues/laradashboard/laradashboard.svg?style=for-the-badge
+[issues-url]: https://github.com/laradashboard/laradashboard/issues
+[license-shield]: https://img.shields.io/github/license/laradashboard/laradashboard.svg?style=for-the-badge
+[license-url]: https://github.com/laradashboard/laradashboard/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/maniruzzamanakash
+[product-screenshot]: images/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com
+[PHP.com]: https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white
+[PHP-url]: https://www.php.net
+[JavaScript.com]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[JavaScript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[MySQL.com]: https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
+[MySQL-url]: https://www.mysql.com
+[TailwindCSS.com]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[TailwindCSS-url]: https://tailwindcss.com
+[AlpineJS.com]: https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=black
+[AlpineJS-url]: https://alpinejs.dev

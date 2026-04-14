@@ -1,0 +1,8 @@
+![Apollo upload logo](https://cdn.jsdelivr.net/gh/jaydenseric/apollo-upload-client@1.0.0/apollo-upload-logo.svg)
+
+# Apollo upload examples
+
+A full stack demo of file uploads via GraphQL mutations using [GraphQL multipart request spec](https://github.com/jaydenseric/graphql-multipart-request-spec) implementations for [Apollo Client](https://www.apollographql.com/docs/react) and [Apollo Server](https://www.apollographql.com/docs/apollo-server):
+
+- [Example GraphQL API](api) using [`graphql-upload`](https://npm.im/graphql-upload).
+- [Example web app](app) using [`apollo-upload-client`](https://npm.im/apollo-upload-client).

@@ -1,0 +1,185 @@
+
+= The Internet Computer Protocol (ICP)
+:toc: macro
+
+
+ifdef::env-github[]
+++++
+<p align="center">
+  <img width="800" src="/readme-icp3.png">
+</p>
+++++
+endif::[]
+
+
+The Internet Computer is the world’s first blockchain that runs at web speed and can increase its capacity without bound. Like the Internet (which is composed of many machines adhering to TCP/IP protocol) and blockchain protocols (such as Bitcoin and Ethereum).
+
+:toc-title:
+toc::[]
+
+== Resources on the Internet Computer
+
+=== R&D documentation
+
+You can learn more about the Internet Computer's Protocol, features, and designs here, here are some helpful resources:
+
+Protocol Documentation:
+
+- https://medium.com/dfinity/a-technical-overview-of-the-internet-computer-f57c62abc20f[A Technical Overview of the Internet Computer (blog post)]
+- https://medium.com/dfinity/software-canisters-an-evolution-of-smart-contracts-internet-computer-f1f92f1bfffb[Canisters, an Evolution of Smart Contracts]
+- https://medium.com/dfinity/applied-crypto-one-public-key-for-the-internet-computer-ni-dkg-4af800db869d[Noninteractive Distributed Key Generation]
+- https://medium.com/dfinity/the-internet-computers-token-economics-an-overview-29e238bd1d83[The Internet Computer’s Token Economics: An Overview]
+- https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+- https://github.com/dfinity/nns-proposals[List of NNS Proposals]
+- https://medium.com/dfinity/achieving-consensus-on-the-internet-computer-ee9fbfbafcbc[Consensus protocol]
+
+Engineering
+
+- https://sdk.dfinity.org/docs/developers-guide/concepts/what-is-ic[What is the Internet Computer?]
+- https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html[Tutorials, SDKs, and sample apps to get started]
+- https://docs.dfinity.org/[Rust Cargo docs for the replica]
+
+
+
+
+=== ICP Dashboard
+
+You can observe the state of the Internet Computer's infrastructure (Nodes, data centers, subnets) and traditional blockchain metrics (blocks/second, Token Supply, etc)
+
+- https://dashboard.internetcomputer.org
+
+=== The community
+
+To interact with the community, check out the developer forum: https://forum.dfinity.org/
+
+=== Rust implementation of the ICP
+
+This repo contains many different pieces (including testing and other infrastructure components), but the most important one is the source code for the Rust implementation of the "*replica*" (read: "client" in some blockchains) that is compiled and run by the machines that together make up the Internet Computer.
+
+=== DFINITY Foundation
+
+The https://dfinity.org/[DFINITY Foundation] is a Swiss not-for-profit organization based in Zurich, Switzerland, which oversees research centers in Palo Alto, San Francisco, and Zurich. Its goal is to further the design, development, and adoption of the Internet Computer Protocol.
+
+== Getting Started
+
+=== Who should be using this code
+
+- *If you are an app developer*, and your intent is to build apps so you want a local Internet Computer replica in your machine to deploy to, you are better off using the https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html[Canister SDK] written by the DFINITY Foundation. It is optimized for this and much more lightweight (less than 2 minutes to get started). It will build and run a local replica and you do not need to get into systems code to run it.
+
+- *If you are a blockchain enthusiast*, and your intent is to understand the protocol (not an implementation), you may be better off going to the https://medium.com/dfinity/achieving-consensus-on-the-internet-computer-ee9fbfbafcbc[Consensus protocol] and https://sdk.dfinity.org/docs/interface-spec/index.html[IC Interface Specification]. This content (by the DFINITY research team) is tailor made for understanding the protocol and design.
+
+- *If you are a blockchain miner*, you should know that the Internet Computer Protocol (while it is a blockchain) does not have the traditional mining or validating you may come to expect from blockchain projects. The Internet Computer Protocol is designed using new and novel cryptography that does not require "mining"... but it does require independent node providers, which may include yourself. You can of course check out the source code in this repo, but a better resource may be this: https://wiki.internetcomputer.org/wiki/Internet_Computer_wiki#For_Node_Providers[Internet Computer Wiki - For Node Providers]
+
+- *If you are an engineer looking to build a new SDK, oracle, wallet or any part that enables and improves the Internet Computer ecosystem*, you should take a look at the https://sdk.dfinity.org/docs/interface-spec/index.html[Interface Specification] which is for low-level interaction with the Internet Computer.
+
+- *If you are a systems engineer, security engineer or cryptographer*, and your intent is to see what is going on under the hood by digging through source and building this locally, *_then you are in the right place_*.
+
+== Building the code
+
+*System requirements*
+
+- x86-64 based system (minimum: 16 GB MEM/SWAP, 100 GB available disk space)
+- Ubuntu 22.04 or newer
+- https://podman.io/getting-started/installation[Podman]
+
+For detailed information on building IC-OS images, please refer to the link:ic-os/README.adoc[IC-OS README]
+
+Alternatively, to build all IC-OS images using a simple, containerized environment, run:
+
+  $ ./ci/container/build-ic.sh -i
+
+To build only the binaries and canisters, use the `-b` and/or `-c` flags:
+
+  $ ./ci/container/build-ic.sh -b -c
+
+All built artifacts will be located in the top-level artifacts/ directory.
+
+== Verifying Releases
+
+=== Overview
+
+The Internet Computer provides a robust system for verifying the build reproducibility of IC-OS update images. Each https://dashboard.internetcomputer.org/releases[release proposal] includes detailed verification instructions.
+
+=== Prerequisites
+
+* Ubuntu 22.04 or higher
+* Python 3.x
+* curl (`sudo apt install curl`)
+* About 100 GB of free disk space in `$HOME` (or another volume, specifed via
+  option `--cache-dir`)
+
+=== Quick Start
+
+To verify an IC OS Version Election proposal:
+
+IMPORTANT: Always use versioned repro-check URLs (replace `{COMMIT_ID}` with the actual commit hash) instead of `master` to ensure compatibility between the repro-check script and the build system for that specific commit.
+
+[source,bash]
+----
+# Verify by proposal number
+curl -fsSL https://raw.githubusercontent.com/dfinity/ic/{COMMIT_ID}/ci/scripts/repro-check | \
+    python3 - -p <proposal_number>
+
+# Verify by git commit
+curl -fsSL https://raw.githubusercontent.com/dfinity/ic/{COMMIT_ID}/ci/scripts/repro-check | \
+    python3 - -c {COMMIT_ID}
+----
+
+=== Component-Specific Verification
+
+You can verify specific components individually:
+
+[source,bash]
+----
+# Verify GuestOS only
+curl -fsSL https://raw.githubusercontent.com/dfinity/ic/{COMMIT_ID}/ci/scripts/repro-check | \
+    python3 - -c {COMMIT_ID} --guestos
+
+# Verify HostOS only
+curl -fsSL https://raw.githubusercontent.com/dfinity/ic/{COMMIT_ID}/ci/scripts/repro-check | \
+    python3 - -c {COMMIT_ID} --hostos
+
+# Verify SetupOS only
+curl -fsSL https://raw.githubusercontent.com/dfinity/ic/{COMMIT_ID}/ci/scripts/repro-check | \
+    python3 - -c {COMMIT_ID} --setupos
+----
+
+== Contributing
+
+=== The Network Nervous System
+Thank you for taking the time to learn more about the Internet Computer Protocol. You can contribute to either, but it is important to note that the Internet Computer is governed by a decentralized system called the Network Nervous System (NNS). You can learn more here:
+
+- https://medium.com/dfinity/understanding-the-internet-computers-network-nervous-system-neurons-and-icp-utility-tokens-730dab65cae8[Understanding the Internet Computer’s Network Nervous System, Neurons, and ICP Utility Tokens]
+- https://github.com/dfinity/nns-proposals[List of NNS Proposals]
+
+=== Open Source Policy
+
+The DFINITY Foundation makes the code of the Internet Computer available to
+the public.
+
+This is important so that the community can review the code that defines the
+behaviour of the Internet Computer. Furthermore, the community will be able to build the code
+and verify that it derives from the same binary image that is referenced in
+upgrade proposals published via the Network Nervous System (NNS).
+
+All code of the Internet Computer is be licensed under the Apache 2.0 license, except for a
+few components licensed under the link:licenses/IC-1.0.txt[Internet Computer Community Source License] and link:licenses/IC-shared-1.0.txt[Internet Computer Shared Community Source License] which are more restrictive than the Apache 2.0 license to protect the Intellectual Property (IP) of the DFINITY Foundation.
+
+=== Submitting New Contributions
+
+We will soon be accepting external contributions (date TBD). Please follow these guidelines link:CONTRIBUTING.md[CONTRIBUTING.md]
+
+=== Bug Reports
+
+If you discover any bugs and vulnerabilities, please follow the procedure outlined in link:SECURITY.md[SECURITY.md]
+
+=== Rust Dependency Policy
+
+To make the mono repository a success, there needs to be some basic rules to make development faster.
+
+* When adding a new external crate dependency please make sure it is necessary. Check that
+** There isn't another already imported crate with similar functionality.
+** The crate is well maintained and comes from reputable authors.
+* When bumping the semantic version of an external crate, please do it for the whole repository. Avoid importing the same crate with multiple versions.
+* Keep the rust-lang up-to-date for Bazel and Cargo.
+* Use Cargo workspace for inferring external crate versions by adding the new crate to the section `[workspace.dependencies]` of the workspace `Cargo.toml` and adding `new-crate = { workspace = true }` to each package-specific `Cargo.toml` that needs it.

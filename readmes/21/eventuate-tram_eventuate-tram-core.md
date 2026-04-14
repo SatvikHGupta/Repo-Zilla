@@ -1,0 +1,256 @@
+= An Eventuate project
+
+image::https://eventuate.io/i/logo.gif[]
+
+This project is part of http://eventuate.io[Eventuate], which is a microservices collaboration platform.
+
+
+= Eventuate Tram (Transactional Messaging) platform
+
+[cols="a,a"]
+|===
+| Spring/Micronaut
+| image::https://img.shields.io/maven-central/v/io.eventuate.tram.core/eventuate-tram-bom[link="https://search.maven.org/artifact/io.eventuate.tram.core/eventuate-tram-bom"]
+| Quarkus
+| image::https://img.shields.io/maven-central/v/io.eventuate.tram.core/eventuate-tram-quarkus-bom[link="https://search.maven.org/artifact/io.eventuate.tram.core/eventuate-tram-bom"]
+|===
+
+
+Eventuate Tram is a platform that solves the distributed data management problems inherent in a http://microservices.io/patterns/microservices.html[microservice architecture].
+
+It is described in more detail in my book https://www.manning.com/books/microservice-patterns[Microservice Patterns] and the http://eventuate.io/tram/gettingstarted.html[getting started guide].
+
+== Key benefits of Eventuate Tram
+
+++++
+<div class="row" style="background-color: rgba(238, 238, 238, 0.5)">
+  <div class="col-md-4">
+    <h4>Maintain data consistency using sagas</h4>
+    <p>Implement commands that update data in multiple microservices by using <a href="https://microservices.io/patterns/data/saga.html">Sagas</a>, which are sequences of local transactions coordinated using messages</p>
+  </div>
+  <div class="col-md-4">
+    <h4>Implement queries using CQRS</h4>
+    <p>Implement queries that retrieve data from multiple services by using <a href="https://microservices.io/patterns/data/cqrs.html">CQRS views</a>, which are easily queryable replicas maintained using events</p>
+  </div>
+  <div class="col-md-4">
+    <h4>Communicate using transactional messaging</h4>
+    <p>Reliably send and receive messages and events as part of a database transaction by using the <a href="https://microservices.io/patterns/data/application-events.html">Transactional Outbox</a> pattern
+  </div>
+</div>
+++++
+
+
+== How it works
+
+Eventuate Tram provides several messaging abstractions:
+
+* messaging - send and receive messages over named channels
+* events - publish domain events and subscribe to domain events
+* commands - asynchronously send a command to a service and receive a reply
+
+Eventuate Tram messaging implements the http://microservices.io/patterns/data/application-events.html[Transactional Outbox pattern].
+An message producer inserts events into an `OUTBOX` table as part of the ACID transaction that updates data, such as JPA entities.
+A separate message relay (a.k.a. Eventuate CDC service) publishes messages to the message broker.
+
+image::https://raw.githubusercontent.com/eventuate-tram/eventuate-tram-core/master/ReliablePublication.png[]
+
+The Eventuate CDC service works in one of two ways:
+
+* http://microservices.io/patterns/data/transaction-log-tailing.html[Transaction log tailing] - currently implemented for MySQL and Postgres WAL
+* https://microservices.io/patterns/data/polling-publisher.html[Polling] - for other databases
+
+== Supported technologies
+
+Languages:
+
+* Spring Boot
+* Micronaut
+* Quarkus - see https://github.com/eventuate-tram/eventuate-tram-core-quarkus
+* .NET - see https://github.com/eventuate-tram/eventuate-tram-core-dotnet[this project]
+
+Databases:
+
+* MySQL - https://microservices.io/patterns/data/transaction-log-tailing.html[transaction log tailing] using the MySQL binlog
+* Postgres - https://microservices.io/patterns/data/transaction-log-tailing.html[transaction log tailing] using the Postgres WAL
+* Other databases including Microsoft SQL server - https://microservices.io/patterns/data/polling-publisher.html[polling]
+
+Message brokers:
+
+* Apache Kafka
+* ActiveMQ
+* RabbitMQ
+* Redis Streams
+
+== Getting started
+
+Please see the http://eventuate.io/tram/gettingstarted.html[getting started guide].
+
+== Example applications
+
+There are numerous example applications:
+
+* https://github.com/eventuate-tram/eventuate-tram-core-examples-basic[Basic examples]
+* https://github.com/eventuate-tram/eventuate-tram-examples-customers-and-orders[Customers and Orders] - illustrates choreography-based sagas and CQRS
+* https://github.com/eventuate-tram/eventuate-tram-sagas-examples-customers-and-orders[Customers and Orders]  - illustrates orchestration-based sagas using the https://github.com/eventuate-tram/eventuate-tram-sagas[Eventuate Tram Sagas framework]
+* https://github.com/microservice-patterns/ftgo-application[FTGO Example application for Microservice Patterns book]
+
+== Got questions?
+
+Don't hesitate to create an issue or see
+
+* https://groups.google.com/d/forum/eventuate-users[Mailing list]
+* https://join.slack.com/t/eventuate-users/shared_invite/enQtNTM4NjE0OTMzMDQ3LTc3ZjYzYjYxOGViNTdjMThkZmVmNWQzZWMwZmQyYzhjNjQ4OTE4YzJiYTE2NDdlOTljMDFlMDlkYTI2OWU1NTk[Slack Workspace]
+* http://eventuate.io/contact.html[Contact us].
+
+== Need support?
+
+Take a look at the http://eventuate.io/support.html[available paid support] options.
+
+== Transactional messaging
+
+Send a message using `MessageProducer`:
+
+```java
+public interface MessageProducer {
+  void send(String destination, Message message);
+}
+```
+
+Receive messages using:
+
+```java
+public interface MessageConsumer {
+  void subscribe(String subscriberId, Set<String> channels, MessageHandler handler);
+}
+```
+
+See this example of https://github.com/eventuate-tram/eventuate-tram-core-examples-basic/blob/master/eventuate-tram-examples-common/src/main/java/io/eventuate/tram/examples/basic/messages/AbstractTramMessageTest.java[transactional messaging].
+
+=== Transactional domain events
+
+The domain event package builds on the core APIs.
+
+Publish domain events using the `DomainEventPublisher` interface:
+
+```java
+public interface DomainEventPublisher {
+
+  void publish(String aggregateType, Object aggregateId, List<DomainEvent> domainEvents);
+  ...
+```
+
+Subscribe to domain events using a `DomainEventDispatcher`:
+
+```java
+public class DomainEventDispatcher {
+    public DomainEventDispatcher(String eventDispatcherId,
+                DomainEventHandlers eventHandlers,
+                ...) {
+...
+}
+```
+
+Handle the events using `DomainEventHandlers`:
+
+```java
+public class RestaurantOrderEventConsumer {
+
+  public DomainEventHandlers domainEventHandlers() {
+    return DomainEventHandlersBuilder
+            .forAggregateType("net.chrisrichardson.ftgo.restaurantservice.Restaurant")
+            .onEvent(RestaurantMenuRevised.class, this::reviseMenu)
+            .build();
+  }
+
+  public void reviseMenu(DomainEventEnvelope<RestaurantMenuRevised> de) {
+```
+
+See this example of https://github.com/eventuate-tram/eventuate-tram-core-examples-basic/blob/master/eventuate-tram-examples-common/src/main/java/io/eventuate/tram/examples/basic/events/AbstractTramEventTest.java[transaction events].
+
+== Transactional commands
+
+Transaction commands are implemented using transactional messaging.
+
+Send a command using a `CommandProducer`:
+
+```java
+public interface CommandProducer {
+  String send(String channel, Command command, String replyTo, Map<String, String> headers);
+  ...
+}
+```
+
+Subscribe to commands using a `CommandDispatcher`:
+
+```java
+public class CommandDispatcher {
+
+  public CommandDispatcher(String commandDispatcherId,
+           CommandHandlers commandHandlers) {
+  ...
+}
+```
+
+Handle commands and send a reply using `CommandHandlers`:
+
+```java
+public class OrderCommandHandlers {
+
+
+  public CommandHandlers commandHandlers() {
+    return CommandHandlersBuilder
+          .fromChannel("orderService")
+          .onMessage(ApproveOrderCommand.class, this::approveOrder)
+          ...
+          .build();
+  }
+
+  public Message approveOrder(CommandMessage<ApproveOrderCommand> cm) {
+    ApproveOrderCommand command = cm.getCommand();
+    ...
+  }
+
+```
+
+See this example of https://github.com/eventuate-tram/eventuate-tram-core-examples-basic/blob/master/eventuate-tram-examples-common/src/main/java/io/eventuate/tram/examples/basic/commands/AbstractTramCommandTest.java[transactional commands].
+
+== Maven/Gradle artifacts
+
+The artifacts are in https://bintray.com/eventuateio-oss/eventuate-maven-release/eventuate-tram[JCenter].
+The latest version is:
+
+[cols="5%,20%a"]
+|===
+| RC | image::https://api.bintray.com/packages/eventuateio-oss/eventuate-maven-rc/eventuate-tram/images/download.svg[link="https://bintray.com/eventuateio-oss/eventuate-maven-rc/eventuate-tram/_latestVersion"]
+| Release | image::https://api.bintray.com/packages/eventuateio-oss/eventuate-maven-release/eventuate-tram/images/download.svg[link="https://bintray.com/eventuateio-oss/eventuate-maven-release/eventuate-tram/_latestVersion"]
+|===
+
+
+
+There are the following API artifacts:
+
+* `io.eventuate.tram.core:eventuate-tram-messaging:$eventuateTramVersion` - core messaging APIs
+* `io.eventuate.tram.core:eventuate-tram-events:$eventuateTramVersion` - domain event API
+* `io.eventuate.tram.core:eventuate-tram-commands:$eventuateTramVersion` - commands/reply API
+
+There are the following 'implementation' artifacts:
+
+* `io.eventuate.tram.core:eventuate-tram-jdbc-kafka:$eventuateTramVersion` - JDBC database and Apache Kafka message broker
+* `io.eventuate.tram.core:eventuate-tram-jdbc-activemq:$eventuateTramVersion` - JDBC database and Apache ActiveMQ message broker
+* `io.eventuate.tram.core:eventuate-tram-jdbc-rabbitmq:$eventuateTramVersion` - JDBC database and RabbitMQ message broker
+* `io.eventuate.tram.core:eventuate-tram-jdbc-redis:$eventuateTramVersion` - JDBC database and Redis Streams
+* `io.eventuate.tram.core:eventuate-tram-in-memory:$eventuateTramVersion` - In-memory JDBC database and in-memory messaging for testing
+
+== Running the CDC service
+
+In addition to a database and message broker, you will need to run the Eventuate Tram CDC service.
+It reads events inserted into the database and publishes them to the message broker.
+It is written using Spring Boot.
+The easiest way to run this service during development is to use Docker Compose.
+The https://github.com/eventuate-tram/eventuate-tram-core-examples-basic[Eventuate Tram Code Basic examples] project has an example docker-compose.yml file.
+
+== Contributing
+
+Contributions are welcome.
+
+Please sign a https://chrisrichardson.net/legal/[contributor license agreement].

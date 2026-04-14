@@ -1,0 +1,54 @@
+# [YouTube-Tutorials](https://www.youtube.com/c/Avra_b) 
+
+[![Streamlit Playlist](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/Streamlit-workflow.yml/badge.svg)](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/Streamlit-workflow.yml)
+[![ML Playlist](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/ml-automation.yml/badge.svg)](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/ml-automation.yml)
+[![Bioinformatics Playlist](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/bioinfo-workflow.yml/badge.svg)](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/bioinfo-workflow.yml)
+
+**Topics overview :**  `Python` `Streamlit` `Machine-Learning` `openAI` `Google-sheets` `Automation` `Pandas` `Bioinformatics` `chatGPT`
+
+1. [Streamlit-Python](https://github.com/avrabyt/YouTube-Tutorials/tree/main/Streamlit-Python)
+2. [Machine-Learning for all](https://github.com/avrabyt/YouTube-Tutorials/tree/main/Machine-Learning%20for%20all)
+3. [AI /chatGPT etc](https://github.com/avrabyt/YouTube-Tutorials/tree/main/Machine-Learning%20for%20all)
+4. [Python-Automation](https://github.com/avrabyt/YouTube-Tutorials/tree/main/Python-Automation)
+5. [Bioinformatics with Python](https://github.com/avrabyt/YouTube-Tutorials/tree/main/Bioinformatics%20with%20Python)
+6. [openAI / chatGPT Web Apps](https://github.com/avrabyt/Holiday-coding-session/tree/5af12fbdc474b07f70397390e5040096b92814d2)
+
+
+### 📺 Latest YouTube Videos
+![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCDMP6ATYKNXMvn2ok1gfM7Q?style=plastic)
+![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCDMP6ATYKNXMvn2ok1gfM7Q?style=plastic)
+[![Latest YouTube Videos](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/Youtube-workflow.yml/badge.svg)](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/Youtube-workflow.yml)
+
+
+<!-- YOUTUBE:START --><table><tr><td><a href="https://www.youtube.com/watch?v=w4cFhRc3Vr4"><img width="140px" src="https://i.ytimg.com/vi/w4cFhRc3Vr4/mqdefault.jpg"></a></td>
+<td><a href="https://www.youtube.com/watch?v=w4cFhRc3Vr4">Built an AI Agent from Screenshot &amp; Deployed as Full Stack App!</a><br/>Dec 15, 2024</td></tr></table>
+<table><tr><td><a href="https://www.youtube.com/watch?v=0xWvm1XR0xo"><img width="140px" src="https://i.ytimg.com/vi/0xWvm1XR0xo/mqdefault.jpg"></a></td>
+<td><a href="https://www.youtube.com/watch?v=0xWvm1XR0xo">Customers asked how Databutton is different than Bolt.new, so we did a livestream</a><br/>Nov 15, 2024</td></tr></table>
+<table><tr><td><a href="https://www.youtube.com/shorts/6QGQpvVOyM8"><img width="140px" src="https://i.ytimg.com/vi/6QGQpvVOyM8/mqdefault.jpg"></a></td>
+<td><a href="https://www.youtube.com/shorts/6QGQpvVOyM8">AI AGENTS simplified in 60 Seconds  #aiagents #ai #aicode  #aiagent #aiappdevelopment #aicode</a><br/>Nov 5, 2024</td></tr></table>
+<table><tr><td><a href="https://www.youtube.com/watch?v=SFhGqmQ6uFk"><img width="140px" src="https://i.ytimg.com/vi/SFhGqmQ6uFk/mqdefault.jpg"></a></td>
+<td><a href="https://www.youtube.com/watch?v=SFhGqmQ6uFk">Simplest Way to Build AI Agents Explained &lpar; And use them in Your Full Stack APPS !&rpar;</a><br/>Nov 1, 2024</td></tr></table>
+<table><tr><td><a href="https://www.youtube.com/watch?v=GiAqN402Kgs"><img width="140px" src="https://i.ytimg.com/vi/GiAqN402Kgs/mqdefault.jpg"></a></td>
+<td><a href="https://www.youtube.com/watch?v=GiAqN402Kgs">&lpar;Not Just Hype!&rpar; Build a Multi-Agent AI App with Just Prompts? Watch Live—A Real Backend &amp; Slick UI</a><br/>Oct 26, 2024</td></tr></table>
+<!-- YOUTUBE:END -->
+
+
+
+### 📑 Latest Blog posts
+[![Latest blog post workflow](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/blog-post-workflow.yml/badge.svg?branch=main)](https://github.com/avrabyt/YouTube-Tutorials/actions/workflows/blog-post-workflow.yml)
+
+<!-- BLOG-POST-LIST:START -->
+- [Agentic Service Systems.](https://medium.com/@avra42/agentic-service-systems-eb923038b4ce?source=rss-bf79cad6afa1------2)
+- [We generated $100K+ ARR in &lt;45 days. Era of agentic‑native agencies?](https://medium.com/@avra42/we-generated-100k-arr-in-45-days-era-of-agentic-native-agency-57e054ba1631?source=rss-bf79cad6afa1------2)
+- [What 6 months of customer interviews taught me about data tools](https://medium.com/@avra42/what-6-months-of-customer-interviews-taught-me-about-data-tools-6501b04713a7?source=rss-bf79cad6afa1------2)
+- [How to Build Full Stack Agentic Apps](https://medium.com/databutton/how-to-build-full-stack-agentic-apps-d3c64c9bb11b?source=rss-bf79cad6afa1------2)
+- [What I Built: A Multi-Agent AI Chatbot App using Databutton and Swarm](https://medium.com/databutton/what-i-built-a-multi-agent-ai-chatbot-app-using-databutton-and-swarm-c616f5b7ed11?source=rss-bf79cad6afa1------2)
+<!-- BLOG-POST-LIST:END -->
+-----
+**Weekly Newsletter** : https://weekly-aistacks.beehiiv.com/subscribe
+
+<a href="https://www.buymeacoffee.com/AvraCodes" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" ></a>
+<a href='https://ko-fi.com/avrabyt' target='_blank'><img src='https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white'> </a>
+<a href='https://www.patreon.com/user?u=82100262'><img src='https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white'> </a>
+[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/c/Avra_b)
+[![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@avra42)

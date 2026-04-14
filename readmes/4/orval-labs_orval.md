@@ -1,0 +1,150 @@
+[![npm version](https://badge.fury.io/js/orval.svg)](https://badge.fury.io/js/orval)
+![NPM Downloads](https://img.shields.io/npm/dm/orval?color=purple)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![tests](https://github.com/orval-labs/orval/actions/workflows/tests.yaml/badge.svg)](https://github.com/orval-labs/orval/actions/workflows/tests.yaml)
+[![orval](https://snyk.io/advisor/npm-package/orval/badge.svg)](https://snyk.io/advisor/npm-package/orval)
+[![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Orval%20Guru-006BFF)](https://gurubase.io/g/orval)
+
+<p align="center">
+  <img src="./logo/orval-logo-horizontal.svg?raw=true" width="500" height="160" alt="orval - Restfull Client Generator" />
+</p>
+<h1 align="center">
+  Generate Typescript clients from OpenAPI specification!
+</h1>
+
+### Code Generation
+
+`orval` generates type-safe JS clients (TypeScript) from any valid OpenAPI v3 or Swagger v2 specification, either in `yaml` or `json` formats.
+
+> [!IMPORTANT]
+> Version [8.0.0+](https://orval.dev/docs/versions/v8) comes with a lot of improvements and changes please see the [Migration Guide](https://orval.dev/docs/versions/v8)
+
+### Supported clients
+
+`generate` models, requests, hooks, [mocks](https://mswjs.io/) and more, for these supported clients:
+
+- [React](https://react.dev/)
+- [React Query](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [React with swr](https://swr.vercel.app/)
+- [Vue Query](https://tanstack.com/query/latest/docs/framework/vue/overview)
+- [Svelte Query](https://tanstack.com/query/latest/docs/framework/svelte/overview)
+- [Solid Query](https://tanstack.com/query/latest/docs/framework/solid/overview)
+- [SolidStart](https://start.solidjs.com/)
+- [Angular](https://angular.dev/)
+- [Angular Query](https://tanstack.com/query/latest/docs/framework/angular/overview)
+- [Hono](https://hono.dev/)
+- [zod](https://zod.dev/)
+- [native fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+- [mcp](https://modelcontextprotocol.io/introduction)
+
+### Samples
+
+You can find some samples below:
+
+- [react app](https://github.com/orval-labs/orval/tree/master/samples/react-app)
+- [react query](https://github.com/orval-labs/orval/tree/master/samples/react-query)
+- [svelte query](https://github.com/orval-labs/orval/tree/master/samples/svelte-query)
+- [vue query](https://github.com/orval-labs/orval/tree/master/samples/vue-query)
+- [solid query](https://github.com/orval-labs/orval/tree/master/samples/solid-query)
+- [solid start](https://github.com/orval-labs/orval/tree/master/samples/solid-start)
+- [react app with swr](https://github.com/orval-labs/orval/tree/master/samples/react-app-with-swr)
+- [angular app](https://github.com/orval-labs/orval/tree/master/samples/angular-app)
+- [angular query](https://github.com/orval-labs/orval/tree/master/samples/angular-query)
+- [hono](https://github.com/orval-labs/orval/tree/master/samples/hono)
+- [next app with fetch](https://github.com/orval-labs/orval/tree/master/samples/next-app-with-fetch)
+- [mcp server](https://github.com/orval-labs/orval/tree/master/samples/mcp)
+
+### Playground
+
+Try Orval out for yourself using our [Playground](https://orval.dev/playground) application!
+
+## Developers
+
+This project uses [Bun](https://bun.sh/) for package management and building. Bun [install guide](https://bun.sh/docs/installation).
+
+### Build Scripts
+
+- **`bun run nuke:all`** - Completely clean your workspace by removing all build artifacts, node_modules, and cached files. Use this when you want to start fresh.
+
+- **`bun run build`** - Build the project and make changes available to the workspace. Run this after making code changes to compile TypeScript and prepare the project for use.
+
+- **`bun run typecheck`** - Run TypeScript type checking across all packages.
+
+### Test Scripts
+
+- **`bun run test`** - Run unit tests in all packages.
+
+- **`bun run update-samples`** - Generate sample outputs using the newly built version of Orval. This regenerates the sample code based on the current build.
+
+- **`bun run test:samples`** - Run tests in the samples directory using the newly generated output from `update-samples`.
+
+- **`bun run test:snapshots`** - Run snapshot tests to verify generated sample outputs match the committed snapshots. Fails if any generated file differs from its snapshot.
+
+- **`bun run test:snapshots:update`** - Regenerate snapshot files to match the current generated output. Run this after `bun run update-samples` when the generated output has intentionally changed.
+
+- **`bun run test:cli`** - Test that the generated output (not samples) is valid TypeScript. This validates the TypeScript compilation of the generated code.
+
+### Development Workflow
+
+A typical development workflow would be:
+
+1. Make your code changes
+2. Run `bun run build` to compile your changes
+3. Run `bun run typecheck` to verify package typings
+4. Run `bun run lint` to catch lint issues early
+5. Run `bun run test` to run unit tests in packages
+6. Run `bun run test:snapshots` to verify generated output matches snapshots
+
+If step 6 fails because the generated output has intentionally changed, run `bun run test:snapshots:update` to update the snapshots.
+
+If you encounter issues or want to start completely fresh:
+
+1. Run `bun run nuke:all` to clean everything
+2. Reinstall dependencies and rebuild from scratch
+
+## Sponsors
+
+Thank you to all our sponsors! 🍻
+
+Support orval development by [Open Collective](https://opencollective.com/orval) and your logo will be displayed here with a link to your website.
+
+<a href="https://opencollective.com/orval">
+  <img src="https://orval.dev/images/orval-logo-horizontal.svg?raw=true" width="300" alt="Become a sponsor" />
+</a>
+
+## Backers
+
+Thank you to all our backers! 🙏
+
+Support us with a one-time donation and help us continue our activities on [Open Collective](https://opencollective.com/orval).
+
+<a href="https://opencollective.com/orval">
+  <img src="https://orval.dev/images/emblem.svg" width="50" height="50" alt="Backer" />
+</a>
+<a href="https://opencollective.com/orval">
+  <img src="https://orval.dev/images/emblem.svg" width="50" height="50" alt="Backer" />
+</a>
+<a href="https://opencollective.com/orval">
+  <img src="https://orval.dev/images/emblem.svg" width="50" height="50" alt="Backer" />
+</a>
+<a href="https://github.com/tatsuya-asami">
+  <img src="https://github.com/tatsuya-asami.png" width="50" height="50" alt="tatsuya-asami" />
+</a>
+
+**Note:** After becoming a sponsor or backer, please contact us on [Discord](https://discord.gg/6fC2sjDU7w) to upload your logo.
+
+## Star History
+
+<a href="https://star-history.com/#orval-labs/orval&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=orval-labs/orval&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=orval-labs/orval&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=orval-labs/orval&type=Date" />
+  </picture>
+</a>
+
+### All Thanks To Our Contributors:
+
+<a href="https://github.com/orval-labs/orval/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=anymaniax/orval" />
+</a>

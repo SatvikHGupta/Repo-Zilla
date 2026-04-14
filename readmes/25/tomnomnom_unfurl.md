@@ -1,0 +1,203 @@
+# unfurl
+
+Pull out bits of URLs provided on `stdin`
+
+## Install
+
+If you have Go installed and configured:
+
+```
+▶ go install github.com/tomnomnom/unfurl@latest
+```
+
+Otherwise [download the latest binary for your platform](https://github.com/tomnomnom/unfurl/releases),
+extract it and move it to somewhere in your `$PATH` (e.g. `/usr/bin/`):
+
+```
+▶ wget https://github.com/tomnomnom/unfurl/releases/download/v0.0.1/unfurl-linux-amd64-0.0.1.tgz
+▶ tar xzf unfurl-linux-amd64-0.0.1.tgz
+▶ sudo mv unfurl /usr/bin/
+```
+
+## Usage
+
+unfurl works with URLs provided on stdin; they might come from a file like this one:
+
+```
+▶ cat urls.txt
+https://sub.example.com/users?id=123&name=Sam
+https://sub.example.com/orgs?org=ExCo#about
+http://example.net/about#contact
+```
+
+### Domains
+
+You can extract the domains from the URLs with the `domains` mode:
+
+```
+▶ cat urls.txt | unfurl domains
+sub.example.com
+sub.example.com
+example.net
+```
+
+If you don't want to output duplicate values you can use the `-u` or `--unique` flag:
+
+```
+▶ cat urls.txt | unfurl --unique domains
+sub.example.com
+example.net
+```
+
+The `-u`/`--unique` flag works for all modes.
+
+### Apex Domains
+
+You can extract the apex part of the domain (e.g. the `example.com` in `http://sub.example.com`) using the `apexes` mode:
+
+```
+▶ cat urls.txt | unfurl -u apexes
+example.com
+example.net
+```
+
+### Paths
+
+```
+▶ cat urls.txt | unfurl paths
+/users
+/orgs
+/about
+```
+
+### Query String Keys
+
+```
+▶ cat urls.txt | unfurl keys
+id
+name
+org
+```
+
+### Query String Values
+
+```
+▶ cat urls.txt | unfurl values
+123
+Sam
+ExCo
+```
+
+### Query String Key/Value Pairs
+
+```
+▶ cat urls.txt | unfurl keypairs
+id=123
+name=Sam
+org=ExCo
+```
+
+### JSON
+```
+▶ cat urls.txt | unfurl json
+{"scheme":"https","opaque":"","user":"","host":"sub.example.com","path":"/users","raw_path":"","raw_query":"id=123\u0026name=Sam","fragment":"","parameters":[{"key":"id","value":"123"},{"key":"name","value":"Sam"}],"url":"https://sub.example.com/users?id=123\u0026name=Sam","domain":"sub.example.com","subdomain":"sub","root":"example","tld":"com","apex":"example.com","port":"","extension":""}
+{"scheme":"https","opaque":"","user":"","host":"sub.example.com","path":"/orgs","raw_path":"","raw_query":"org=ExCo","fragment":"about","parameters":[{"key":"org","value":"ExCo"}],"url":"https://sub.example.com/orgs?org=ExCo#about","domain":"sub.example.com","subdomain":"sub","root":"example","tld":"com","apex":"example.com","port":"","extension":""}
+{"scheme":"http","opaque":"","user":"","host":"example.net","path":"/about","raw_path":"","raw_query":"","fragment":"contact","parameters":null,"url":"http://example.net/about#contact","domain":"example.net","subdomain":"","root":"example","tld":"net","apex":"example.net","port":"","extension":""}
+```
+
+### Custom Formats
+
+You can use the `format` mode to specify a custom output format:
+
+```
+▶ cat urls.txt | unfurl format %d%p
+sub.example.com/users
+sub.example.com/orgs
+example.net/about
+```
+
+The available format directives are:
+
+```
+%%  A literal percent character
+%s  The request scheme (e.g. https)
+%u  The user info (e.g. user:pass)
+%d  The domain (e.g. sub.example.com)
+%S  The subdomain (e.g. sub)
+%r  The root of domain (e.g. example)
+%t  The TLD (e.g. com)
+%P  The port (e.g. 8080)
+%p  The path (e.g. /users)
+%e  The path's file extension (e.g. jpg, html)
+%q  The raw query string (e.g. a=1&b=2)
+%f  The page fragment (e.g. page-section)
+%@  Inserts an @ if user info is specified
+%:  Inserts a colon if a port is specified
+%?  Inserts a question mark if a query string exists
+%#  Inserts a hash if a fragment exists
+%a  Authority (alias for %u%@%d%:%P)
+```
+
+Any characters that don't match a format directive remain untouched:
+
+```
+▶ cat urls.txt | unfurl -u format "%d (%s)"
+sub.example.com (https)
+example.net (http)
+```
+
+Note that if a URL does not include the data requested, there will be no output for that URL:
+
+```
+▶ echo http://example.com | unfurl format "%P"
+▶ echo http://example.com:8080 | unfurl format "%P"
+8080
+```
+
+
+## Help
+
+```
+▶ unfurl -h
+Format URLs provided on stdin
+
+Usage:
+  unfurl [OPTIONS] [MODE] [FORMATSTRING]
+
+Options:
+  -u, --unique   Only output unique values
+  -v, --verbose  Verbose mode (output URL parse errors)
+
+Modes:
+  keys     Keys from the query string (one per line)
+  values   Values from the query string (one per line)
+  keypairs Key=value pairs from the query string (one per line)
+  domains  The hostname (e.g. sub.example.com)
+  paths    The request path (e.g. /users)
+  apexes   The apex domain (e.g. example.com from sub.example.com)
+  json     JSON encoded url/format objects
+  format   Specify a custom format (see below)
+
+Format Directives:
+  %%  A literal percent character
+  %s  The request scheme (e.g. https)
+  %u  The user info (e.g. user:pass)
+  %d  The domain (e.g. sub.example.com)
+  %S  The subdomain (e.g. sub)
+  %r  The root of domain (e.g. example)
+  %t  The TLD (e.g. com)
+  %P  The port (e.g. 8080)
+  %p  The path (e.g. /users)
+  %e  The path's file extension (e.g. jpg, html)
+  %q  The raw query string (e.g. a=1&b=2)
+  %f  The page fragment (e.g. page-section)
+  %@  Inserts an @ if user info is specified
+  %:  Inserts a colon if a port is specified
+  %?  Inserts a question mark if a query string exists
+  %#  Inserts a hash if a fragment exists
+  %a  Authority (alias for %u%@%d%:%P)
+
+Examples:
+  cat urls.txt | unfurl keys
+  cat urls.txt | unfurl format %s://%d%p?%q
+```

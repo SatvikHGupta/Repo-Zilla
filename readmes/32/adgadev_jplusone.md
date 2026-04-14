@@ -1,0 +1,350 @@
+:jdk-icon: https://img.shields.io/badge/java-9+-4c7e9f.svg
+:jdk-link: https://www.oracle.com/technetwork/java/javase/downloads
+
+:maven-central-icon: https://img.shields.io/maven-central/v/com.adgadev.jplusone/jplusone-modules
+:maven-central-link: https://search.maven.org/artifact/com.adgadev.jplusone/jplusone-modules
+
+:apache-license-icon: https://img.shields.io/badge/License-Apache%202.0-blue.svg
+:apache-license-link: http://www.apache.org/licenses/LICENSE-2.0.txt
+
+:action-status-icon: https://github.com/adgadev/jplusone/workflows/Build%20and%20Test/badge.svg
+:action-status-link: https://github.com/adgadev/jplusone/actions
+
+:maintainability-icon: https://api.codeclimate.com/v1/badges/d3cfc1cc05d724ea52b4/maintainability
+:maintainability-link: https://codeclimate.com/github/adgadev/jplusone/maintainability
+
+:codacy-icon: https://app.codacy.com/project/badge/Grade/ccb1fea2aa554aceb691cb32ed270c14
+:codacy-link: https://www.codacy.com/gh/adgadev/jplusone/dashboard?utm_source=github.com&utm_medium=referral&utm_content=adgadev/jplusone&utm_campaign=Badge_Grade
+
+:codecov-icon: https://codecov.io/gh/adgadev/jplusone/branch/master/graph/badge.svg?token=BPXXOVXP8D
+:codecov-link: https://codecov.io/gh/adgadev/jplusone
+
+:fossa-icon: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fadgadev%2Fjplusone.svg?type=shield
+:fossa-link: https://app.fossa.com/projects/git%2Bgithub.com%2Fadgadev%2Fjplusone?ref=badge_shield
+
+:snyk-icon: https://snyk.io/test/github/adgadev/jplusone/badge.svg
+:snyk-link: https://snyk.io/test/github/adgadev/jplusone/
+
+:fossa-large-icon: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fadgadev%2Fjplusone.svg?type=large
+:fossa-large-link: https://app.fossa.com/projects/git%2Bgithub.com%2Fadgadev%2Fjplusone?ref=badge_large
+
+:assertion-api-gif: https://github.com/adgadev/jplusone/blob/master/fluent-api.gif
+
+:release_version: 2.0.0
+
+= JPlusOne
+
+image:{jdk-icon}[JDK, link={jdk-link}]
+image:{apache-license-icon}[Apache License 2, link={apache-license-link}]
+image:{maven-central-icon}[Maven Central Repository, link={maven-central-link}]
+image:{action-status-icon}[Action Status, link={action-status-link}]
+image:{maintainability-icon}[Maintainability, link={maintainability-link}]
+image:{codacy-icon}[Codacy code quality, link={codacy-link}]
+image:{codecov-icon}[Code coverage, link={codecov-link}]
+image:{fossa-icon}[FOSSA Status, link={fossa-link}]
+image:{snyk-icon}[Known Vulnerabilities, link={snyk-link}]
+
+
+
+*JPlusOne* is a Java library for correlating SQL statements with executions of JPA operations (explicit calls, lazy-loading, flush on commit)
+which triggered them and places in source code of your application which were involved in it.
+
+Based on collected data JPlusOne can report complete tree of JPA persistence related activity or just situations when lazy loading is occurring, potentially leading to N+1 SELECT problem.
+Moreover JPlusOne provides API which allows to write tests checking how effectively, from performance point of view, your application is using JPA (i.e. assert amount of lazy loading operations )
+
+== Prerequisites
+JPlusOne can be applied only to projects which meets following requirements:
+
+* JPlusOne v1.x (1.1.1 is the latest)
+** Java 9 or later
+** Spring Boot 2.x
+** JPA 2.x (Hibernate as implementation provider required)
+** Slf4j
+* JPlusOne v2.x
+** Java 17 or later
+** Spring Boot 3.x
+** JPA 3.x (Hibernate 6 or higher)
+** Slf4j
+
+== Quickstart
+Add the following Maven dependency to your project:
+[source,xml,subs="verbatim,attributes"]
+----
+<dependency>
+    <groupId>com.adgadev.jplusone</groupId>
+    <artifactId>jplusone-core</artifactId>
+    <version>{release_version}</version>
+    <scope>test</scope>
+</dependency>
+----
+
+The jplusone logger must be configured to debug level in order to log JPA operations / SQL statements reports.
+It can be accomplised by adding following lines to your `application.yml`
+[source,yaml]
+----
+logging.level:
+    com.adgadev.jplusone: DEBUG
+----
+
+Now run any integration test in your project which directly on indirectly utilizes JPA persistence,
+(i.e. by calling a business service which loads some JPA entity via EntityManager).
+For each such test a report of JPA operations / SQL statements, like the one below, will be generated and written to logs
+
+----
+2020-09-14 19:41:45.138 DEBUG 14913 --- [           main] c.a.j.core.report.ReportGenerator        :
+    ROOT
+        com.adgadev.jplusone.test.domain.bookshop.BookshopControllerTest.shouldGetBookDetailsLazily(BookshopControllerTest.java:65)
+        com.adgadev.jplusone.test.domain.bookshop.BookshopController.getSampleBookUsingLazyLoading(BookshopController.java:31)
+        com.adgadev.jplusone.test.domain.bookshop.BookshopService.getSampleBookDetailsUsingLazyLoading [PROXY]
+            SESSION BOUNDARY
+                OPERATION [EXPLICIT]
+                    com.adgadev.jplusone.test.domain.bookshop.BookshopService.getSampleBookDetailsUsingLazyLoading(BookshopService.java:34)
+                    com.adgadev.jplusone.test.domain.bookshop.BookRepository.findById [PROXY]
+                        STATEMENT [READ]
+                            select [...] from
+                                book book0_
+                            where
+                                book0_.id=1
+                OPERATION [IMPLICIT]
+                    com.adgadev.jplusone.test.domain.bookshop.BookshopService.getSampleBookDetailsUsingLazyLoading(BookshopService.java:35)
+                    com.adgadev.jplusone.test.domain.bookshop.Author.getName [PROXY]
+                    com.adgadev.jplusone.test.domain.bookshop.Author [FETCHING ENTITY]
+                        STATEMENT [READ]
+                            select [...] from
+                                author author0_
+                                left outer join genre genre1_ on author0_.genre_id=genre1_.id
+                            where
+                                author0_.id=1
+                OPERATION [IMPLICIT]
+                    com.adgadev.jplusone.test.domain.bookshop.BookshopService.getSampleBookDetailsUsingLazyLoading(BookshopService.java:36)
+                    com.adgadev.jplusone.test.domain.bookshop.Author.countWrittenBooks(Author.java:53)
+                    com.adgadev.jplusone.test.domain.bookshop.Author.books [FETCHING COLLECTION]
+                        STATEMENT [READ]
+                            select [...] from
+                                book books0_
+                            where
+                                books0_.author_id=1
+----
+
+There is also option to generate such report to separate file or stdout or both file and log.
+
+Sample project showing `jplusone-core` in action is available https://github.com/adgadev/jplusone/tree/master/jplusone-tests/jplusone-tests-main[here]. It's a simple spring boot project with some JPA domain modeled. Just run any test there to see a report.
+
+The article showing how JPlusOne can simplify finding origin and context of JPA issued SQL statements and step-by-step guide how to use it is available
+https://adgadev.com/finding-origin-and-context-of-jpa-issued-sql-statemets/[here]
+
+== Assertion API
+
+JPlusOne provides Assertion API which can be used to write tests checking various aspects of JPA operations / SQL statements, i.e.
+if lazy loading has not started occurring in given test scenario or amount of SELECT queries is not larger than some amount.
+
+Such tests may be very useful in situation when you have optimized lazy loading processes in your business operations and you want to enforce
+that further development changes in your application, often done by other developers, won't degrade the performance accidentally
+i.e. by introducing some additional lazy loading operations.
+
+=== How to use assertion API
+Ensure current JPlusOne https://github.com/adgadev/jplusone#configuration[Configuration] matches your application.
+
+Add following Maven dependency:
+
+[source,xml,subs="verbatim,attributes"]
+----
+<dependency>
+    <groupId>com.adgadev.jplusone</groupId>
+    <artifactId>jplusone-assert</artifactId>
+    <version>{release_version}</version>
+    <scope>test</scope>
+</dependency>
+----
+Add spring boot tests which defines `JPlusOneAssertionRule`, executes one of the business operation in your application and asserts results of it against the defined rule.
+
+[source,java]
+----
+@SpringBootTest
+class LazyLoadingTest {
+
+    @Autowired
+    private JPlusOneAssertionContext assertionContext;
+
+    @Autowired
+    private SampleService sampleService;
+
+    @Test
+    public void shouldBusinessCheckOperationAgainstJPlusOneAssertionRule() {
+        JPlusOneAssertionRule rule = JPlusOneAssertionRule
+                .within().lastSession()
+                .shouldBe().noImplicitOperations().exceptAnyOf(exclusions -> exclusions
+                        .loadingEntity(Author.class).times(atMost(2))
+                        .loadingCollection(Author.class, "books")
+                );
+
+        // trigger business operation which you wish to be asserted against the rule,
+        // i.e. via directly calling a service or via sending request to your API controller
+        sampleService.executeBusinessOperation();
+
+        rule.check(assertionContext);
+    }
+}
+----
+
+There is a fluent, self-descriptive API for building assertion rules, just start typing `JPlusOneAssertionRule.within()`
+and your IDE will guide you through the process of defining it:
+
+image:{assertion-api-gif}[Fluent API for assertions]
+
+Sample spring boot test showing jplusone assertion in action is available https://github.com/adgadev/jplusone/tree/master/jplusone-assert/src/test/java/com/adgadev/jplusone/asserts/api/JPlusOneAssertionIntegrationTest.java[here].
+
+More examples presenting building various assertion rules can be found https://github.com/adgadev/jplusone/tree/master/jplusone-assert/src/test/java/com/adgadev/jplusone/asserts/api/JPlusOneAssertionRuleTest.java[here].
+
+
+== Features
+* Shows general activity at JPA and SQL level related with some business scenarios, not necessarily related with lazy loading.
+* Shows tree of application method calls and SQL statements (discarding all non-relevant data) associated with some business operation (i.e. REST controller endpoint call) in a handy way.
+* Allows to easily correlate JPA operations with resulting SQL statements.
+* Shows SQL statements with their parameters in simplified and pretty-printed form.
+* Uses Spring Boot Auto Configuration to seamlessly integrate with your application.
+* Provides https://github.com/adgadev/jplusone#assertion-api[Assertion API] which can be used to write tests checking various aspects of JPA operations / SQL statements, i.e.
+if lazy loading has not started occurring in given test scenario or amount of SELECT queries is not larger than some amount
+
+More about N+1 SELECT problem you can find in link:https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping/39696775[this] thread at StackOverflow.
+
+
+== Overview
+JPlusOne tool is able to generate report showing all kind of JPA operations / SQL statements, but in order to generate such report you need
+to have Spring Boot based integration tests of your application (`@SpringBootTest`), which covers scenarios you are interested in
+(i.e. integration test of some endpoint of your application).
+
+It's possible to use JPlusOne not in test but in production code, but this approach may add some additional overhead and may not be stable in some cases.
+
+=== How it works
+In order to collect data JPlusOne intercepts all operations invoked on EntityManager / EntityManagerFactory and all SQL statements invoked on DataSource and, by wrapping those beans in proxies
+
+One report is generated per each JPA EntityManager instance (Hibernate session). A report is written to log just after EntityManager is closed.
+It's worth to mention that behaviour determining when EntityManager is closed (session is closed) can be altered by:
+
+* using `@Transactional` on integration test class or test case method - it extends scope of SUT's session / transaction so that it span across testcase method, session is effectively closed when test method finishes
+* enabling property `spring.jpa.open-in-view` - session closes not when a method of a service annotated with `@Transactional` is finished, but when controller which invoked such service method is finished
+Usually Spring uses separate session per transaction strategy, but
+
+
+=== Types of operations
+JPlusOne uses following terms to categorize operations:
+
+* *Explicit operation* - explicit invocation of some API utilizing Java Persistence API (JPA) which in result triggers some kind of SQL statement,
+i.e. SpringDataJPA repository or EntityManager or QueryDsl
+* *Commit operation* - JPA transaction commit resulting in session flush
+* *Implicit operation* - All kind of situations where SQL statements were triggered without some explicit call on JPA based API,
+i.e. as a result of traversing domain entities graph which was not fully loaded or invoking method on proxy entity, or by flushing dirty entity / collection
+
+
+== Configuration
+==== Default configuration
+When no configuration is provided JPlusOne assumes following settings:
+
+* The root package where application classes is located is the same as the package where the class annotated with `@SpringBootApplication` is located
+* Only implicit operations are reported
+* Only SQL SELECT statements are reported
+* Operations / SQL statements triggered by Flyway are ignored
+
+==== Custom configuration
+You can overwrite default configuration by adding some of the following properties to your `application.yml` (optional):
+
+[source,yaml]
+----
+# com.adgadev.jplusone.core.properties.JPlusOneProperties
+jplusone:
+  enabled: true
+  application-root-package: "com.sampleorganisation.sampleproject"
+  debug-mode: false
+  report:
+    enabled: true
+    output: LOGGER
+    proxy-call-frames-hidden: true
+    operation-filtering-mode: ALL_OPERATIONS
+    statement-filtering-mode: ALL_STATEMENTS
+    file-path: target/jplusone-report.txt
+----
+
+==== Configuration properties:
+[cols=2*]
+|===
+|`jplusone.enabled`
+|Flag determining if JPlusOne autoconfiguration is enabled, all SQL statements intercepted.
+
+Default value: `true`
+
+|`jplusone.application-root-package`
+|Root package of your project. Calls made to methods of classes outside the root package won't be analysed and visible in the report.
+
+Default value: package where the class annotated with `@SpringBootApplication` is located
+
+|`jplusone.debug-mode`
+|Flag determining if JPlusOne debug mode is enabled.
+
+Default value: `false`
+
+|`jplusone.report.enabled`
+|Flag determining if report should be written to logs.
+
+Default value: `true`
+
+|`jplusone.report.operation-filtering-mode`
+|Defines what kind of operations should be visible in the report. Possible values: `IMPLICIT_OPERATIONS_ONLY`, `EXPLICIT_OPERATIONS_ONLY`, `COMMIT_OPERATIONS_ONLY`, `ALL_OPERATIONS`
+
+Default value: `IMPLICIT_OPERATIONS_ONLY`
+
+|`jplusone.report.statement-filtering-mode`
+|Defines what kind of SQL statements should be visible in the report. Possible values: `READ_STATEMENTS_ONLY`, `WRITE_STATEMENTS_ONLY`, `ALL_STATEMENTS`
+
+Default value: `READ_STATEMENTS_ONLY`
+
+|`jplusone.report.proxy-call-frames-hidden`
+|Flag determining if proxy call frames are hidden. It does not affect last frame of the call stack.
+
+Default value: `true`
+
+|`jplusone.report.output`
+|Defines which output will be used to print report. Possible values: `LOGGER`, `STDOUT`, `FILE`, `LOGGER_AND_FILE`
+
+Default value: `LOGGER`
+
+|`jplusone.report.file-path`
+|Absolute or relative path to a file with the report. It has an effect only if output is `FILE` or `LOGGER_AND_FILE`
+
+Default value: `target/jplusone-report.txt`
+|===
+
+== Troubleshooting
+==== Problems
+Having JPlusOne configured, each testcase method which tests logic related with JPA persistence operations (direct or indirect use of EntityManager)
+should result in either detailed report being printed in logs or the information in the logs that no JPA operations / SQL statements matching criteria has been captured.
+
+There are multiple reasons why no logs entries for `com.adgadev.jplusone` are printed or such log entries are printed only for part of the persistence related tests. Most common cases are:
+
+* Logging system configuration (i.e. logback) has been changed / overwritten dynamically i.e by autoconfiguration when spring boot works in debug mode ("debug: true" YAML property)
+* Due to the fact that SpringRunner caches spring contexts used in tests and logging system configuration is being refreshed only during new spring context creation,
+there might be a situation that invalid logging system configuration is being used when test runner intertwines execution of tests from various spring contexts.
+
++
+In example, assuming there are two spring contexts (S1 context with logger configuration L1 and S2 context with logger configuration L2) and three test classes (A, B, C), where A and B uses S1 context and C uses S2 context.
+When test runner executes tests in order A,B,C everything is fine, but when order execution is A,C,B testcases from class B will use the same logger configuration as C - L2 logger instead of L1.
+
+==== Workarounds
+There are two possible workarounds for such issue:
+
+* Refresh JPlusOne logger configuration before executing first testcase for each integration test class:
++
+[source,java]
+----
+@BeforeClass
+public static void refreshLoggerConfiguration() {
+   LoggingSystem.get(ClassLoader.getSystemClassLoader())
+                .setLogLevel("com.adgadev.jplusone", LogLevel.DEBUG);
+}
+----
+* Force JPlusOne reports to be printed directly to the stdout, instead of logger, using property:
+`jplusone.report.output=STDOUT`
+
+== License
+image:{fossa-large-icon}[FOSSA Status, link={fossa-large-link}]
+

@@ -1,0 +1,417 @@
+# FreeIPA server container
+
+This repository contains `Dockerfile`s and additional files for
+creating FreeIPA server container images from the official yum/dnf
+repositories of multiple Linux distributions.
+
+The choice of the OS and version depends on the purpose of the FreeIPA
+setup, the same as it would when installing FreeIPA on a bare metal host
+or in a virtual machine. Newer versions are typically better and are
+also useful for testing interoperability with latest version of FreeIPA;
+for long term production setups, Fedora might be updating too quickly
+and sometimes be too new, compared to the other systems.
+
+Establish an upgrade plan before putting the FreeIPA containers to
+production or you will find yourself with end-of-life FreeIPA cluster
+with known security issues three years later.
+
+## Available images
+
+FreeIPA server container images are built from this repository
+automatically and pushed to
+
+* https://quay.io/repository/freeipa/freeipa-server?tab=tags
+* https://hub.docker.com/r/freeipa/freeipa-server/tags
+
+So the full canonical path for pulling images from container registry
+is one of
+
+* `quay.io/freeipa/freeipa-server:<tag>`
+* `docker.io/freeipa/freeipa-server:<tag>`
+
+The tag matches the `Dockerfile` suffix, identifying the operating
+system the image is based on.
+
+The images get rebuilt regularly, with latest version of both the FreeIPA
+and dependent packages in the given operating system version, both for
+security and bug fixes. If you require stricter control over pulling in
+new image builds into your deployments, tag them into your namespace
+or push to your registry and set up a testing/stage/production
+regression testing and process.
+
+The container images registries also contain more specific tags that
+identify the version of FreeIPA in the given image. Note however that
+the underlying dependency packages could have been updated many times
+even if the FreeIPA packages stayed the same.
+
+## Building images locally
+
+When building the FreeIPA server container images locally, for
+development or debugging, use the `-f` option to `podman build`
+or `docker build` to pick a `Dockerfile` for the specific operating
+system and version.
+
+For example, to build image based on CentOS 9 Stream packages using podman,
+use
+
+    podman build -t localhost/freeipa-server -f Dockerfile.centos-9-stream .
+
+and to create FreeIPA image based on Fedora rawhide with docker, call
+
+    docker build -t localhost/freeipa-server -f Dockerfile.fedora-rawhide .
+
+Note that when using docker / moby-engine, the docker daemon needs
+to be running.
+
+## Running FreeIPA server container
+
+While in an ideal case the use of FreeIPA server container can simplify
+the setup, prior experience with FreeIPA is definitely useful. For the
+general FreeIPA topics, refer to the
+[FreeIPA documentation](https://www.freeipa.org/page/Documentation.html).
+Here we only focus on the aspects that are specific to running FreeIPA
+containerized.
+
+Note that getting the FreeIPA container set up and running can be more
+challenging than other typical containerized workloads.
+
+### Running the container
+
+The FreeIPA container runs systemd to manage all the necessary services
+within a single container. Running a systemd-based container may
+require special handling or parameters to be passed to the container
+runtime. When you hit an issue, debug by simplifying the setup, retry
+with basic podman or docker instead of continuing with more complex
+orchestration like docker-compose or Kubernetes, try to get plain
+systemd running in container properly first (see Debugging section below).
+
+Note that privileged setup is not supported and will not work — we
+want the FreeIPA server container to be reasonably isolated from the
+host and vice versa.
+
+With podman, normal `podman run` is typically enough and works for
+rootless setups as well.
+
+Use of [rootless docker](https://docs.docker.com/engine/security/rootless/)
+(check with `docker info --format '{{ .ClientInfo.Context }}'`)
+is only supported on systems with cgroups v2 (determine by existence of
+`/sys/fs/cgroup/cgroup.controllers`). It may then be necessary to
+use `docker run` option
+
+    --cgroupns=host -v /sys/fs/cgroup:/sys/fs/cgroup:rw
+
+With rootful docker daemon,
+[user namespace remapping](https://docs.docker.com/engine/security/userns-remap/)
+may be needed for the container cgroup to be properly created and mounted
+within the container read-write as systemd expects it, with
+
+    { "userns-remap": "default" }
+
+in `/etc/docker/daemon.json`. Restart of the docker service is needed
+after this configuration change. This approach also isolates the root
+in the container from the root on the host, which is a good thing in
+general. On the other hand, it is a global daemon configuration so it
+will affect other containers as well.
+
+With docker on systems with cgroups v1, there is often a hybrid setup
+present with cgroups v2 as well, available as `/sys/fs/cgroup/unified`,
+so invoking `docker run` with option
+
+    -v /sys/fs/cgroup/unified:/sys/fs/cgroup:rw
+
+should work.
+
+On SELinux enabled systems, it may be also necessary to enable running
+systemd in containers by setting SELinux boolean `container_manage_cgroup`
+on the host with
+
+    setsebool -P container_manage_cgroup 1
+
+### Server configuration and data
+
+The FreeIPA container will store all its configurations, data, and logs
+on volume mounted to `/data` directory in the container. If we create
+directory which will hold the server data on the host with
+
+    mkdir ipa-data
+
+we can then create the FreeIPA container with podman using
+
+    podman run --name freeipa-server-container -ti \
+        -h ipa.example.test --read-only \
+        -v $(pwd)/ipa-data:/data:Z <image> [ ... ]
+
+and with docker using
+
+    docker run --name freeipa-server-container -ti \
+        -h ipa.example.test --read-only \
+        -v $(pwd)/ipa-data:/data:Z <image> [ ... ]
+
+When running in rootless mode, make sure the volume directory on
+the host is owned by uid which becomes uid 0 in the container.
+
+Of course, the volume can also be created in the container system,
+for example with
+
+    podman volume create freeipa-data
+    podman run --name freeipa-server-container -ti \
+        -h ipa.example.test --read-only \
+        -v freeipa-data:/data:Z <image> [ ... ]
+
+### Initial FreeIPA master setup
+
+Upon the first invocation with empty directory mounted to `/data`,
+the container will run `ipa-server-install` (or `ipa-replica-install`)
+to configure FreeIPA master or replica. For example
+
+    podman run -ti -h ipa.example.test --read-only \
+        -v /var/lib/ipa-data:/data:Z \
+        <image> ipa-server-install -r EXAMPLE.TEST --no-ntp
+
+will run interactive `ipa-server-install` and configure the FreeIPA master
+using the inputs provided. For unattended initial installation, use
+the `-U` argument to `ipa-server-install` and specify all the necessary
+inputs as argument on the command line, for example
+
+    docker run -h ipa.example.test --read-only \
+        -v /var/lib/ipa-data:/data:Z \
+        -e PASSWORD=Secret123 \
+        <image> ipa-server-install -U -r EXAMPLE.TEST --no-ntp
+
+The environment variable `PASSWORD` sets both the Directory Manager
+and admin passwords, an equivalent of specifying `--admin-password`
+and `--ds-password` on the command line.
+
+The `ipa-server-install` command is the default and can be omitted.
+
+Sometimes it is not convenient or possible to specify the arguments
+to `ipa-server-install` as arguments to `podman run` or `docker run`.
+In the case they can be specified either using environment variable
+`IPA_SERVER_INSTALL_OPTS` using the `-e` option, or they can be passed
+in using file `ipa-server-install-options` in the directory mounted
+to the container as `/data`. For example, when
+`/var/lib/ipa-data/ipa-server-install-options` contains
+
+    --realm=EXAMPLE.TEST
+    --ds-password=The-directory-server-password
+    --admin-password=The-admin-password
+
+and `podman run` or `docker run` is executed with
+`-v /var/lib/ipa-data:/data:Z`, the content of
+`ipa-server-install-options` will be passed as arguments to
+`ipa-server-install`.
+
+Since the `ipa-server-install-options` typically contains passwords,
+it is also possible to use `podman secret create` to store the whole
+content of that file, and the invoke `podman run` with options like
+
+    --secret source=options-with-credentials,target=/data/ipa-server-install-options
+
+to expose the options in the container. The same holds for `docker`
+invocation.
+
+If you want to instruct the container to create a replica, specify the
+`ipa-replica-install` command in the `podman run` or `docker run`
+parameters:
+
+    podman run -ti -h ipa.example.test --read-only \
+       -v /var/lib/ipa-data:/data:Z \
+       <image> ipa-replica-install [ opts ]
+
+Using `ipa-replica-install-options` also works and will invoke
+`ipa-replica-install` and pass it its content as argument, the same
+way `ipa-server-install-options` works for `ipa-server-install`.
+
+### Routine invocation
+
+Upon subsequent invocations when `/data` is found already populated
+with FreeIPA server configuration and data, the options are ignored
+and just the necessary services get started in the container.
+
+### Upgrades
+
+If you have existing container with data volume, it should be safe
+to shut it down and run new one based on newer image, with the same
+data directory bind-mounted to `/data`. The container logic will detect
+that it is running with data produced by different image and attempt
+to upgrade the configuration and data.
+
+This in-place upgrade with newer container image only works within
+the same major version of the operating system used in container,
+so for example upgrades from AlmaLinux 9-based container to newer
+AlmaLinux 9-based images are supported but upgrades to AlmaLinux 10
+are not. With Fedoras, upgrades across major versions are known
+to work as well but it is recommended to upgrade along the sequential
+Fedora versions; don't make jumps across multiple Fedora versions.
+
+Of course, keeping backup of the data directory for cases when the
+upgrade process fails is recommended. If in doubt, copy the volume
+content and start another throwaway container in a completely isolated
+testbed environment using the original data and new image and verify
+the upgrade and stability post upgrade.
+
+If the in-place upgrade fails and for upgrades across major
+operating system versions, the easiest way forward is to take
+advantage of FreeIPA's replication — add replica containers to the
+existing FreeIPA cluster and remove the original containers after
+the new ones have been verified stable.
+
+### Backup and restore
+
+The FreeIPA server container stores all configuration, data, and logs
+in one volume mounted at `/data`. Instead of using `ipa-backup` and
+`ipa-restore`, the easiest way to backup the container is to stop it
+and just backup the content of the directory mounted to `/data`.
+
+If you transfer that backup to different machine and you've been
+using setup with user namespace remapping (rootless containers),
+check that the `/etc/subuid` and `/etc/subgid` values used by the
+docker/podman match on both machines.
+
+You then restore the server by running a new container with a copy
+of that backup mounted to `/data`.
+
+### Other runtime considerations
+
+If you receive error like
+
+    IPv6 stack is enabled in the kernel but there is no interface that
+    has ::1 address assigned. Add ::1 address resolution to 'lo' interface.
+    You might need to enable IPv6 on the interface 'lo' in sysctl.conf.
+
+you might also need to add option `--sysctl net.ipv6.conf.all.disable_ipv6=0`.
+
+If you receive error like
+
+    Unable to determine the amount of available RAM
+
+you might need to use `ipa-server-install` option `--skip-mem-check`.
+
+When running DNS server (the `--setup-dns` argument to `ipa-server-install`)
+in the FreeIPA container, add `--dns=127.0.0.1` option to the
+`podman run` or `docker run` invocation to allow the FreeIPA server
+to reach its own DNS server.
+
+To allow for unprivileged container operation, use the `-h ...`
+option to set the hostname for the FreeIPA server in the container.
+If it's not possible to set the hostname for the container, specify it
+with `IPA_SERVER_HOSTNAME` environment variable, for example with
+`podman run -e IPA_SERVER_HOSTNAME=...`. This might however not work
+with read-only containers.
+Do not use the `ipa-server-install --hostname ...` argument.
+
+### Exposing ports
+
+If you want to use the FreeIPA server not just from the host
+where it is running but from external machines as well, you
+might want to use the `-p` options to make the services accessible
+externally.
+
+    docker run -p 53:53/udp -p 53:53 \
+        -p 80:80 -p 443:443 -p 389:389 -p 636:636 -p 88:88 -p 464:464 \
+	-p 88:88/udp -p 464:464/udp -p 123:123/udp ...
+
+You will then likely want to also specify the `--ip-address`
+option to `ipa-server-install` with the IP address of the host,
+and also use the `--add-host` option to the `docker run` / `podman run`
+with the same IP address, especially when running the container
+as read only.
+
+By default the container will attempt to update the FreeIPA
+server's IPv4 address in the internal DNS server to its internal
+address (as seen in the container) upon each startup, using the
+systemd service `ipa-server-update-self-ip-address` in the container.
+You can disable this mechanism by setting the `IPA_SERVER_IP`
+environment variable to `no-update`, via the `-e` option to
+`docker run` / `podman run`, or by exec-ing to the container and running
+`systemctl disable ipa-server-update-self-ip-address.service`.
+
+Alternatively, the `IPA_SERVER_IP` environment variable can be
+used to force the IPv4 address DNS record to a specific value.
+Using this mechanism will however not update the `ipa-ca` record.
+
+### Running in Kubernetes
+
+An example Pod YAML for running FreeIPA server in Kubernetes is shown
+in [tests/freeipa-k8s.yaml](tests/freeipa-k8s.yaml). It is also used
+by the CI workflows of this repo which you are welcome so check for
+any workarounds that might be needed.
+
+The crucial value is the `spec.hostUsers: false` which ensures the Pod
+runs in its user namespace, with its root (and other uids) isolated
+from the host. For this to work, the `UserNamespacesSupport`
+Kubernetes feature gate needs to be set to `true` in the cluster.
+The feature gate is present starting with Kubernetes 1.28, and it
+is `true` by default since Kubernetes 1.33.
+
+The second prerequisite is the support for user namespaces and writable
+cgroups in runtimes. Runtimes known to work include
+
+- containerd 2.1+, with [writable systemd cgroups configuration](tests/containerd-2.1-config.toml)
+- CRI-O 1.32+
+
+with either of
+
+- runc 1.2+
+- crun 1.9+
+
+When docker is used as a runtime for Kubernetes, the user namespace
+remapping with `userns-remap` described above needs to be used instead
+of `spec.hostUsers`.
+
+## Debugging
+
+The container scripts provide some options for debugging:
+
+- Enable shell script tracing in both the top-level `init-data` script
+  and the `ipa-server-configure-first` script by setting the
+  `$DEBUG_TRACE` environment variable.
+
+- Disable container exit after script failure by setting the
+  `$DEBUG_NO_EXIT` environment variable.  After failure, the
+  container will continue running, and can be entered for debugging
+  with e.g. `podman exec -it freeipa-server-container bash`.
+  This can also be achieved by specifying `no-exit` as the first
+  word in the [opts] to the container.
+
+- Force container exit after successfully configuring the FreeIPA
+  server by specifying `exit-on-finished` as the first word in the
+  [opts] to the container.
+
+Example usage:
+
+    podman run [...] -e DEBUG_TRACE=1 -e DEBUG_NO_EXIT=1 localhost/freeipa-server ...
+
+or
+
+    docker run [...] localhost/freeipa-server exit-on-finished -U -r EXAMPLE.TEST
+
+You can also try to run
+
+    docker=podman tests/run-partial-tests.sh Dockerfile
+
+or
+
+    docker=docker tests/run-partial-tests.sh Dockerfile
+
+which can uncover the general issues with running systemd in containers.
+
+## CI in GitHub Actions
+
+To check the general health of the project, see
+https://github.com/freeipa/freeipa-container/actions
+where tests are run for various OS versions in the containers.
+
+## License
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

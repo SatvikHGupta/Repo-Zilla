@@ -2,7 +2,7 @@
 
 > Catalogue for the top ~33,000 GitHub repositories - curated personally by stars, forks, and activity.
 
-**Live:** [https://repo-zilla.vercel.app/ or https://repozilla.vercel.app/]
+**Live:** [https://repo-zilla.vercel.app/]
 
 ---
 
